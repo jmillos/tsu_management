@@ -63,20 +63,20 @@ final class TSU_Management {
 			'Gestión TSU',
 			'read',
 			'tsu-config',
-			'TSU_Modules_Controller::index',
+			'TSU_Modules_Controller::render',
 			'',
 			'57'
 		);
 
 		// sublevel Export menu
-		add_submenu_page(
+		/*add_submenu_page(
 			'tsu-config',
 			__( 'TSU Módulos' ),
 			__( 'Módulos' ),
 			'read',
 			'tsu-modules',
 			'TSU_Modules_Controller::index'
-		);
+		);*/
 
 		// sublevel Import menu
 		/*add_submenu_page(
@@ -100,7 +100,7 @@ final class TSU_Management {
 	}
 
 	public function admin_script(){
-		wp_register_script( 'management_bonster_bundle', 'http://localhost:8010/bundle.js', array(), self::$version, true );
+		wp_register_script( 'management_bonster_bundle', 'http://localhost:8020/bundle.js', array(), self::$version, true );
 		wp_enqueue_script( 'management_bonster_bundle' );
 	}
 

@@ -18,19 +18,25 @@ class TSU_Post_types {
 	 * Register core post types.
 	 */
 	public static function register_post_types() {
-		$ptModules = 'tsu_crm_modules';
+		self::register_post_type('tsu_crm_modules', 'Modulo', 'Modulos');
 
+		self::register_post_type('tsu_crm_pty_groups', 'Grupo de propiedades', 'Grupos de propiedades');
+
+		self::register_post_type('tsu_crm_properties', 'Propiedades', 'Propiedades');
+	}
+
+	private static function register_post_type($keyPt, $labelSingular, $labelPlural){
 		$labels = array(
-			'name' => __( 'Modulos'),
-			'singular_name' => __( 'Modulo' ),
+			'name' => __( $labelPlural ),
+			'singular_name' => __( $labelSingular ),
 			'add_new' => __('Añadir nuevo'),
-			'add_new_item' => __('Añadir nuevo Modulo'),
-			'edit_item' => __('Editar Modulo'),
-			'new_item' => __('Nuevo Modulo'),
-			'view_item' => __('Ver Modulo'),
+			'add_new_item' => __('Añadir nuevo ' . $labelSingular),
+			'edit_item' => __('Editar ' . $labelSingular),
+			'new_item' => __('Nuevo ' . $labelSingular),
+			'view_item' => __('Ver ' . $labelSingular),
 			'search_items' => __('Buscar'),
-			'not_found' =>  __('No se encontraron Modulos'),
-			'not_found_in_trash' => __('No se encontraron Modulos en la Papelera'), 
+			'not_found' =>  __('No se encontraron ' . $labelPlural),
+			'not_found_in_trash' => __('No se encontraron '. $labelPlural .' en la Papelera'), 
 			'parent_item_colon' => ''
 		);
 
@@ -45,14 +51,14 @@ class TSU_Post_types {
 			'hierarchical' => true,
 			'show_ui' => false,
 			'show_in_nav_menus' => false,
-			// 'show_in_menu' => 'bn_config',
+			'show_in_menu' => 'tsu-config',
 			// 'menu_position' => 57,
 			'menu_icon' => 'dashicons-clipboard',
-			'rewrite' => array('slug' => __( $ptModules )),
+			'rewrite' => array('slug' => __( $keyPt )),
 			'supports' => array('title', 'excerpt', 'page-attributes') //,'editor'
 		);
 
-		register_post_type(__( $ptModules ), $args);
+		register_post_type(__( $keyPt ), $args);
 	}
 }
 
