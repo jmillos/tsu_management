@@ -1,0 +1,43 @@
+@import 'compass/css3';
+
+body {
+    background: #f1f1f1;
+    color: #444;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+    font-size: 13px;
+
+    &.ui-full-screen-background {
+        // #adminmenumain, #wpadminbar {
+        //     ms-filter: blur(5px);
+        //     -webkit-filter: blur(5px);
+        //     filter: blur(5px);
+        // }
+    }
+
+    .muiDrawerContainer {
+        z-index: 99999 !important;
+    }
+
+    .muiDrawerOverlay {
+        background-color: rgba(45,62,80,.79) !important;
+        z-index: 99999 !important;
+    }
+
+    .muiAppBar {
+        background-color: #00bda5;
+        @include background-image(linear-gradient(-303deg,#00a4bd,#00afb2 56%,#00bda5));
+    }
+}
+
+.crm-config {
+    padding-right: 20px;
+
+    .main-title {
+        border-bottom: 1px solid rgba(black, .12);
+        color: rgba(black, .7);
+    }
+}
+
+.crm-config-module {
+    margin-bottom: 25px;
+}
