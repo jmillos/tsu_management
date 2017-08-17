@@ -100,8 +100,8 @@ final class TSU_Management {
 	}
 
 	public function admin_script(){
-		wp_register_script( 'management_bonster_bundle', 'http://localhost:8020/bundle.js', array(), self::$version, true );
-		wp_enqueue_script( 'management_bonster_bundle' );
+		wp_register_script( 'tsu_management_bundle', 'http://localhost:8020/bundle.js', array(), self::$version, true );
+		wp_enqueue_script( 'tsu_management_bundle' );
 	}
 
 	/**

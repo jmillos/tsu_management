@@ -1,3 +1,4 @@
+import 'react-table/react-table.css'
 import '../css/bootstrap.css'
 import '../css/main.css'
 
@@ -11,6 +12,7 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 import ReduxPromise from 'redux-promise'
 import ReduxThunk from 'redux-thunk'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
 injectTapEventPlugin()
 
 import routes from './routes'
@@ -22,6 +24,12 @@ import App from './components/app'
 const createStoreWithMiddleware = composeWithDevTools( applyMiddleware(ReduxPromise, ReduxThunk) )(createStore)
 const store = createStoreWithMiddleware(reducers)
 
+const muiTheme = getMuiTheme({
+    zIndex: {
+        popover: 99999
+    }
+});
+
 /*** CRM ***/
 var el = document.getElementById('crm-app')
 if(el){
@@ -29,7 +37,7 @@ if(el){
 
   ReactDOM.render(
     <Provider store={store}>
-        <MuiThemeProvider>
+        <MuiThemeProvider muiTheme={muiTheme}>
             <Router history={hashHistory} routes={routes} />
         </MuiThemeProvider>
     </Provider>

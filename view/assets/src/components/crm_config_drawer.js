@@ -42,6 +42,7 @@ class CrmConfigDrawer extends Component {
 
     render(){
         const { title, description, dialogTitle } = this.props
+        const ChildComponent = this.props.component
 
         return (
             <div className="d-flex w-100 justify-content-between">
@@ -65,11 +66,13 @@ class CrmConfigDrawer extends Component {
                         overlayClassName="muiDrawerOverlay"
                         open={this.state.open}
                         onKeyUp>
-                          <AppBar
-                              title={dialogTitle}
-                              className="muiAppBar"
-                              iconElementRight={<IconButton><NavigationClose /></IconButton>}
-                              onRightIconButtonTouchTap={this.handleClose} />
+                        <AppBar
+                            title={dialogTitle}
+                            className="muiAppBar"
+                            iconElementRight={<IconButton><NavigationClose /></IconButton>}
+                            onRightIconButtonTouchTap={this.handleClose} />
+
+                        { ChildComponent ? <ChildComponent />:null }
                     </Drawer>
                 </div>
             </div>

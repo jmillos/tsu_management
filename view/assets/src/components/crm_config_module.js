@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router'
 
 import CrmConfigDrawer from './crm_config_drawer'
+import ModuleProperties from './module_properties'
 
 class CrmConfigModule extends Component {
     render(){
@@ -17,7 +18,8 @@ class CrmConfigModule extends Component {
                         <CrmConfigDrawer
                             title={`Configuración de propiedades para el módulo ${moduleName}`}
                             description={`Crea, edita y gestiona las propiedades que estaran disponibles en el módulo de ${moduleName}.`}
-                            dialogTitle="Crea una nueva propiedad" />
+                            dialogTitle="Configuración de propiedades"
+                            component={ModuleProperties} />
                     </li>
                     <li className="list-group-item list-group-item-action flex-column align-items-center">
                         <CrmConfigDrawer
