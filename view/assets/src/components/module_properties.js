@@ -9,12 +9,17 @@ import RaisedButton from 'material-ui/RaisedButton'
 // import IconButton from 'material-ui/IconButton';
 import ActionModule from 'material-ui/svg-icons/action/view-module'
 import ActionDelete from 'material-ui/svg-icons/action/delete-forever'
+import ActionAddGroup from 'material-ui/svg-icons/av/library-add'
+import ActionAddProperty from 'material-ui/svg-icons/content/add-circle'
 import ImageEdit from 'material-ui/svg-icons/image/edit'
 import {grey400, darkBlack, lightBlack} from 'material-ui/styles/colors';
 import IconButton from 'material-ui/IconButton';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
+
+// import SearchBar from 'material-ui-search-bar'
+import SearchBar from '../lib/vendors/search_bar'
 
 class ModuleProperties extends Component {
     constructor(props){
@@ -48,7 +53,37 @@ class ModuleProperties extends Component {
         return (
             <div className="module-properties">
                 <List>
-                    <Subheader>Nested List Items</Subheader>
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '10px', padding: '0 16px' }}>
+                        <SearchBar
+                            className="search-bar"
+                            hintText="Buscar propiedad"
+                            onChange={() => console.log('onChange')}
+                            onRequestSearch={() => console.log('onRequestSearch')}
+                            style={{
+                                height: 36,
+                            }} />
+                        <RaisedButton
+                            label="Crear grupo"
+                            labelStyle={{
+                                fontSize: '11px',
+                                paddingLeft: '4px',
+                                paddingRight: '8px'
+                            }}
+                            primary={true} icon={<ActionAddGroup style={{ height: 18, width: 18 }} />}
+                            style={{ margin: '0 5px 0 auto', lineHeight: '36px', height: 36 }}
+                        />
+                        <RaisedButton
+                            label="Crear propiedad"
+                            labelStyle={{
+                                fontSize: '11px',
+                                paddingLeft: '4px',
+                                paddingRight: '8px'
+                            }}
+                            primary={true}
+                            icon={<ActionAddProperty style={{ height: 18, width: 18 }} />}
+                            style={{ lineHeight: '36px', height: 36 }}
+                        />
+                    </div>
                     <ListItem
                         primaryText="Inbox"
                         leftIcon={<ActionModule />}

@@ -100,8 +100,10 @@ final class TSU_Management {
 	}
 
 	public function admin_script(){
-		wp_register_script( 'tsu_management_bundle', 'http://localhost:8020/bundle.js', array(), self::$version, true );
+		wp_register_script( 'tsu_management_bundle', 'http://localhost:8020/bundle.js', array('wp-api'), self::$version, true );
 		wp_enqueue_script( 'tsu_management_bundle' );
+
+		wp_localize_script( 'tsu_management_bundle', 'wpApiSettings', array( 'root' => esc_url_raw( rest_url() ), 'nonce' => wp_create_nonce( 'wp_rest' ) ) );
 	}
 
 	/**

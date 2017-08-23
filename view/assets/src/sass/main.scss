@@ -9,6 +9,14 @@ body {
     font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
     font-size: 13px;
 
+    #crm-app {
+        input,
+        select,
+        textarea {
+            box-shadow: none;
+        }
+    }
+
     &.ui-full-screen-background {
         // #adminmenumain, #wpadminbar {
         //     ms-filter: blur(5px);
@@ -43,4 +51,15 @@ body {
 
 .crm-config-module {
     margin-bottom: 25px;
+
+    .search-bar {
+        display: block !important;
+        font-size: 12px !important;
+        height: 36px !important;
+
+        > div:first-child {
+            bottom: inherit !important;
+            line-height: 36px !important;
+        }
+    }
 }
