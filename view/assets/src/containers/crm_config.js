@@ -17,7 +17,15 @@ class CrmConfig extends Component {
                 <h1 className="main-title mt-2 mb-3">Configuración Módulos</h1>
 
                 {this.props.modules.map(item => {
-                    return <CrmConfigModule name={item.title.rendered} singularName="Contacto" link="/config/property-settings" />
+                    return (
+                        <CrmConfigModule
+                            key={item.id}
+                            id={item.id}
+                            name={item.title}
+                            singularName={item.singular_name}
+                            link="/config/property-settings"
+                             />
+                    )
                 })}
 
                 {/* <CrmConfigModule name="Contactos" singularName="Contacto" link="/config/property-settings" /> */}

@@ -1,1 +1,2 @@
 export const FETCH_MODULES = 'FETCH_MODULES'
+export const FETCH_PTY_GROUPS = 'FETCH_PTY_GROUPS'

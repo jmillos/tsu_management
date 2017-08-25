@@ -110,7 +110,7 @@ final class TSU_Management {
 	 * Include required core files used in admin and on the frontend.
 	 */
 	public function includes() {
-		include_once( 'includes/class-tsu-post-types.php' ); // Registers post types
+		// include_once( 'includes/class-tsu-post-types.php' ); // Registers post types
 	}
 
 	/**

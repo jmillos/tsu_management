@@ -18,14 +18,14 @@ class TSU_Post_types {
 	 * Register core post types.
 	 */
 	public static function register_post_types() {
-		self::register_post_type(TSU_Modules_Controller::$postType, 'Modulo', 'Modulos');
+		// self::register_post_type(TSU_Modules_Controller::$postType, 'Modulo', 'Modulos');
 
-		self::register_post_type(TSU_Property_Groups_Controller::$postType, 'Grupo de propiedades', 'Grupos de propiedades');
+		// self::register_post_type(TSU_Property_Groups_Controller::$postType, 'Grupo de propiedades', 'Grupos de propiedades');
 
 		self::register_post_type('tsu_crm_properties', 'Propiedades', 'Propiedades');
 	}
 
-	private static function register_post_type($postType, $labelSingular, $labelPlural){
+	public static function register_post_type($postType, $labelSingular, $labelPlural){
 		$labels = array(
 			'name' => __( $labelPlural ),
 			'singular_name' => __( $labelSingular ),
@@ -55,18 +55,13 @@ class TSU_Post_types {
 			// 'menu_position' => 57,
 			'menu_icon' => 'dashicons-clipboard',
 			'rewrite' => array('slug' => __( $postType )),
-			'supports' => array('title', 'excerpt', 'page-attributes') //,'editor'
+			'supports' => array('title', 'excerpt', 'page-attributes', 'custom-fields'), //,'editor'
+            'show_in_rest'       => true,
+      		'rest_base'          => $postType,
+      		'rest_controller_class' => 'WP_REST_Posts_Controller',
 		);
 
 		register_post_type(__( $postType ), $args);
-
-		/*** Adding support for WP API ***/
-		global $wp_post_types;
-	  	if( isset( $wp_post_types[ $postType ] ) ) {
-	  		$wp_post_types[$postType]->show_in_rest = true;
-	  		$wp_post_types[$postType]->rest_base = $postType;
-	  		$wp_post_types[$postType]->rest_controller_class = 'WP_REST_Posts_Controller';
-	  	}
 	}
 }
 

@@ -1,8 +1,6 @@
 <?php
 
 class TSU_Modules_Controller {
-	public static $postType = 'tsu_crm_modules';
-
 	/**
 	 * Hook in methods.
 	 */
