@@ -9,7 +9,6 @@ import RaisedButton from 'material-ui/RaisedButton'
 // import IconButton from 'material-ui/IconButton';
 import ActionModule from 'material-ui/svg-icons/action/view-module'
 import ActionDelete from 'material-ui/svg-icons/action/delete-forever'
-import ActionAddGroup from 'material-ui/svg-icons/av/library-add'
 import ActionAddProperty from 'material-ui/svg-icons/content/add-circle'
 import ImageEdit from 'material-ui/svg-icons/image/edit'
 import {grey400, darkBlack, lightBlack} from 'material-ui/styles/colors';
@@ -20,6 +19,8 @@ import MenuItem from 'material-ui/MenuItem';
 
 // import SearchBar from 'material-ui-search-bar'
 import SearchBar from '../lib/vendors/search_bar'
+
+import BtnCreateComponent from './../components/crm_config_props/btn_create_group'
 
 class ModuleProperties extends Component {
     constructor(props){
@@ -62,16 +63,18 @@ class ModuleProperties extends Component {
                             style={{
                                 height: 36,
                             }} />
-                        <RaisedButton
+                        <BtnCreateComponent />
+                        {/* <RaisedButton
                             label="Crear grupo"
                             labelStyle={{
                                 fontSize: '11px',
                                 paddingLeft: '4px',
                                 paddingRight: '8px'
                             }}
-                            primary={true} icon={<ActionAddGroup style={{ height: 18, width: 18 }} />}
+                            primary={true}
+                            icon={<ActionAddGroup style={{ height: 18, width: 18 }} />}
                             style={{ margin: '0 5px 0 auto', lineHeight: '36px', height: 36 }}
-                        />
+                        /> */}
                         <RaisedButton
                             label="Crear propiedad"
                             labelStyle={{

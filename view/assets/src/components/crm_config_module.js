@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router'
 
 import CrmConfigDrawer from './crm_config_drawer'
-import ModuleProperties from './module_properties'
+import ModuleProperties from './../containers/module_properties'
 
 class CrmConfigModule extends Component {
     render(){
