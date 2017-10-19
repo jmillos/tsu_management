@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { Link } from 'react-router'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import ReactTable from 'react-table'
@@ -20,13 +21,16 @@ import MenuItem from 'material-ui/MenuItem';
 // import SearchBar from 'material-ui-search-bar'
 import SearchBar from '../lib/vendors/search_bar'
 
-import BtnCreateComponent from './../components/crm_config_props/btn_create_group'
+import BtnCreateComponent from '../components/crm_config_props/btn_create_group'
+import * as actions from '../actions'
 
 class ModuleProperties extends Component {
     constructor(props){
         super(props)
 
         this.state = { open: true }
+
+        this.onCreatePtyGroup = this.onCreatePtyGroup.bind(this)
 
         this.iconButtonElement = (
             <IconButton
@@ -50,6 +54,10 @@ class ModuleProperties extends Component {
         this.setState({ open: !this.state.open })
     }
 
+    onCreatePtyGroup(data){
+        this.props.createPropertyGroup(data)
+    }
+
     render(){
         return (
             <div className="module-properties">
@@ -63,7 +71,7 @@ class ModuleProperties extends Component {
                             style={{
                                 height: 36,
                             }} />
-                        <BtnCreateComponent />
+                        <BtnCreateComponent onCreate={this.onCreatePtyGroup} />
                         {/* <RaisedButton
                             label="Crear grupo"
                             labelStyle={{
@@ -120,7 +128,11 @@ class ModuleProperties extends Component {
     }
 }
 
-export default ModuleProperties
+function mapStateToProps(state){
+    return {  }
+}
+
+export default connect(mapStateToProps, actions)(ModuleProperties)
 
 function makeData() {
     return [

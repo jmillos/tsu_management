@@ -12,11 +12,13 @@ export default class BtnCreateComponent extends React.Component {
 
         this.state = {
             open: false,
+            valInputName: null,
             errorText: null
         };
 
         this.handleTouchTap = this.handleTouchTap.bind(this)
         this.handleRequestClose = this.handleRequestClose.bind(this)
+        this.onChangeInputName = this.onChangeInputName.bind(this)
         this.onCreate = this.onCreate.bind(this)
     }
 
@@ -31,11 +33,25 @@ export default class BtnCreateComponent extends React.Component {
         this.setState({open: false});
     }
 
+    onChangeInputName(event){
+        const val = event.target.value
+        this.setState({ valInputName: val })
+
+        if(val){
+            this.setState({ errorText: null })
+            this.props.onCreate({ title: val, status: 'publish' })
+        }
+    }
+
     onCreate(event){
         event.preventDefault()
 
-        const val = event.target.value
-        this.setState({ errorText: !val ? 'Este campo es requerido.':null })
+        this.setState({ errorText: !this.state.valInputName ? 'Este campo es requerido.':null })
+
+        if(this.state.valInputName){
+            this.handleRequestClose()
+            this.setState({ valInputName: null })
+        }
     }
 
     render() {
@@ -65,6 +81,7 @@ export default class BtnCreateComponent extends React.Component {
                     <form onSubmit={this.onCreate}>
                         <div>
                             <TextField
+                                onChange={this.onChangeInputName}
                                 hintText="escribir un nombre"
                                 floatingLabelText="Nombre"
                                 floatingLabelFixed={true}

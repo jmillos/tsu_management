@@ -1,7 +1,7 @@
 import * as axios from 'axios'
 
 import { API_URL, API_NONCE } from '../config'
-import { FETCH_MODULES, FETCH_PTY_GROUPS } from './types'
+import { FETCH_MODULES, FETCH_PTY_GROUPS, CREATE_PTY_GROUP } from './types'
 
 axios.defaults.headers.common['X-WP-Nonce'] = API_NONCE;
 
@@ -19,6 +19,15 @@ export function fetchPropertyGroups(){
 
     return {
         type: FETCH_PTY_GROUPS,
+        payload: request
+    }
+}
+
+export function createPropertyGroup(props){
+    const request = axios.post(`${API_URL}/tsu_crm_pty_groups`, props);
+
+    return {
+        type: CREATE_PTY_GROUP,
         payload: request
     }
 }
