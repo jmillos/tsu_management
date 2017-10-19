@@ -1,20 +1,23 @@
-import React from 'react';
-import RaisedButton from 'material-ui/RaisedButton';
+import React from 'react'
+import RaisedButton from 'material-ui/RaisedButton'
+import TextField from 'material-ui/TextField'
 import ActionAddGroup from 'material-ui/svg-icons/av/library-add'
-import Popover, {PopoverAnimationVertical} from 'material-ui/Popover';
-import Menu from 'material-ui/Menu';
-import MenuItem from 'material-ui/MenuItem';
+import Popover, {PopoverAnimationVertical} from 'material-ui/Popover'
+import Menu from 'material-ui/Menu'
+import MenuItem from 'material-ui/MenuItem'
 
 export default class BtnCreateComponent extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            open: false
+            open: false,
+            errorText: null
         };
 
         this.handleTouchTap = this.handleTouchTap.bind(this)
         this.handleRequestClose = this.handleRequestClose.bind(this)
+        this.onCreate = this.onCreate.bind(this)
     }
 
     handleTouchTap(event){
@@ -26,7 +29,14 @@ export default class BtnCreateComponent extends React.Component {
 
     handleRequestClose(){
         this.setState({open: false});
-    };
+    }
+
+    onCreate(event){
+        event.preventDefault()
+
+        const val = event.target.value
+        this.setState({ errorText: !val ? 'Este campo es requerido.':null })
+    }
 
     render() {
         return (
@@ -50,13 +60,24 @@ export default class BtnCreateComponent extends React.Component {
                     targetOrigin={{horizontal: 'left', vertical: 'top'}}
                     onRequestClose={this.handleRequestClose}
                     animation={PopoverAnimationVertical}
+                    className="jg-popover"
                 >
-                    <Menu>
-                        <MenuItem primaryText="Refresh" />
-                        <MenuItem primaryText="Help &amp; feedback" />
-                        <MenuItem primaryText="Settings" />
-                        <MenuItem primaryText="Sign out" />
-                    </Menu>
+                    <form onSubmit={this.onCreate}>
+                        <div>
+                            <TextField
+                                hintText="escribir un nombre"
+                                floatingLabelText="Nombre"
+                                floatingLabelFixed={true}
+                                errorText={this.state.errorText}
+                            />
+                        </div>
+                        <RaisedButton type="submit" label="Crear" primary={true} />
+                        <RaisedButton
+                            onClick={this.handleRequestClose}
+                            label="Cancelar"
+                            style={{ marginLeft: 10 }}
+                        />
+                    </form>
                 </Popover>
             </div>
         );

@@ -26,6 +26,7 @@ const store = createStoreWithMiddleware(reducers)
 
 const muiTheme = getMuiTheme({
     zIndex: {
+        layer: 99999,
         popover: 99999
     }
 });

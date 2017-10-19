@@ -17,6 +17,20 @@ body {
         }
     }
 
+    .jg-popover {
+        padding: 0 15px 15px;
+
+        input,
+        select,
+        textarea {
+            @include box-shadow(none);
+
+            &:focus {
+                @include box-shadow(none);
+            }
+        }
+    }
+
     &.ui-full-screen-background {
         // #adminmenumain, #wpadminbar {
         //     ms-filter: blur(5px);
