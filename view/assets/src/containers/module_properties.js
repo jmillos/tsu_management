@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router'
@@ -50,6 +51,10 @@ class ModuleProperties extends Component {
         );
     }
 
+    componentWillMount(){
+        this.props.fetchPropertyGroups()
+    }
+
     handleToggle(){
         this.setState({ open: !this.state.open })
     }
@@ -95,7 +100,40 @@ class ModuleProperties extends Component {
                             style={{ lineHeight: '36px', height: 36 }}
                         />
                     </div>
-                    <ListItem
+
+                    {_.map(this.props.groups, item => {
+                        return (
+                            <ListItem
+                                key={item.id}
+                                primaryText={item.title}
+                                leftIcon={<ActionModule />}
+                                initiallyOpen={true}
+                                primaryTogglesNestedList={true}
+                                rightIconButton={this.rightIconMenu}
+                                nestedItems={[
+                                    <ReactTable
+                                        key={1}
+                                        showPagination={false}
+                                        defaultPageSize={makeData().length}
+                                        data={makeData()}
+                                        columns={[
+                                            {
+                                                Header: "Name",
+                                                accessor: "firstName"
+                                            },
+                                            {
+                                                Header: "Info",
+                                                accessor: "age",
+                                                filterable: false
+                                            }
+                                        ]}
+                                        // filterable
+                                    />
+                                ]}
+                            />
+                        )
+                    })}
+                    {/* <ListItem
                         primaryText="Inbox"
                         leftIcon={<ActionModule />}
                         initiallyOpen={true}
@@ -121,15 +159,15 @@ class ModuleProperties extends Component {
                                 // filterable
                             />
                         ]}
-                    />
+                    /> */}
                 </List>
             </div>
         )
     }
 }
 
-function mapStateToProps(state){
-    return {  }
+function mapStateToProps({ modulePtyGroups }){
+    return { groups: modulePtyGroups }
 }
 
 export default connect(mapStateToProps, actions)(ModuleProperties)

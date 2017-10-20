@@ -39,7 +39,6 @@ export default class BtnCreateComponent extends React.Component {
 
         if(val){
             this.setState({ errorText: null })
-            this.props.onCreate({ title: val, status: 'publish' })
         }
     }
 
@@ -51,6 +50,7 @@ export default class BtnCreateComponent extends React.Component {
         if(this.state.valInputName){
             this.handleRequestClose()
             this.setState({ valInputName: null })
+            this.props.onCreate({ title: this.state.valInputName, status: 'publish', parent: 12153 })
         }
     }
 
