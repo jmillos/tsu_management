@@ -1,7 +1,7 @@
 import * as axios from 'axios'
 
 import { API_URL, API_NONCE } from '../config'
-import { FETCH_MODULES, FETCH_PTY_GROUPS, CREATE_PTY_GROUP, UPDATE_PTY_GROUP } from './types'
+import { FETCH_MODULES, FETCH_PTY_GROUPS, CREATE_PTY_GROUP, UPDATE_PTY_GROUP, EDIT_PTY_GROUP_NAME } from './types'
 
 axios.defaults.headers.common['X-WP-Nonce'] = API_NONCE;
 
@@ -50,4 +50,11 @@ export function deletePropertyGroup(id, callback) {
         type: DELETE_POST,
         payload: id
     };
+}
+
+export function onEditGroupName(active){
+    return {
+        type: EDIT_PTY_GROUP_NAME,
+        payload: active
+    }
 }
