@@ -24,9 +24,12 @@ export default class PtyGroupItem extends Component {
     constructor(props){
         super(props)
 
+        this.state.inputGroupName = props.item.title
+
         this.handleOpenDialog = this.handleOpenDialog.bind(this)
         this.handleCloseDialog = this.handleCloseDialog.bind(this)
         this.onFocusGroupName = this.onFocusGroupName.bind(this)
+        this.onUpdateItem = this.onUpdateItem.bind(this)
 
         this.iconButtonElement = (
             <IconButton
@@ -56,10 +59,6 @@ export default class PtyGroupItem extends Component {
         this.setState({openDialog: false});
     }
 
-    onFocusGroupName(){
-        this.refs.inputGroupName.select()
-    }
-
     handleKeyUp = (event) => {
         // 27 = esc
         if (event.keyCode === 27) {
@@ -67,19 +66,27 @@ export default class PtyGroupItem extends Component {
         }
     }
 
+    onFocusGroupName(){
+        this.refs.inputGroupName.select()
+    }
+
+    onUpdateItem(){
+        this.props.updatePropertyGroup(this.props.item.id, { title: this.state.inputGroupName })
+        this.handleCloseDialog()
+    }
+
     render(){
         const { item } = this.props
         const actions = [
             <FlatButton
                 label="Cancelar"
-                primary={true}
                 onClick={this.handleCloseDialog}
               />,
               <FlatButton
-                label="Crear"
+                label="Actualizar"
                 primary={true}
                 keyboardFocused={true}
-                onClick={this.handleCloseDialog}
+                onClick={this.onUpdateItem}
               />,
         ]
 
@@ -114,9 +121,9 @@ export default class PtyGroupItem extends Component {
                     ]}
                 />
 
-                
+
                 <Dialog
-                      title="Dialog With Date Picker"
+                      title="Cambiar nombre del grupo"
                       actions={actions}
                       modal={false}
                       contentStyle={{ width: 400 }}
@@ -125,9 +132,11 @@ export default class PtyGroupItem extends Component {
                     >
                         <TextField
                             ref="inputGroupName"
+                            className="mui-text-input"
                             defaultValue={item.title}
                             floatingLabelText="Nombre del grupo"
                             onFocus={this.onFocusGroupName}
+                            onChange={(e) => this.setState({ inputGroupName: e.target.value })}
                           />
                       {/* <DatePicker hintText="Date Picker" /> */}
                 </Dialog>

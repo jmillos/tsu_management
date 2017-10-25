@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import EventListener from 'react-event-listener'
 
+// Material UI
 import Drawer from 'material-ui/Drawer'
 import AppBar from 'material-ui/AppBar'
 import IconButton from 'material-ui/IconButton'

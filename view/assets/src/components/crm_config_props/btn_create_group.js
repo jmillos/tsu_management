@@ -1,4 +1,7 @@
 import React from 'react'
+import EventListener from 'react-event-listener'
+
+// Material UI
 import RaisedButton from 'material-ui/RaisedButton'
 import TextField from 'material-ui/TextField'
 import ActionAddGroup from 'material-ui/svg-icons/av/library-add'
@@ -18,6 +21,7 @@ export default class BtnCreateComponent extends React.Component {
 
         this.handleTouchTap = this.handleTouchTap.bind(this)
         this.handleRequestClose = this.handleRequestClose.bind(this)
+        this.handleKeyUp = this.handleKeyUp.bind(this)
         this.onChangeInputName = this.onChangeInputName.bind(this)
         this.onCreate = this.onCreate.bind(this)
     }
@@ -31,6 +35,12 @@ export default class BtnCreateComponent extends React.Component {
 
     handleRequestClose(){
         this.setState({open: false});
+    }
+
+    handleKeyUp(event){
+        if(event.keyCode == 27){
+            this.handleRequestClose();
+        }
     }
 
     onChangeInputName(event){
@@ -57,6 +67,10 @@ export default class BtnCreateComponent extends React.Component {
     render() {
         return (
             <div>
+                <EventListener
+                    target="window"
+                    onKeyUp={this.handleKeyUp}
+                />
                 <RaisedButton
                     onClick={this.handleTouchTap}
                     label="Crear grupo"
@@ -65,7 +79,7 @@ export default class BtnCreateComponent extends React.Component {
                         paddingLeft: '4px',
                         paddingRight: '8px'
                     }}
-                    primary={true}
+                    // primary={true}
                     icon={<ActionAddGroup style={{ height: 18, width: 18 }} />}
                     style={{ margin: '0 5px 0 auto', lineHeight: '36px', height: 36 }}
                 />
@@ -81,6 +95,7 @@ export default class BtnCreateComponent extends React.Component {
                     <form onSubmit={this.onCreate}>
                         <div>
                             <TextField
+                                className="mui-text-input"
                                 onChange={this.onChangeInputName}
                                 hintText="escribir un nombre"
                                 floatingLabelText="Nombre"

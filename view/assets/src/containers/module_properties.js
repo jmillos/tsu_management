@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
+// Material UI
 import {List, ListItem} from 'material-ui/List';
 import Subheader from 'material-ui/Subheader';
 import RaisedButton from 'material-ui/RaisedButton'
@@ -50,19 +51,11 @@ class ModuleProperties extends Component {
                             onRequestSearch={() => console.log('onRequestSearch')}
                             style={{
                                 height: 36,
-                            }} />
-                        <BtnCreateComponent onCreate={this.onCreatePtyGroup} />
-                        {/* <RaisedButton
-                            label="Crear grupo"
-                            labelStyle={{
-                                fontSize: '11px',
-                                paddingLeft: '4px',
-                                paddingRight: '8px'
                             }}
-                            primary={true}
-                            icon={<ActionAddGroup style={{ height: 18, width: 18 }} />}
-                            style={{ margin: '0 5px 0 auto', lineHeight: '36px', height: 36 }}
-                        /> */}
+                        />
+
+                        <BtnCreateComponent onCreate={this.onCreatePtyGroup} />
+
                         <RaisedButton
                             label="Crear propiedad"
                             labelStyle={{
@@ -78,36 +71,14 @@ class ModuleProperties extends Component {
 
                     {_.map(this.props.groups, item => {
                         return (
-                            <PtyGroupItem key={item.id} item={item} onEditGroupName={this.props.onEditGroupName} />
+                            <PtyGroupItem
+                                key={item.id}
+                                item={item}
+                                onEditGroupName={this.props.onEditGroupName}
+                                updatePropertyGroup={this.props.updatePropertyGroup}
+                            />
                         )
                     })}
-                    {/* <ListItem
-                        primaryText="Inbox"
-                        leftIcon={<ActionModule />}
-                        initiallyOpen={true}
-                        primaryTogglesNestedList={true}
-                        rightIconButton={this.rightIconMenu}
-                        nestedItems={[
-                            <ReactTable
-                                key={1}
-                                showPagination={false}
-                                defaultPageSize={makeData().length}
-                                data={makeData()}
-                                columns={[
-                                    {
-                                        Header: "Name",
-                                        accessor: "firstName"
-                                    },
-                                    {
-                                        Header: "Info",
-                                        accessor: "age",
-                                        filterable: false
-                                    }
-                                ]}
-                                // filterable
-                            />
-                        ]}
-                    /> */}
                 </List>
             </div>
         )

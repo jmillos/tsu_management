@@ -2,6 +2,7 @@
 @import 'variables';
 @import 'animations';
 @import 'react-table';
+@import 'material-ui-custom';
 
 body {
     background: #f1f1f1;
@@ -19,16 +20,6 @@ body {
 
     .jg-popover {
         padding: 0 15px 15px;
-
-        input,
-        select,
-        textarea {
-            @include box-shadow(none);
-
-            &:focus {
-                @include box-shadow(none);
-            }
-        }
     }
 
     &.ui-full-screen-background {

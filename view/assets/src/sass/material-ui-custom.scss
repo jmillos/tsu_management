@@ -1,0 +1,11 @@
+.mui-text-input  {
+    input,
+    select,
+    textarea {
+        @include box-shadow(none);
+
+        &:focus {
+            @include box-shadow(none);
+        }
+    }
+}
