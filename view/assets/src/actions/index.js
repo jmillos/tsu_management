@@ -52,7 +52,7 @@ export function deletePropertyGroup(id, callback) {
     };
 }
 
-export function onEditGroupName(active){
+export function setModeEdit(active){
     return {
         type: EDIT_PTY_GROUP_NAME,
         payload: active

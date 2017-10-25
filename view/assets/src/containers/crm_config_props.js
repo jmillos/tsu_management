@@ -7,14 +7,12 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 // Material UI
 import {List, ListItem} from 'material-ui/List';
 import Subheader from 'material-ui/Subheader';
-import RaisedButton from 'material-ui/RaisedButton'
-// import IconButton from 'material-ui/IconButton';
-import ActionAddProperty from 'material-ui/svg-icons/content/add-circle'
 
 // import SearchBar from 'material-ui-search-bar'
 import SearchBar from '../lib/vendors/search_bar'
 
-import BtnCreateComponent from '../components/crm_config_props/btn_create_group'
+import BtnCreatePtyGroup from '../components/crm_config_props/btn_create_pty_group'
+import BtnCreatePtyItem from '../components/crm_config_props/btn_create_pty_item'
 import PtyGroupItem from '../components/crm_config_props/pty_group_item'
 import * as actions from '../actions'
 
@@ -36,6 +34,7 @@ class ModuleProperties extends Component {
     }
 
     onCreatePtyGroup(data){
+        data = { ...data, parent: this.props.moduleId, status: 'publish' }
         this.props.createPropertyGroup(data)
     }
 
@@ -43,29 +42,26 @@ class ModuleProperties extends Component {
         return (
             <div className="module-properties">
                 <List>
-                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '10px', padding: '0 16px' }}>
-                        <SearchBar
-                            className="search-bar"
-                            hintText="Buscar propiedad"
-                            onChange={() => console.log('onChange')}
-                            onRequestSearch={() => console.log('onRequestSearch')}
-                            style={{
-                                height: 36,
-                            }}
+                    <div className="d-flex justify-content-end mt-1 mb-2 pl-3 pr-3">
+                        <div className="mr-auto">
+                            <SearchBar
+                                className="search-bar"
+                                hintText="Buscar propiedad"
+                                onChange={() => console.log('onChange')}
+                                onRequestSearch={() => console.log('onRequestSearch')}
+                                style={{
+                                    height: 36,
+                                }}
+                            />
+                        </div>
+
+                        <BtnCreatePtyGroup
+                            onCreate={this.onCreatePtyGroup}
                         />
 
-                        <BtnCreateComponent onCreate={this.onCreatePtyGroup} />
-
-                        <RaisedButton
-                            label="Crear propiedad"
-                            labelStyle={{
-                                fontSize: '11px',
-                                paddingLeft: '4px',
-                                paddingRight: '8px'
-                            }}
-                            primary={true}
-                            icon={<ActionAddProperty style={{ height: 18, width: 18 }} />}
-                            style={{ lineHeight: '36px', height: 36 }}
+                        <BtnCreatePtyItem
+                            className="ml-2"
+                            onModeEdit={this.props.setModeEdit}
                         />
                     </div>
 
@@ -74,7 +70,7 @@ class ModuleProperties extends Component {
                             <PtyGroupItem
                                 key={item.id}
                                 item={item}
-                                onEditGroupName={this.props.onEditGroupName}
+                                onModeEdit={this.props.setModeEdit}
                                 updatePropertyGroup={this.props.updatePropertyGroup}
                             />
                         )

@@ -12,7 +12,7 @@ import ActionExtension from 'material-ui/svg-icons/action/extension'
 
 import * as actions from '../actions'
 
-class CrmConfigDrawer extends Component {
+class CrmConfigManager extends Component {
     constructor(props) {
         super(props);
         this.state = {open: false};
@@ -47,7 +47,8 @@ class CrmConfigDrawer extends Component {
     }
 
     render(){
-        const { title, description, dialogTitle } = this.props
+        const { id, title, description, dialogTitle } = this.props
+        const moduleId = id
         const ChildComponent = this.props.component
 
         return (
@@ -64,7 +65,7 @@ class CrmConfigDrawer extends Component {
                         icon={<ActionExtension />}
                         onTouchTap={this.handleOpen} />
 
-                    {this.state.open === true && this.props.uiModulePtyGroupReducer.editPtyGroupName === false ?
+                    {this.state.open === true && this.props.uiModulePtyGroupReducer.modeEdit === false ?
                         <EventListener
                             target="window"
                             onKeyUp={this.handleKeyUp}
@@ -85,7 +86,7 @@ class CrmConfigDrawer extends Component {
                             iconElementRight={<IconButton><NavigationClose /></IconButton>}
                             onRightIconButtonTouchTap={this.handleClose} />
 
-                        { ChildComponent ? <ChildComponent />:null }
+                        { ChildComponent ? <ChildComponent moduleId={moduleId} />:null }
                     </Drawer>
                 </div>
             </div>
@@ -97,4 +98,4 @@ function mapStateToProps({ uiModulePtyGroupReducer }){
     return { uiModulePtyGroupReducer }
 }
 
-export default connect(mapStateToProps, actions)(CrmConfigDrawer)
+export default connect(mapStateToProps, actions)(CrmConfigManager)

@@ -9,7 +9,7 @@ import Popover, {PopoverAnimationVertical} from 'material-ui/Popover'
 import Menu from 'material-ui/Menu'
 import MenuItem from 'material-ui/MenuItem'
 
-export default class BtnCreateComponent extends React.Component {
+export default class BtnCreatePtyGroup extends React.Component {
     constructor(props) {
         super(props);
 
@@ -60,7 +60,7 @@ export default class BtnCreateComponent extends React.Component {
         if(this.state.valInputName){
             this.handleRequestClose()
             this.setState({ valInputName: null })
-            this.props.onCreate({ title: this.state.valInputName, status: 'publish', parent: 12153 })
+            this.props.onCreate({ title: this.state.valInputName })
         }
     }
 

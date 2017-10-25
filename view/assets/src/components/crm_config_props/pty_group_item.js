@@ -30,7 +30,12 @@ export default class PtyGroupItem extends Component {
         this.handleCloseDialog = this.handleCloseDialog.bind(this)
         this.onFocusGroupName = this.onFocusGroupName.bind(this)
         this.onUpdateItem = this.onUpdateItem.bind(this)
+        this.onSubmit = this.onSubmit.bind(this)
 
+        this.setButtonsActions()
+    }
+
+    setButtonsActions(){
         this.iconButtonElement = (
             <IconButton
                 touch={true}
@@ -50,12 +55,12 @@ export default class PtyGroupItem extends Component {
     }
 
     handleOpenDialog(){
-        this.props.onEditGroupName(true)
+        this.props.onModeEdit(true)
         this.setState({openDialog: true});
     }
 
     handleCloseDialog(){
-        this.props.onEditGroupName(false)
+        this.props.onModeEdit(false)
         this.setState({openDialog: false});
     }
 
@@ -73,6 +78,11 @@ export default class PtyGroupItem extends Component {
     onUpdateItem(){
         this.props.updatePropertyGroup(this.props.item.id, { title: this.state.inputGroupName })
         this.handleCloseDialog()
+    }
+
+    onSubmit(e){
+        e.preventDefault()
+        this.onUpdateItem()
     }
 
     render(){
@@ -96,7 +106,7 @@ export default class PtyGroupItem extends Component {
                     key={item.id}
                     primaryText={item.title}
                     leftIcon={<ActionModule />}
-                    initiallyOpen={true}
+                    initiallyOpen={false}
                     primaryTogglesNestedList={true}
                     rightIconButton={this.rightIconMenu}
                     nestedItems={[
@@ -130,14 +140,16 @@ export default class PtyGroupItem extends Component {
                       open={this.state.openDialog}
                       onRequestClose={this.handleCloseDialog}
                     >
-                        <TextField
-                            ref="inputGroupName"
-                            className="mui-text-input"
-                            defaultValue={item.title}
-                            floatingLabelText="Nombre del grupo"
-                            onFocus={this.onFocusGroupName}
-                            onChange={(e) => this.setState({ inputGroupName: e.target.value })}
-                          />
+                        <form onSubmit={this.onSubmit}>
+                            <TextField
+                                ref="inputGroupName"
+                                className="mui-text-input"
+                                defaultValue={item.title}
+                                floatingLabelText="Nombre del grupo"
+                                onFocus={this.onFocusGroupName}
+                                onChange={(e) => this.setState({ inputGroupName: e.target.value })}
+                              />
+                        </form>
                       {/* <DatePicker hintText="Date Picker" /> */}
                 </Dialog>
             </div>
