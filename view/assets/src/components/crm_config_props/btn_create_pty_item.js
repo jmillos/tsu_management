@@ -6,6 +6,9 @@ import FlatButton from 'material-ui/FlatButton'
 import RaisedButton from 'material-ui/RaisedButton'
 import ActionAddProperty from 'material-ui/svg-icons/content/add-circle'
 
+// Own components
+import FormPtyItem from './form_pty_item'
+
 class BtnCreatePtyItem extends Component {
     state = {
         openDialog: false
@@ -29,7 +32,7 @@ class BtnCreatePtyItem extends Component {
               <FlatButton
                 label="Crear"
                 primary={true}
-                keyboardFocused={true}
+                // keyboardFocused={true}
                 onClick={this.onUpdateItem}
               />,
         ]
@@ -65,11 +68,12 @@ class BtnCreatePtyItem extends Component {
                       title="Crear una nueva propiedad"
                       actions={this.actions}
                       modal={false}
-                      contentStyle={{ width: '70%' }}
+                      titleStyle={{ paddingBottom: 0 }}
+                      contentStyle={{ width: '60%' }}
                       open={this.state.openDialog}
                       onRequestClose={this.handleCloseDialog}
                     >
-
+                    <FormPtyItem />
                 </Dialog>
             </div>
         )
