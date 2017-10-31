@@ -1,7 +1,14 @@
 import * as axios from 'axios'
 
 import { API_URL, API_NONCE } from '../config'
-import { FETCH_MODULES, FETCH_PTY_GROUPS, CREATE_PTY_GROUP, UPDATE_PTY_GROUP, EDIT_PTY_GROUP_NAME } from './types'
+import {
+    FETCH_MODULES,
+    FETCH_PTY_GROUPS,
+    CREATE_PTY_GROUP,
+    UPDATE_PTY_GROUP,
+    EDIT_PTY_GROUP_NAME,
+    CREATE_PTY
+} from './types'
 
 axios.defaults.headers.common['X-WP-Nonce'] = API_NONCE;
 
@@ -50,6 +57,15 @@ export function deletePropertyGroup(id, callback) {
         type: DELETE_POST,
         payload: id
     };
+}
+
+export function createProperty(props){
+    const request = axios.post(`${API_URL}tsu_crm_pty`, props);
+
+    return {
+        type: CREATE_PTY,
+        payload: request
+    }
 }
 
 export function setModeEdit(active){

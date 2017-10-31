@@ -17,8 +17,26 @@ class TSU_App {
 			'get_callback' => array($this, 'get_meta'),
 			'update_callback' => array($this, 'update_meta'),
 			'schema' => array('type' => 'string'),
-	    ));
+		));
 	}
+
+	// Register post meta fields needed for posts
+	public function register_post_meta() {
+		if ( !empty($this->registerFields) && isset($this->postType) ) {
+			foreach ($this->registerFields as $field => $fieldOpts) {
+				register_rest_field( $this->postType, $field, array(
+					'get_callback' => array($this, 'get_meta'),
+					'update_callback' => array($this, 'update_meta'),
+					'schema' => array(
+						'description' => isset($fieldOpts['description']) ? $fieldOpts['description'] : $field,
+						'type'        => isset($fieldOpts['type']) ? $fieldOpts['type'] : 'string',
+						'context'     => array( 'view', 'edit' )
+					),
+				));
+			}
+		}
+	}
+
 
 	public function get_meta($post, $field_name, $request) {
 		// echo "<pre>"; var_dump($post, $field_name);die;

@@ -3,6 +3,13 @@
 class TSU_Module extends TSU_App {
 	protected $postType = 'tsu_crm_modules';
 
+	protected $registerFields = [
+	    'singular_name' => [
+	      'description' => 'Singular Name of the module',
+	      'type'        => 'string'
+	    ],
+	];
+
 	/**
 	 * Hook in methods.
 	 */

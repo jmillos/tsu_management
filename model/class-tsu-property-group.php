@@ -3,6 +3,13 @@
 class TSU_Property_Group extends TSU_App {
 	protected $postType = 'tsu_crm_pty_groups';
 
+	protected $registerFields = [
+	    'singular_name' => [
+	      'description' => 'Singular Name of the module',
+	      'type'        => 'string'
+	    ],
+	];
+
 	/**
 	 * Hook in methods.
 	 */

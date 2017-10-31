@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { reduxForm } from 'redux-form'
 
 // Material UI
 import Dialog from 'material-ui/Dialog'
@@ -9,7 +10,7 @@ import ActionAddProperty from 'material-ui/svg-icons/content/add-circle'
 // Own components
 import FormPtyItem from './form_pty_item'
 
-class BtnCreatePtyItem extends Component {
+class CreatePtyItem extends Component {
     state = {
         openDialog: false
     }
@@ -19,7 +20,9 @@ class BtnCreatePtyItem extends Component {
 
         this.handleOpenDialog = this.handleOpenDialog.bind(this)
         this.handleCloseDialog = this.handleCloseDialog.bind(this)
+        this.onSubmit = this.onSubmit.bind(this)
 
+        this.handleSubmit = this.props.handleSubmit(this.onSubmit)
         this.setActions()
     }
 
@@ -33,7 +36,8 @@ class BtnCreatePtyItem extends Component {
                 label="Crear"
                 primary={true}
                 // keyboardFocused={true}
-                onClick={this.onUpdateItem}
+                type="submit"
+                onClick={this.handleSubmit}
               />,
         ]
     }
@@ -46,6 +50,13 @@ class BtnCreatePtyItem extends Component {
     handleCloseDialog(){
         this.props.onModeEdit(false)
         this.setState({openDialog: false});
+    }
+
+    onSubmit(values) {
+        console.log('PtyItemForm', values);
+        // this.props.createPost(values, () => {
+        //     this.props.history.push("/");
+        // });
     }
 
     render(){
@@ -64,6 +75,7 @@ class BtnCreatePtyItem extends Component {
                     style={{ lineHeight: '36px', height: 36 }}
                     onClick={this.handleOpenDialog}
                 />
+
                 <Dialog
                       title="Crear una nueva propiedad"
                       actions={this.actions}
@@ -71,13 +83,18 @@ class BtnCreatePtyItem extends Component {
                       titleStyle={{ paddingBottom: 0 }}
                       contentStyle={{ width: '60%' }}
                       open={this.state.openDialog}
+                      autoScrollBodyContent={true}
                       onRequestClose={this.handleCloseDialog}
                     >
-                    <FormPtyItem />
+                    <FormPtyItem
+                        ptyGroups={this.props.ptyGroups}
+                        handleSubmit={this.handleSubmit} />
                 </Dialog>
             </div>
         )
     }
 }
 
-export default BtnCreatePtyItem
+CreatePtyItem = reduxForm({form: 'PtyItemForm'})(CreatePtyItem)
+
+export default CreatePtyItem

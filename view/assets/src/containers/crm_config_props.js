@@ -12,7 +12,7 @@ import Subheader from 'material-ui/Subheader';
 import SearchBar from '../lib/vendors/search_bar'
 
 import BtnCreatePtyGroup from '../components/crm_config_props/btn_create_pty_group'
-import BtnCreatePtyItem from '../components/crm_config_props/btn_create_pty_item'
+import CreatePtyItem from '../components/crm_config_props/create_pty_item'
 import PtyGroupItem from '../components/crm_config_props/pty_group_item'
 import * as actions from '../actions'
 
@@ -59,9 +59,10 @@ class ModuleProperties extends Component {
                             onCreate={this.onCreatePtyGroup}
                         />
 
-                        <BtnCreatePtyItem
+                        <CreatePtyItem
                             className="ml-2"
                             onModeEdit={this.props.setModeEdit}
+                            ptyGroups={this.props.groups}
                         />
                     </div>
 

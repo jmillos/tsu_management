@@ -10,3 +10,4 @@ require_once(dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'controller' . DIRECTOR
 require_once(dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'model' . DIRECTORY_SEPARATOR . 'class-tsu-app.php');
 require_once(dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'model' . DIRECTORY_SEPARATOR . 'class-tsu-module.php');
 require_once(dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'model' . DIRECTORY_SEPARATOR . 'class-tsu-property-group.php');
+require_once(dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'model' . DIRECTORY_SEPARATOR . 'class-tsu-property.php');

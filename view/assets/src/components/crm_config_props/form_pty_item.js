@@ -1,7 +1,12 @@
+import _ from 'lodash'
 import React, {Component} from 'react'
-import { reduxForm, Field } from 'redux-form'
+import { reduxForm, Field, FormSection } from 'redux-form'
+
+import * as validators from './../../validators'
+import { formFields } from './form_fields'
 
 import MUIAutoComplete from 'material-ui/AutoComplete'
+import MenuItem from 'material-ui/MenuItem'
 import {
   AutoComplete,
   Checkbox,
@@ -15,53 +20,102 @@ import {
 } from 'redux-form-material-ui'
 
 class FormPtyItem extends Component {
-    onSubmit(values) {
-        // this.props.createPost(values, () => {
-        //     this.props.history.push("/");
-        // });
+    state = {
+        formFieldSelected: null
+    }
+
+    constructor(props){
+        super(props)
+
+        this.onChangeFieldType = this.onChangeFieldType.bind(this)
+    }
+
+    formatPtyGroups(items){
+        return _.map(items, item => {
+            return { id: item.id, name: item.title }
+        })
+    }
+
+    renderFieldTypes(){
+        return _.map(formFields, (field, key) => {
+            return <MenuItem key={key} value={field.type} primaryText={field.label} />
+        })
+    }
+
+    onChangeFieldType(e, key){
+        console.log('e', key);
+        this.setState({ formFieldSelected: formFields.find(i => i.type === key) })
     }
 
     render() {
-        const { handleSubmit } = this.props
+        const { formFieldSelected } = this.state
+
+        let BuildComponent = null
+        if(formFieldSelected && formFieldSelected.buildComponent){
+            BuildComponent = this.state.formFieldSelected.buildComponent
+        }
 
         return (
-            <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+            <form onSubmit={this.props.handleSubmit}>
                 <Field
                     name="title"
                     component={TextField}
-                    className="mui-text-input mui-input-wrap"
+                    className="mui-text-input"
                     hintText="Etiqueta"
                     floatingLabelText="Etiqueta"
+                    validate={validators.required}
+                    fullWidth={true}
+                    // onChange={(e, newValue) => this.props.fields.slug.onChange(newValue)}
                 />
                 <Field
-                    name="name"
+                    name="slug"
                     component={TextField}
-                    className="mui-text-input mui-input-wrap"
+                    className="mui-text-input"
                     hintText="Nombre interno"
                     floatingLabelText="Nombre interno"
+                    validate={[validators.required, validators.alphaNumeric]}
+                    fullWidth={true}
                 />
                 <Field
-                    name="content"
+                    name="excerpt"
                     component={TextField}
-                    className="mui-text-input mui-input-wrap"
+                    className="mui-text-input"
                     hintText="Descripción"
-                    floatingLabelText="Descripción"
+                    floatingLabelText="Descripción (opcional)"
+                    fullWidth={true}
                 />
                 <Field
                     name="group"
                     component={AutoComplete}
                     className="mui-text-input"
+                    fullWidth={true}
                     hintText="Grupo"
                     floatingLabelText="Grupo"
                     dataSourceConfig={{text: 'name', value: 'id'}}
-                    dataSource={[
-                        { id: 1, name: 'Info del Contacto' },
-                        { id: 2, name: 'Info sobre redes sociales' },
-                        { id: 3, name: 'Info del correo electrónico' },
-                    ]}
+                    dataSource={this.formatPtyGroups(this.props.ptyGroups)}
                     filter={MUIAutoComplete.fuzzyFilter}
+                    validate={validators.required}
                     openOnFocus
                 />
+                <Field
+                    name="field_type"
+                    component={SelectField}
+                    hintText="Tipo de campo"
+                    floatingLabelText="Tipo de campo"
+                    fullWidth={true}
+                    validate={validators.required}
+                    onChange={this.onChangeFieldType}
+                >
+                    {this.renderFieldTypes()}
+                </Field>
+                <div className="pl-2">
+                    <FormSection name="field_type_opts">
+                    {
+                        BuildComponent !== null ?
+                            <BuildComponent className="mui-text-input" fullWidth={true} />:null
+                    }
+                    </FormSection>
+                </div>
             </form>
         )
     }

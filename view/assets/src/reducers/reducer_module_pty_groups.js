@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import { FETCH_PTY_GROUPS, CREATE_PTY_GROUP, UPDATE_PTY_GROUP } from '../actions/types'
+import { FETCH_PTY_GROUPS, CREATE_PTY_GROUP, UPDATE_PTY_GROUP, CREATE_PTY } from '../actions/types'
 
 export default function( state = {}, action ){
     switch (action.type) {
