@@ -4,13 +4,15 @@ class TSU_Property extends TSU_App {
 	protected $postType = 'tsu_crm_pty';
 
 	protected $registerFields = [
-	    'group' => [
+	    /*'group' => [
 	      'description' => 'Group of the property',
-	      'type'        => 'integer'
-	    ],
+	      'type'        => 'integer',
+	      'required' => true
+	    ],*/
 	    'field_type' => [
 	      'description' => 'Field type of the property',
-	      'type'        => 'string'
+	      'type'        => 'string',
+	      'required' => true
 	    ],
 	    'field_type_opts' => [
 	      'description' => 'Field type options of the property',
@@ -34,6 +36,9 @@ class TSU_Property extends TSU_App {
 			'id'		 => $data->data['id'],
 			'title'    	 => $data->data['title']['rendered'],
 			'slug'	 	 => $data->data['slug'],
+			'parent'	 => $data->data['parent'],
+			'field_type' => $data->data['field_type'],
+			'field_type_opts' => $data->data['field_type_opts'],
 			'date'     	 => $data->data['date'],
 		);
 		

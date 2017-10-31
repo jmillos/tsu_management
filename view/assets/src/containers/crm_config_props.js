@@ -63,6 +63,7 @@ class ModuleProperties extends Component {
                             className="ml-2"
                             onModeEdit={this.props.setModeEdit}
                             ptyGroups={this.props.groups}
+                            handleCreateProperty={this.props.createProperty}
                         />
                     </div>
 

@@ -52,11 +52,12 @@ class CreatePtyItem extends Component {
         this.setState({openDialog: false});
     }
 
-    onSubmit(values) {
-        console.log('PtyItemForm', values);
-        // this.props.createPost(values, () => {
-        //     this.props.history.push("/");
-        // });
+    onSubmit(data) {
+        // console.log('PtyItemForm', values)
+        data = { ...data, status: 'publish' }
+        this.props.handleCreateProperty(data, () => {
+            this.handleCloseDialog()
+        })
     }
 
     render(){

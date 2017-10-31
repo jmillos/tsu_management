@@ -59,8 +59,12 @@ export function deletePropertyGroup(id, callback) {
     };
 }
 
-export function createProperty(props){
-    const request = axios.post(`${API_URL}tsu_crm_pty`, props);
+export function createProperty(props, callback = null){
+    const request = axios.post(`${API_URL}tsu_crm_pty`, props)
+
+    if(callback !== null){
+        request.then(callback)
+    }
 
     return {
         type: CREATE_PTY,

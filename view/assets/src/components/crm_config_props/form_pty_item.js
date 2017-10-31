@@ -85,7 +85,7 @@ class FormPtyItem extends Component {
                     fullWidth={true}
                 />
                 <Field
-                    name="group"
+                    name="parent"
                     component={AutoComplete}
                     className="mui-text-input"
                     fullWidth={true}
@@ -94,7 +94,7 @@ class FormPtyItem extends Component {
                     dataSourceConfig={{text: 'name', value: 'id'}}
                     dataSource={this.formatPtyGroups(this.props.ptyGroups)}
                     filter={MUIAutoComplete.fuzzyFilter}
-                    validate={validators.required}
+                    // validate={validators.required}
                     openOnFocus
                 />
                 <Field
