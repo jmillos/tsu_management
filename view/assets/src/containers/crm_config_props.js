@@ -27,6 +27,7 @@ class ModuleProperties extends Component {
 
     componentWillMount(){
         this.props.fetchPropertyGroups()
+        this.props.fetchProperties()
     }
 
     handleToggle(){
@@ -67,11 +68,12 @@ class ModuleProperties extends Component {
                         />
                     </div>
 
-                    {_.map(this.props.groups, item => {
+                    {_.map(this.props.groups, group => {
                         return (
                             <PtyGroupItem
-                                key={item.id}
-                                item={item}
+                                key={group.id}
+                                group={group}
+                                properties={_.filter(this.props.properties, { parent: group.id })}
                                 onModeEdit={this.props.setModeEdit}
                                 updatePropertyGroup={this.props.updatePropertyGroup}
                             />
@@ -83,8 +85,8 @@ class ModuleProperties extends Component {
     }
 }
 
-function mapStateToProps({ modulePtyGroups }){
-    return { groups: modulePtyGroups }
+function mapStateToProps({ modulePtyGroups, properties }){
+    return { groups: modulePtyGroups, properties }
 }
 
 export default connect(mapStateToProps, actions)(ModuleProperties)

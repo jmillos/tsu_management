@@ -3,12 +3,14 @@ import { reducer as formReducer } from 'redux-form'
 
 import ModulesReducer from './reducer_modules'
 import ModulePtyGroupsReducer from './reducer_module_pty_groups'
+import PropertiesReducer from './reducer_properties'
 import UIModulePtyGroupReducer from './reducer_ui_module_pty_group'
 
 const rootReducer = combineReducers({
     form: formReducer,
     modules: ModulesReducer,
     modulePtyGroups: ModulePtyGroupsReducer,
+    properties: PropertiesReducer,
     uiModulePtyGroupReducer: UIModulePtyGroupReducer
 })
 

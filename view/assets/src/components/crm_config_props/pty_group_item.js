@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import ReactTable from 'react-table'
 import EventListener from 'react-event-listener'
 
+import { formFields } from './form_fields'
+
 // Material UI
 import {ListItem} from 'material-ui/List';
 import Dialog from 'material-ui/Dialog'
@@ -14,7 +16,7 @@ import MenuItem from 'material-ui/MenuItem';
 import ActionModule from 'material-ui/svg-icons/action/view-module'
 import ActionDelete from 'material-ui/svg-icons/action/delete-forever'
 import ImageEdit from 'material-ui/svg-icons/image/edit'
-import {grey400, darkBlack, lightBlack} from 'material-ui/styles/colors';
+import {grey400, darkBlack, lightBlack} from 'material-ui/styles/colors'
 
 export default class PtyGroupItem extends Component {
     state = {
@@ -24,7 +26,7 @@ export default class PtyGroupItem extends Component {
     constructor(props){
         super(props)
 
-        this.state.inputGroupName = props.item.title
+        this.state.inputGroupName = props.group.title
 
         this.handleOpenDialog = this.handleOpenDialog.bind(this)
         this.handleCloseDialog = this.handleCloseDialog.bind(this)
@@ -76,7 +78,7 @@ export default class PtyGroupItem extends Component {
     }
 
     onUpdateItem(){
-        this.props.updatePropertyGroup(this.props.item.id, { title: this.state.inputGroupName })
+        this.props.updatePropertyGroup(this.props.group.id, { title: this.state.inputGroupName })
         this.handleCloseDialog()
     }
 
@@ -86,7 +88,11 @@ export default class PtyGroupItem extends Component {
     }
 
     render(){
-        const { item } = this.props
+        const {
+            group,
+            properties
+        } = this.props
+
         const actions = [
             <FlatButton
                 label="Cancelar"
@@ -103,8 +109,8 @@ export default class PtyGroupItem extends Component {
         return (
             <div>
                 <ListItem
-                    key={item.id}
-                    primaryText={item.title}
+                    key={group.id}
+                    primaryText={group.title}
                     leftIcon={<ActionModule />}
                     initiallyOpen={false}
                     primaryTogglesNestedList={true}
@@ -113,19 +119,25 @@ export default class PtyGroupItem extends Component {
                         <ReactTable
                             key={1}
                             showPagination={false}
-                            defaultPageSize={makeData().length}
-                            data={makeData()}
+                            defaultPageSize={_.size(properties)}
+                            data={properties}
                             columns={[
                                 {
-                                    Header: "Name",
-                                    accessor: "firstName"
+                                    Header: 'Etiqueta',
+                                    accessor: 'title'
                                 },
                                 {
-                                    Header: "Info",
-                                    accessor: "age",
+                                    Header: 'Tipo de campo',
+                                    accessor: 'field_type',
+                                    Cell: (cell) => {
+                                        const field = _.find(formFields, { type: cell.value })
+
+                                        return field.label
+                                    },
                                     filterable: false
                                 }
                             ]}
+                            noDataText='No se encontraron propiedades'
                             // filterable
                         />
                     ]}
@@ -144,7 +156,7 @@ export default class PtyGroupItem extends Component {
                             <TextField
                                 ref="inputGroupName"
                                 className="mui-text-input"
-                                defaultValue={item.title}
+                                defaultValue={group.title}
                                 floatingLabelText="Nombre del grupo"
                                 onFocus={this.onFocusGroupName}
                                 onChange={(e) => this.setState({ inputGroupName: e.target.value })}
@@ -156,8 +168,6 @@ export default class PtyGroupItem extends Component {
         )
     }
 }
-
-
 
 
 function makeData() {

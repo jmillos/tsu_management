@@ -7,6 +7,7 @@ import {
     CREATE_PTY_GROUP,
     UPDATE_PTY_GROUP,
     EDIT_PTY_GROUP_NAME,
+    FETCH_PROPERTIES,
     CREATE_PTY
 } from './types'
 
@@ -57,6 +58,15 @@ export function deletePropertyGroup(id, callback) {
         type: DELETE_POST,
         payload: id
     };
+}
+
+export function fetchProperties(){
+    const request = axios.get(`${API_URL}tsu_crm_pty`);
+
+    return {
+        type: FETCH_PROPERTIES,
+        payload: request
+    }
 }
 
 export function createProperty(props, callback = null){
