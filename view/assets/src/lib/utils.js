@@ -17,3 +17,15 @@ export function getAttrsFromElement(el) {
 
     return props
 }
+
+export function filterSearch(coll, substr){
+    return _.filter(coll, _.flow(
+        _.identity,
+        _.values,
+        _.join,
+        _.toLower,
+        _.partialRight(_.includes, substr)
+    ))
+
+    // return _.filter(coll, item => item.title.toLowerCase().indexOf(substr) > -1)
+}

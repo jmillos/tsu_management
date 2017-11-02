@@ -90,8 +90,11 @@ export default class PtyGroupItem extends Component {
     render(){
         const {
             group,
-            properties
+            properties,
+            size
         } = this.props
+
+        console.log('props', properties, size);
 
         const actions = [
             <FlatButton
@@ -112,15 +115,16 @@ export default class PtyGroupItem extends Component {
                     key={group.id}
                     primaryText={group.title}
                     leftIcon={<ActionModule />}
-                    initiallyOpen={false}
+                    initiallyOpen={true}
                     primaryTogglesNestedList={true}
                     rightIconButton={this.rightIconMenu}
                     nestedItems={[
                         <ReactTable
                             key={1}
                             showPagination={false}
-                            defaultPageSize={_.size(properties)}
+                            defaultPageSize={size}
                             data={properties}
+                            manual
                             columns={[
                                 {
                                     Header: 'Etiqueta',

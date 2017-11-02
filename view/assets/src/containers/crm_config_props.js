@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
+import { filterSearch } from '../lib/utils'
 
 // Material UI
 import {List, ListItem} from 'material-ui/List';
@@ -17,17 +18,25 @@ import PtyGroupItem from '../components/crm_config_props/pty_group_item'
 import * as actions from '../actions'
 
 class ModuleProperties extends Component {
+    state = {
+        open: true,
+        searchText: ''
+    }
+
     constructor(props){
         super(props)
 
-        this.state = { open: true }
-
+        this.handleSearchProp = this.handleSearchProp.bind(this)
         this.onCreatePtyGroup = this.onCreatePtyGroup.bind(this)
     }
 
     componentWillMount(){
         this.props.fetchPropertyGroups()
         this.props.fetchProperties()
+    }
+
+    handleSearchProp(val){
+        this.setState({ searchText: val })
     }
 
     handleToggle(){
@@ -41,14 +50,14 @@ class ModuleProperties extends Component {
 
     render(){
         return (
-            <div className="module-properties">
+            <div className="crm-config-properties">
                 <List>
                     <div className="d-flex justify-content-end mt-1 mb-2 pl-3 pr-3">
                         <div className="mr-auto">
                             <SearchBar
                                 className="search-bar"
                                 hintText="Buscar propiedad"
-                                onChange={() => console.log('onChange')}
+                                onChange={this.handleSearchProp}
                                 onRequestSearch={() => console.log('onRequestSearch')}
                                 style={{
                                     height: 36,
@@ -69,11 +78,15 @@ class ModuleProperties extends Component {
                     </div>
 
                     {_.map(this.props.groups, group => {
+                        let propsFiltered = _.filter(this.props.properties, { parent: group.id })
+                        propsFiltered = filterSearch(propsFiltered, this.state.searchText)
+
                         return (
                             <PtyGroupItem
                                 key={group.id}
                                 group={group}
-                                properties={_.filter(this.props.properties, { parent: group.id })}
+                                properties={propsFiltered}
+                                size={propsFiltered.length}
                                 onModeEdit={this.props.setModeEdit}
                                 updatePropertyGroup={this.props.updatePropertyGroup}
                             />
