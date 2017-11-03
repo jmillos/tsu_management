@@ -47,7 +47,7 @@ class CrmConfigManager extends Component {
     }
 
     render(){
-        const { id, title, description, dialogTitle } = this.props
+        const { id, title, description, dialogTitle, dialogWidth, labelButton } = this.props
         const moduleId = id
         const ChildComponent = this.props.component
 
@@ -60,7 +60,7 @@ class CrmConfigManager extends Component {
                 <div className="d-flex align-items-center">
                     <RaisedButton
                         primary={true}
-                        label="Administrar"
+                        label={labelButton}
                         // containerElement={<Link to={this.props.link} />}
                         icon={<ActionExtension />}
                         onTouchTap={this.handleOpen} />
@@ -70,8 +70,9 @@ class CrmConfigManager extends Component {
                             target="window"
                             onKeyUp={this.handleKeyUp}
                         />:null}
+
                     <Drawer
-                        width={720}
+                        width={dialogWidth}
                         docked={false}
                         openSecondary={true}
                         containerClassName="muiDrawerContainer"

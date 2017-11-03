@@ -94,7 +94,7 @@ export default class PtyGroupItem extends Component {
             size
         } = this.props
 
-        console.log('props', properties, size);
+        console.log('props', group.id, properties, size);
 
         const actions = [
             <FlatButton
