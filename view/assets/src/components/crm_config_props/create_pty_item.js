@@ -11,16 +11,12 @@ import ActionAddProperty from 'material-ui/svg-icons/content/add-circle'
 import FormPtyItem from './form_pty_item'
 
 class CreatePtyItem extends Component {
-    // state = {
-    //     openDialog: false
-    // }
+    state = {
+        openDialog: false
+    }
 
     constructor(props){
         super(props)
-
-        this.state = {
-            openDialog: false
-        }
 
         this.handleOpenDialog = this.handleOpenDialog.bind(this)
         this.handleCloseDialog = this.handleCloseDialog.bind(this)

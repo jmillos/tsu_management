@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import ReactTable from 'react-table'
+import { Link } from 'react-router'
 import EventListener from 'react-event-listener'
 
 import { formFields } from './form_fields'
@@ -136,6 +137,14 @@ export default class PtyGroupItem extends Component {
                                         const field = _.find(formFields, { type: cell.value })
 
                                         return field.label
+                                    },
+                                    filterable: false
+                                },
+                                {
+                                    Header: 'Acciones',
+                                    accessor: 'id',
+                                    Cell: (cell) => {
+                                        return <Link to={`config/property/${cell.value}`}>Editar</Link>
                                     },
                                     filterable: false
                                 }

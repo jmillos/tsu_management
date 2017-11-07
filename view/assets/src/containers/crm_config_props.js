@@ -94,8 +94,6 @@ class ModuleProperties extends Component {
                         )
                     })}
                 </List>
-
-                <EditPtyItem />
             </div>
         )
     }
