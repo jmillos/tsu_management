@@ -11,3 +11,4 @@ require_once(dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'model' . DIRECTORY_SEP
 require_once(dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'model' . DIRECTORY_SEPARATOR . 'class-tsu-module.php');
 require_once(dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'model' . DIRECTORY_SEPARATOR . 'class-tsu-property-group.php');
 require_once(dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'model' . DIRECTORY_SEPARATOR . 'class-tsu-property.php');
+require_once(dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'model' . DIRECTORY_SEPARATOR . 'class-tsu-record.php');

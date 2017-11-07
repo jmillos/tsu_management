@@ -30,6 +30,10 @@ class FormPtyItem extends Component {
         this.onChangeFieldType = this.onChangeFieldType.bind(this)
     }
 
+    componentWillMount(){
+        // this.props.initialize( this.preFormatData() )
+    }
+
     formatPtyGroups(items){
         return _.map(items, item => {
             return { id: item.id, name: item.title }

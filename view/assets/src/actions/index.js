@@ -8,7 +8,8 @@ import {
     UPDATE_PTY_GROUP,
     EDIT_PTY_GROUP_NAME,
     FETCH_PROPERTIES,
-    CREATE_PTY
+    CREATE_PTY,
+    UPDATE_PTY
 } from './types'
 
 axios.defaults.headers.common['X-WP-Nonce'] = API_NONCE;
@@ -78,6 +79,19 @@ export function createProperty(props, callback = null){
 
     return {
         type: CREATE_PTY,
+        payload: request
+    }
+}
+
+export function updateProperty(id, props, callback = null){
+    const request = axios.post(`${API_URL}tsu_crm_pty/${id}`, props)
+
+    if(callback !== null){
+        request.then(callback)
+    }
+
+    return {
+        type: UPDATE_PTY,
         payload: request
     }
 }

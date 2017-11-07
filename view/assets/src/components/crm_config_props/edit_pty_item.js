@@ -3,73 +3,33 @@ import { reduxForm } from 'redux-form'
 
 // Material UI
 import Dialog from 'material-ui/Dialog'
-import FlatButton from 'material-ui/FlatButton'
+// import FlatButton from 'material-ui/FlatButton'
 import RaisedButton from 'material-ui/RaisedButton'
 import ActionAddProperty from 'material-ui/svg-icons/content/add-circle'
 
 // Own components
+import CreatePtyItem from './create_pty_item'
 import FormPtyItem from './form_pty_item'
 
-class CreatePtyItem extends Component {
-    // state = {
-    //     openDialog: false
-    // }
-
+class EditPtyItem extends CreatePtyItem {
     constructor(props){
         super(props)
-
-        this.state = {
-            openDialog: false
-        }
-
-        this.handleOpenDialog = this.handleOpenDialog.bind(this)
-        this.handleCloseDialog = this.handleCloseDialog.bind(this)
-        this.onSubmit = this.onSubmit.bind(this)
-
-        this.handleSubmit = this.props.handleSubmit(this.onSubmit)
-        this.setActions()
     }
 
-    setActions(){
-        this.actions = [
-            <FlatButton
-                label="Cancelar"
-                onClick={this.handleCloseDialog}
-              />,
-              <FlatButton
-                label="Crear"
-                primary={true}
-                // keyboardFocused={true}
-                type="submit"
-                onClick={this.handleSubmit}
-              />,
-        ]
-    }
-
-    handleOpenDialog(){
-        this.props.onModeEdit(true)
-        this.setState({openDialog: true});
-    }
-
-    handleCloseDialog(){
-        this.props.onModeEdit(false)
-        this.setState({openDialog: false});
-    }
-
-    onSubmit(data) {
-        // console.log('PtyItemForm', values)
-        data = { ...data, status: 'publish' }
-        this.props.handleCreateProperty(data, () => {
-            this.handleCloseDialog()
-        })
-    }
+    // onSubmit(data) {
+    //     // console.log('PtyItemForm', values)
+    //     data = { ...data, status: 'publish' }
+    //     this.props.handleCreateProperty(data, () => {
+    //         this.handleCloseDialog()
+    //     })
+    // }
 
     render(){
         return (
             <div>
                 <RaisedButton
                     className={this.props.className}
-                    label="Crear propiedad"
+                    label="Editar propiedad"
                     labelStyle={{
                         fontSize: '11px',
                         paddingLeft: '4px',
@@ -80,9 +40,8 @@ class CreatePtyItem extends Component {
                     style={{ lineHeight: '36px', height: 36 }}
                     onClick={this.handleOpenDialog}
                 />
-
                 <Dialog
-                      title="Crear una nueva propiedad"
+                      title="Editar propiedad"
                       actions={this.actions}
                       modal={false}
                       titleStyle={{ paddingBottom: 0 }}
@@ -100,6 +59,6 @@ class CreatePtyItem extends Component {
     }
 }
 
-CreatePtyItem = reduxForm({form: 'PtyItemForm'})(CreatePtyItem)
+EditPtyItem = reduxForm({form: 'PtyItemForm'})(EditPtyItem)
 
-export default CreatePtyItem
+export default EditPtyItem

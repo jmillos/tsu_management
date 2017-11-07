@@ -8,7 +8,7 @@ import CrmManageModule from '../containers/crm_manage_module'
 class CrmConfigModule extends Component {
     calcWidthDialogManage(){
         const elSideMenu = document.getElementById('adminmenuback')
-        return window.offsetWidth - elSideMenu.offsetWidth
+        return window.innerWidth - 36 //elSideMenu.offsetWidth
     }
 
     render(){

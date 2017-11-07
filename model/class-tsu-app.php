@@ -48,4 +48,8 @@ class TSU_App {
 		// echo "<pre>META ";var_dump($value, $post, $field_name);die;
 		return update_post_meta($post->ID, $field_name, $value);
 	}
+	
+	public function getPostType(){
+		return $this->postType;
+	}
 }

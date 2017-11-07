@@ -2,17 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import EventListener from 'react-event-listener'
 
+import CrmManageModule from '../components/crm_manage_module'
 import * as actions from '../actions'
-
-class CrmManageModule extends Component {
-    render(){
-        return (
-            <div>
-                Hola
-            </div>
-        )
-    }
-}
 
 function mapStateToProps({  }){
     return {  }

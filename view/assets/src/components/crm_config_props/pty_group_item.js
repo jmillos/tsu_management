@@ -94,7 +94,7 @@ export default class PtyGroupItem extends Component {
             size
         } = this.props
 
-        console.log('props', group.id, properties, size);
+        // console.log('props', group.id, properties, size);
 
         const actions = [
             <FlatButton
@@ -112,7 +112,6 @@ export default class PtyGroupItem extends Component {
         return (
             <div>
                 <ListItem
-                    key={group.id}
                     primaryText={group.title}
                     leftIcon={<ActionModule />}
                     initiallyOpen={true}
@@ -147,7 +146,6 @@ export default class PtyGroupItem extends Component {
                     ]}
                 />
 
-
                 <Dialog
                       title="Cambiar nombre del grupo"
                       actions={actions}
@@ -171,70 +169,4 @@ export default class PtyGroupItem extends Component {
             </div>
         )
     }
-}
-
-
-function makeData() {
-    return [
-        {
-            firstName: "judge",
-            lastName: "babies",
-            age: 16
-        },
-        {
-            firstName: "quarter",
-            lastName: "driving",
-            age: 17
-        },
-        {
-            firstName: "division",
-            lastName: "society",
-            age: 3
-        },
-        {
-            firstName: "lamp",
-            lastName: "point",
-            age: 2
-        },
-        {
-            firstName: "argument",
-            lastName: "insurance",
-            age: 13
-        },
-        {
-            firstName: "pets",
-            lastName: "fan",
-            age: 27
-        },
-        {
-            firstName: "learning",
-            lastName: "board",
-            age: 9
-        },
-        {
-            firstName: "observation",
-            lastName: "drink",
-            age: 28
-        },
-        {
-            firstName: "burst",
-            lastName: "glove",
-            age: 1
-        },
-        {
-            firstName: "acoustics",
-            lastName: "animal",
-            age: 19
-        },
-        {
-            firstName: "beetle",
-            lastName: "branch",
-            age: 25
-        },
-        {
-            firstName: "invention",
-            lastName: "servant",
-            age: 14
-        }
-    ];
 }

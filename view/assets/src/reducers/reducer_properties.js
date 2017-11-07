@@ -1,6 +1,7 @@
 import {
     FETCH_PROPERTIES,
-    CREATE_PTY
+    CREATE_PTY,
+    UPDATE_PTY
 } from '../actions/types'
 
 export default function( state = {}, action ){
@@ -9,7 +10,7 @@ export default function( state = {}, action ){
             return _.mapKeys(action.payload.data, 'id')
 
         case CREATE_PTY:
-        // case UPDATE_PTY:
+        case UPDATE_PTY:
             return { ...state, [action.payload.data.id]: action.payload.data }
 
         default:
