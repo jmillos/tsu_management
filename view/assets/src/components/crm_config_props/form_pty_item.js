@@ -59,6 +59,8 @@ class FormPtyItem extends Component {
             BuildComponent = this.state.formFieldSelected.buildComponent
         }
 
+        console.log('render');
+
         return (
             <form onSubmit={this.props.handleSubmit}>
                 <Field
@@ -81,6 +83,22 @@ class FormPtyItem extends Component {
                     fullWidth={true}
                 />
                 <Field
+                    name="required"
+                    component={Toggle}
+                    className="mt-2"
+                    label="¿Es requerido?"
+                    labelPosition="right"
+                    defaultToggled={false}
+                />
+                <Field
+                    name="quick_create"
+                    component={Toggle}
+                    className="mt-2"
+                    label="¿Incluir en el formulario de creación rápida?"
+                    labelPosition="right"
+                    defaultToggled={false}
+                />
+                <Field
                     name="excerpt"
                     component={TextField}
                     className="mui-text-input"
@@ -90,17 +108,21 @@ class FormPtyItem extends Component {
                 />
                 <Field
                     name="parent"
-                    component={AutoComplete}
+                    component={SelectField/*AutoComplete*/}
                     className="mui-text-input"
                     fullWidth={true}
                     hintText="Grupo"
                     floatingLabelText="Grupo"
-                    dataSourceConfig={{text: 'name', value: 'id'}}
-                    dataSource={this.formatPtyGroups(this.props.ptyGroups)}
-                    filter={MUIAutoComplete.fuzzyFilter}
-                    // validate={validators.required}
-                    openOnFocus
-                />
+                    // dataSourceConfig={{text: 'name', value: 'id'}}
+                    // dataSource={this.formatPtyGroups(this.props.ptyGroups)}
+                    // filter={MUIAutoComplete.fuzzyFilter}
+                    validate={validators.required}
+                    // openOnFocus
+                >
+                    {_.map(this.props.ptyGroups, item => {
+                        return <MenuItem key={item.id} value={item.id} primaryText={item.title} />
+                    })}
+                </Field>
                 <Field
                     name="field_type"
                     component={SelectField}

@@ -30,20 +30,22 @@ class CrmConfigPropsEdit extends Component {
     }
 
     componentWillMount(){
-        console.log('this.props.match.params', this.props.routeParams);
+        // this.props.fetchProperty(this.props.routeParams.id)
+        this.props.setModeEdit(true)
+        // console.log('this.props.match.params', this.props.routeParams);
         // this.props.initialize()
     }
 
     setActionButtons(){
         this.actions = [
             <FlatButton
-                label="Cancel"
+                label="Cancelar"
                 primary={true}
                 // containerElement={<Link to="/config" />}
                 onTouchTap={this.handleClose}
             />,
             <FlatButton
-                label="Submit"
+                label="Guardar"
                 primary={true}
                 keyboardFocused={true}
                 onTouchTap={this.handleSubmit}
@@ -53,12 +55,14 @@ class CrmConfigPropsEdit extends Component {
 
     handleClose(){
         // this.setState({open: false});
+        this.props.setModeEdit(false)
         this.context.router.push('/config')
     };
 
     onSubmit(data){
-        data = { ...data }
-        this.props.updatePropertyGroup(data, this.propertyId)
+        // data = { ...data }
+        this.props.updateProperty(this.propertyId, data)
+        this.handleClose()
     }
 
     // onSubmit(data) {
@@ -77,9 +81,10 @@ class CrmConfigPropsEdit extends Component {
                 modal={false}
                 open={true}
                 onRequestClose={this.handleClose}
+                autoScrollBodyContent={true}
             >
                 <FormPtyItem
-                    ptyGroups={this.props.ptyGroups}
+                    ptyGroups={this.props.groups}
                     handleSubmit={this.handleSubmit} />
             </Dialog>
         )
