@@ -15,7 +15,7 @@ export default function(ComposedComponent, popupTitle = '') {
 
         handleClose = () => {
             // this.setState({open: false});
-            this.props.history.push('/config')
+            this.context.router.push('/config')
         };
 
         render(){
@@ -41,7 +41,7 @@ export default function(ComposedComponent, popupTitle = '') {
                     modal={false}
                     open={this.state.open}
                     onRequestClose={this.handleClose}>
-                    <ComposedComponent />
+                    <ComposedComponent routeParams={this.props.routeParams} />
                 </Dialog>
             )
         }

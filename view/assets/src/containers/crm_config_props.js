@@ -14,11 +14,10 @@ import SearchBar from '../lib/vendors/search_bar'
 
 import BtnCreatePtyGroup from '../components/crm_config_props/btn_create_pty_group'
 import CreatePtyItem from '../components/crm_config_props/create_pty_item'
-import EditPtyItem from '../components/crm_config_props/edit_pty_item'
 import PtyGroupItem from '../components/crm_config_props/pty_group_item'
 import * as actions from '../actions'
 
-class ModuleProperties extends Component {
+class CrmConfigProps extends Component {
     state = {
         open: true,
         searchText: ''
@@ -99,8 +98,8 @@ class ModuleProperties extends Component {
     }
 }
 
-function mapStateToProps({ modulePtyGroups, properties }){
-    return { groups: modulePtyGroups, properties }
+function mapStateToProps({ ptyGroups, properties }){
+    return { groups: ptyGroups, properties }
 }
 
-export default connect(mapStateToProps, actions)(ModuleProperties)
+export default connect(mapStateToProps, actions)(CrmConfigProps)

@@ -18,6 +18,8 @@ export default function(ComposedComponent, popupTitle = '') {
                 <Drawer
                     docked={false}
                     width={600}
+                    containerClassName="muiDrawerContainer"
+                    overlayClassName="muiDrawerOverlay"
                     open={this.state.open}
                     openSecondary={true}
                     onRequestChange={this.handleClose}
