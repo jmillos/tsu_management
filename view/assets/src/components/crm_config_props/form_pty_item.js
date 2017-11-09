@@ -88,7 +88,6 @@ class FormPtyItem extends Component {
                     className="mt-2"
                     label="¿Es requerido?"
                     labelPosition="right"
-                    defaultToggled={false}
                 />
                 <Field
                     name="quick_create"
@@ -96,7 +95,6 @@ class FormPtyItem extends Component {
                     className="mt-2"
                     label="¿Incluir en el formulario de creación rápida?"
                     labelPosition="right"
-                    defaultToggled={false}
                 />
                 <Field
                     name="excerpt"

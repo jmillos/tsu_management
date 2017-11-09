@@ -19,12 +19,12 @@ class TSU_Property extends TSU_App {
 	      'type'        => 'object'
 	    ],
 	    'required'  => [
-	      'description' => 'Property will required in form',
-	      'type'        => 'boolean'
+			'description' => 'Property will required in form',
+			'type'        => 'boolean'
 	    ],
 	    'quick_create'  => [
-	      'description' => 'Property will showed in Quick create form',
-	      'type'        => 'boolean'
+			'description' => 'Property will showed in Quick create form',
+			'type'        => 'boolean'
 	    ]
 	];
 
@@ -48,8 +48,8 @@ class TSU_Property extends TSU_App {
 			'excerpt'	 		=> strip_tags($data->data['excerpt']['rendered']),
 			'field_type' 		=> $data->data['field_type'],
 			'field_type_opts' 	=> $data->data['field_type_opts'],
-			'required'     	 	=> is_bool($data->data['required']) ? $data->data['required']:false,
-			'quick_create'     	=> is_bool($data->data['quick_create']) ? $data->data['quick_create']:false,
+			'required'     	 	=> $data->data['required'] ? true:false,
+			'quick_create'     	=> $data->data['quick_create'] ? true:false,
 			'date'     	 		=> $data->data['date'],
 		);
 		
