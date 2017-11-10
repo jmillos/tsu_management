@@ -31,6 +31,7 @@ export default class PtyGroupItem extends Component {
 
         this.handleOpenDialog = this.handleOpenDialog.bind(this)
         this.handleCloseDialog = this.handleCloseDialog.bind(this)
+        this.handleSortedChange = this.handleSortedChange.bind(this)
         this.onFocusGroupName = this.onFocusGroupName.bind(this)
         this.onUpdateItem = this.onUpdateItem.bind(this)
         this.onSubmit = this.onSubmit.bind(this)
@@ -72,6 +73,10 @@ export default class PtyGroupItem extends Component {
         if (event.keyCode === 27) {
             this.handleCloseDialog();
         }
+    }
+
+    handleSortedChange(...params){
+        console.log('params', params);
     }
 
     onFocusGroupName(){
@@ -150,6 +155,7 @@ export default class PtyGroupItem extends Component {
                                 }
                             ]}
                             noDataText='No se encontraron propiedades'
+                            onSortedChange={this.handleSortedChange}
                             // filterable
                         />
                     ]}
