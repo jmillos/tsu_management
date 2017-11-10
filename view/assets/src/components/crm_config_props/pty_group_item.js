@@ -22,6 +22,8 @@ import {grey400, darkBlack, lightBlack} from 'material-ui/styles/colors'
 export default class PtyGroupItem extends Component {
     state = {
         openDialog: false,
+        properties: [],
+        sort: null
     }
 
     constructor(props){
@@ -75,8 +77,20 @@ export default class PtyGroupItem extends Component {
         }
     }
 
-    handleSortedChange(...params){
-        console.log('params', params);
+    handleSortedChange(newSorted, column, shiftKey){
+        console.log('params', newSorted);
+        this.setState({ sort: newSorted })
+    }
+
+    sortProps(properties){
+        const { sort } = this.state
+        if(Array.isArray(sort) && sort.length > 0){
+            const fields = _.map(sort, _.iteratee('id'))
+            const dirs = _.map(sort, i => i.desc === false ? 'asc':'desc')
+            properties = _.orderBy(properties, fields, dirs)
+        }
+
+        return properties
     }
 
     onFocusGroupName(){
@@ -99,6 +113,8 @@ export default class PtyGroupItem extends Component {
             properties,
             size
         } = this.props
+
+        const sortedProperties = this.sortProps(properties)
 
         // console.log('props', group.id, properties, size);
 
@@ -128,7 +144,7 @@ export default class PtyGroupItem extends Component {
                             key={1}
                             showPagination={false}
                             defaultPageSize={size}
-                            data={properties}
+                            data={sortedProperties}
                             manual
                             columns={[
                                 {
