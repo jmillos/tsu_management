@@ -85,6 +85,7 @@ class CrmConfigPropsEdit extends Component {
             >
                 <FormPtyItem
                     ptyGroups={this.props.groups}
+                    fieldType={this.props.fieldType}
                     handleSubmit={this.handleSubmit} />
             </Dialog>
         )

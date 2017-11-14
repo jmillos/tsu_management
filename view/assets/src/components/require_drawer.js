@@ -1,8 +1,13 @@
 import React, { Component } from 'react'
+
+// Material UI
 import Drawer from 'material-ui/Drawer'
 import RaisedButton from 'material-ui/RaisedButton';
+import AppBar from 'material-ui/AppBar'
+import IconButton from 'material-ui/IconButton'
+import NavigationClose from 'material-ui/svg-icons/navigation/close'
 
-export default function(ComposedComponent, popupTitle = '') {
+export default function(ComposedComponent, compProps) {
     class PopupDrawer extends Component {
         constructor(props) {
             super(props);
@@ -14,22 +19,29 @@ export default function(ComposedComponent, popupTitle = '') {
         handleClose = () => this.props.history.push('/config')
 
         render() {
+            const {
+                title,
+                width
+            } = compProps
+
             return (
                 <Drawer
+                    width={width}
                     docked={false}
-                    width={600}
+                    openSecondary={true}
                     containerClassName="muiDrawerContainer"
                     overlayClassName="muiDrawerOverlay"
                     open={this.state.open}
-                    openSecondary={true}
-                    onRequestChange={this.handleClose}
-                    >
-                        Require Drawer
-                        <ComposedComponent />
+                    onRequestChange={(open, reason) => {
+                        console.log('onRequestChange', open, reason)
+                    }}>
+                    <AppBar
+                        title={title}
+                        className="muiAppBar"
+                        iconElementRight={<IconButton><NavigationClose /></IconButton>}
+                        onRightIconButtonTouchTap={this.handleClose} />
 
-                        <RaisedButton
-                            label="X"
-                            onTouchTap={this.handleClose} />
+                    { ComposedComponent ? <ComposedComponent /*moduleId={moduleId}*/ />:null }
                 </Drawer>
             );
         }

@@ -31,12 +31,15 @@ class TSU_Record extends TSU_App {
 			'title'    	 => $data->data['title']['rendered'],
 			'slug'	 	 => $data->data['slug'],
 			'parent'	 => $data->data['parent'],
-			'field_type' => $data->data['field_type'],
-			'field_type_opts' => $data->data['field_type_opts'],
 			'date'     	 => $data->data['date'],
 		);
+
+		$customFields = [];
+		foreach ($this->registerFields as $key => $field) {
+			$customFields[$key] = $data->data[$key];
+		}
 		
-		return $ret;
+		return $ret + $customFields;
 	}
 
 	public function register_post_meta(){

@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import React, {Component} from 'react'
-import { reduxForm, Field, FormSection } from 'redux-form'
+import { reduxForm, Field, FormSection, formValueSelector } from 'redux-form'
 
 import * as validators from './../../validators'
 import { formFields } from './form_fields'
@@ -34,6 +34,11 @@ class FormPtyItem extends Component {
         // this.props.initialize( this.preFormatData() )
     }
 
+    getFormFieldType(key){
+        key = key || this.props.fieldType
+        return formFields.find(i => i.type === key)
+    }
+
     formatPtyGroups(items){
         return _.map(items, item => {
             return { id: item.id, name: item.title }
@@ -48,18 +53,19 @@ class FormPtyItem extends Component {
 
     onChangeFieldType(e, key){
         console.log('e', key);
-        this.setState({ formFieldSelected: formFields.find(i => i.type === key) })
+        this.setState({ formFieldSelected: this.getFormFieldType(key) })
     }
 
     render() {
-        const { formFieldSelected } = this.state
+        let { formFieldSelected } = this.state
+        if(!formFieldSelected){
+            formFieldSelected = this.getFormFieldType()
+        }
 
         let BuildComponent = null
         if(formFieldSelected && formFieldSelected.buildComponent){
-            BuildComponent = this.state.formFieldSelected.buildComponent
+            BuildComponent = formFieldSelected.buildComponent
         }
-
-        console.log('render');
 
         return (
             <form onSubmit={this.props.handleSubmit}>
@@ -144,7 +150,6 @@ class FormPtyItem extends Component {
         )
     }
 }
-
 FormPtyItem = reduxForm({form: 'PtyItemForm'})(FormPtyItem);
 
 export default FormPtyItem

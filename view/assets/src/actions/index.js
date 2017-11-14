@@ -6,15 +6,22 @@ import {
     FETCH_PTY_GROUPS,
     CREATE_PTY_GROUP,
     UPDATE_PTY_GROUP,
-    EDIT_PTY_GROUP_NAME,
+    SET_MODE_EDIT,
+    SET_MODE_CREATE,
     FETCH_PROPERTIES,
     FETCH_PROPERTY,
     CREATE_PTY,
-    UPDATE_PTY
+    UPDATE_PTY,
+    FETCH_RECORDS,
+    FETCH_RECORD,
+    CREATE_RECORD,
+    UPDATE_RECORD,
+    DELETE_RECORD
 } from './types'
 
 axios.defaults.headers.common['X-WP-Nonce'] = API_NONCE;
 
+/*------------ Modules ------------*/
 export function fetchModules(){
     const request = axios.get(`${API_URL}tsu_crm_modules`);
 
@@ -24,6 +31,7 @@ export function fetchModules(){
     }
 }
 
+/*------------ Property Group ------------*/
 export function fetchPropertyGroups(){
     const request = axios.get(`${API_URL}tsu_crm_pty_groups`);
 
@@ -62,6 +70,7 @@ export function deletePropertyGroup(id, callback) {
     };
 }
 
+/*------------ Property ------------*/
 export function fetchProperty(propertyId){
     const request = axios.get(`${API_URL}tsu_crm_pty/${propertyId}`);
 
@@ -106,9 +115,49 @@ export function updateProperty(id, props, callback = null){
     }
 }
 
-export function setModeEdit(active){
+/*------------ Record ------------*/
+export function fetchRecords(moduleId){
+    const request = axios.get(`${API_URL}tsu_crm_record?parent=${moduleId}`);
+
     return {
-        type: EDIT_PTY_GROUP_NAME,
+        type: FETCH_RECORDS,
+        payload: request
+    }
+}
+
+export function fetchRecord(recordId, parentId){
+    const request = axios.get(`${API_URL}tsu_crm_record/${recordId}?parent=${parentId}`);
+
+    return {
+        type: FETCH_RECORD,
+        payload: request
+    }
+}
+
+export function createRecord(moduleId, props, callback = null){
+    const request = axios.post(`${API_URL}tsu_crm_record?parent=${moduleId}`, props)
+
+    if(callback !== null){
+        request.then(PropertiesPropertiesProperties)
+    }
+
+    return {
+        type: CREATE_RECORD,
+        payload: request
+    }
+}
+
+/*------------ UI ------------*/
+export function setModeEPropertiesdit(active){
+    return {
+        type: SET_MODE_EDIT,
+        payload: active
+    }
+}
+
+export function setModeCreate(active){
+    return {
+        type: SET_MODE_CREATE,
         payload: active
     }
 }

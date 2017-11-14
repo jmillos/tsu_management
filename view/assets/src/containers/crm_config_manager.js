@@ -65,7 +65,7 @@ class CrmConfigManager extends Component {
                         icon={<ActionExtension />}
                         onTouchTap={this.handleOpen} />
 
-                    {this.state.open === true && this.props.uiModulePtyGroupReducer.modeEdit === false ?
+                    {this.state.open === true && (this.props.uiModule.modeEdit === false && this.props.uiModule.modeCreate === false)  ?
                         <EventListener
                             target="window"
                             onKeyUp={this.handleKeyUp}
@@ -95,8 +95,8 @@ class CrmConfigManager extends Component {
     }
 }
 
-function mapStateToProps({ uiModulePtyGroupReducer }){
-    return { uiModulePtyGroupReducer }
+function mapStateToProps({ uiModule }){
+    return { uiModule }
 }
 
 export default connect(mapStateToProps, actions)(CrmConfigManager)

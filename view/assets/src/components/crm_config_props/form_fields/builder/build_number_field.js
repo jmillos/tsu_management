@@ -7,7 +7,7 @@ export default class BuildNumberField extends Component {
     render(){
         return (
             <Field
-                name="is_multiple"
+                name="is_currency"
                 component={Toggle}
                 className="mt-2"
                 label="Moneda: Activa esta opción si deseas que la propiedad tenga formato de moneda"

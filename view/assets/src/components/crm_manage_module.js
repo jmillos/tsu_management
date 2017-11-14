@@ -1,15 +1,43 @@
+import _ from 'lodash'
 import React, { Component } from 'react'
 
-import ModuleToolbar from './crm_manage_module/toolbar'
-import ModuleGrid from './crm_manage_module/grid'
+import Toolbar from './crm_manage_module/toolbar'
+import AddRecord from './crm_manage_module/add'
+import Grid from './crm_manage_module/grid'
 
 export default class CrmManageModule extends Component {
+    componentWillMount(){
+        this.props.fetchRecords(this.props.moduleId)
+    }
+
     render(){
+        const {
+            moduleId,
+            uiModule: { modeCreate },
+            properties,
+            records,
+            setModeCreate,
+            createRecord
+        } = this.props
+
+        const collRecords = _.map(records, i => i)
+
         return(
             <div className="crm-manage-module">
-                <ModuleToolbar />
+                <Toolbar
+                    handleModeCreate={setModeCreate} />
 
-                <ModuleGrid />
+                <AddRecord
+                    moduleId={moduleId}
+                    properties={properties}
+                    modeCreate={modeCreate}
+                    handleModeCreate={setModeCreate}
+                    handleCreateRecord={createRecord} />
+
+                <Grid
+                    records={collRecords}
+                    size={collRecords.length}
+                />
             </div>
         )
     }

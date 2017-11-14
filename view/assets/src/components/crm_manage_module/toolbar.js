@@ -11,10 +11,15 @@ export default class ModuleToolbar extends Component {
         super(props)
 
         this.handleSearch = this.handleSearch.bind(this)
+        this.handleAddContact = this.handleAddContact.bind(this)
     }
 
     handleSearch(){
-        
+
+    }
+
+    handleAddContact(){
+        this.props.handleModeCreate(true)
     }
 
     render(){
@@ -42,7 +47,7 @@ export default class ModuleToolbar extends Component {
                         style={{ margin: '0 20px' }}
                     />
                     <RaisedButton
-                        onClick={this.handleTouchTap}
+                        onClick={this.handleAddContact}
                         label="Agregar contacto"
                         primary={true}
                         style={{ margin: '0' }}
