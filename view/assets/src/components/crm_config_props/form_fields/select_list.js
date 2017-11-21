@@ -1,61 +1,46 @@
-import React, {Component} from 'react';
-import SelectField from 'material-ui/SelectField';
-import MenuItem from 'material-ui/MenuItem';
-
-const names = [
-  'Oliver Hansen',
-  'Van Henry',
-  'April Tucker',
-  'Ralph Hubbard',
-  'Omar Alexander',
-  'Carlos Abbott',
-  'Miriam Wagner',
-  'Bradley Wilkerson',
-  'Virginia Andrews',
-  'Kelly Snyder',
-];
+import React, {Component} from 'react'
+import { Field } from 'redux-form'
+import MenuItem from 'material-ui/MenuItem'
+import { SelectField } from 'redux-form-material-ui'
 
 /**
  * `SelectField` can handle multiple selections. It is enabled with the `multiple` property.
  */
 export default class SelectList extends Component {
-  state = {
-    values: [],
-  }
+    render() {
+        const {
+            name,
+            label,
+            isRequired,
+            fieldTypeOpts
+        } = this.props
 
-  constructor(props){
-      super(props)
+        return (
+            <Field
+                name={name}
+                component={SelectField}
+                className="mui-text-input"
+                floatingLabelText={label}
+                multiple={fieldTypeOpts && fieldTypeOpts.is_multiple === true}
+                validate={isRequired ? validators.required:null}
+                fullWidth={true}
+            >
+                {
+                    (() => {
+                        if(fieldTypeOpts && fieldTypeOpts.options){
+                            const options = fieldTypeOpts.options.split(',')
 
-      this.handleChange = this.handleChange.bind(this)
-  }
-
-  handleChange(event, index, values){
-      this.setState({ values })
-  }
-
-  menuItems(values) {
-    return names.map((name) => (
-      <MenuItem
-        key={name}
-        insetChildren={true}
-        checked={values && values.indexOf(name) > -1}
-        value={name}
-        primaryText={name}
-      />
-    ));
-  }
-
-  render() {
-    const {values} = this.state;
-    return (
-      <SelectField
-        multiple={true}
-        hintText="Select a name"
-        value={values}
-        onChange={this.handleChange}
-      >
-        {this.menuItems(values)}
-      </SelectField>
-    );
-  }
+                            return options.map(opt => (
+                                <MenuItem
+                                    key={opt}
+                                    value={opt}
+                                    primaryText={opt}
+                                />
+                            ))
+                        }
+                    })()
+                }
+            </Field>
+        );
+    }
 }

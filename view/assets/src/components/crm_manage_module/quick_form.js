@@ -43,6 +43,7 @@ class QuickForm extends Component {
                                 name={field.slug}
                                 label={field.title}
                                 isRequired={field.required}
+                                fieldTypeOpts={field.field_type_opts}
                             />
                 })}
             </form>

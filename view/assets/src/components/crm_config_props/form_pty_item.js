@@ -139,12 +139,17 @@ class FormPtyItem extends Component {
                     {this.renderFieldTypes()}
                 </Field>
                 <div className="pl-2">
-                    <FormSection name="field_type_opts">
                     {
-                        BuildComponent !== null ?
-                            <BuildComponent className="mui-text-input" fullWidth={true} />:null
+                        (() => {
+                            if(BuildComponent !== null){
+                                return (
+                                    <FormSection name="field_type_opts">
+                                            <BuildComponent className="mui-text-input" fullWidth={true} />
+                                    </FormSection>
+                                )
+                            }
+                        })()
                     }
-                    </FormSection>
                 </div>
             </form>
         )

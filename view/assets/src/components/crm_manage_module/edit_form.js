@@ -45,7 +45,7 @@ class EditForm extends Component {
                         {_.map(groups, group => {
                             const fieldsGroup = _.filter(fields, { parent: group.id })
                             return (
-                                <Card>
+                                <Card key={group.id}>
                                    <CardHeader
                                      title={group.title}
                                      subtitle="Subtitle"
@@ -61,6 +61,7 @@ class EditForm extends Component {
                                                         name={field.slug}
                                                         label={field.title}
                                                         isRequired={field.required}
+                                                        fieldTypeOpts={field.field_type_opts}
                                                     />
                                         })}
                                     </CardText>

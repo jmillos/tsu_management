@@ -10,7 +10,7 @@ export default class TextArea extends Component {
         const {
             name,
             label,
-            placeholder,
+            // placeholder,
             isRequired
         } = this.props
 
@@ -20,7 +20,7 @@ export default class TextArea extends Component {
                 component={TextField}
                 className="mui-text-input"
                 floatingLabelText={label}
-                hintText={placeholder}
+                // hintText={placeholder}
                 multiLine={true}
                 rows={3}
                 fullWidth={true}

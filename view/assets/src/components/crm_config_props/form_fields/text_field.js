@@ -12,7 +12,7 @@ export default class TextField extends Component {
         const {
             name,
             label,
-            placeholder,
+            // placeholder,
             isRequired
         } = this.props
 
@@ -22,7 +22,7 @@ export default class TextField extends Component {
                 component={MUITextField}
                 className="mui-text-input"
                 floatingLabelText={label}
-                hintText={placeholder}
+                // hintText={placeholder}
                 fullWidth={true}
                 validate={isRequired ? validators.required:null}
             />

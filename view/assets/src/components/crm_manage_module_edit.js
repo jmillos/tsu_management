@@ -7,7 +7,11 @@ import RaisedButton from 'material-ui/RaisedButton';
 import AppBar from 'material-ui/AppBar'
 import IconButton from 'material-ui/IconButton'
 import NavigationClose from 'material-ui/svg-icons/navigation/close'
+import NavigationCancel from 'material-ui/svg-icons/navigation/cancel'
+import ContentSave from 'material-ui/svg-icons/content/save'
 import Person from 'material-ui/svg-icons/social/person'
+import {BottomNavigation, BottomNavigationItem} from 'material-ui/BottomNavigation'
+import Paper from 'material-ui/Paper'
 
 // Own components
 import EditForm from './crm_manage_module/edit_form'
@@ -21,6 +25,10 @@ export default class CrmManageModuleEdit extends Component {
         open: true
     }
 
+    static defaultProps = {
+        moduleId: 12153
+    }
+
     constructor(props) {
         super(props);
 
@@ -30,8 +38,7 @@ export default class CrmManageModuleEdit extends Component {
     }
 
     componentWillMount(){
-        const parentId = 12153
-        this.props.fetchRecord(this.props.routeParams.id, parentId)
+        this.props.fetchRecord(this.props.routeParams.id, this.props.moduleId)
         this.props.fetchPropertyGroups()
         this.props.fetchProperties()
         console.log('this.props', this.props.routeParams.id);
@@ -45,9 +52,9 @@ export default class CrmManageModuleEdit extends Component {
     onSubmit(data) {
         // console.log('PtyItemForm', values)
         data = { ...data, status: 'publish' }
-        // this.props.handleCreateRecord(this.props.moduleId, data, () => {
-            // this.handleCloseDialog()
-        // })
+        this.props.updateRecord(this.props.record.id, this.props.moduleId, data, () => {
+            this.handleClose()
+        })
     }
 
     render(){
@@ -80,6 +87,21 @@ export default class CrmManageModuleEdit extends Component {
                     groups={groups}
                     fields={properties}
                 />
+
+                <Paper zDepth={1}>
+                    <BottomNavigation>
+                      <BottomNavigationItem
+                        label="Cancelar"
+                        icon={<NavigationCancel></NavigationCancel>}
+                        onClick={() => this.select(0)}
+                      />
+                      <BottomNavigationItem
+                        label="Guardar"
+                        icon={<ContentSave></ContentSave>}
+                        onClick={() => this.select(1)}
+                      />
+                    </BottomNavigation>
+                  </Paper>
             </Drawer>
         )
     }

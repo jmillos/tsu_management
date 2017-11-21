@@ -7,7 +7,7 @@ export const email = value =>
     : undefined)
 
 export const number = value =>
-      value && isNaN(Number(value)) ? 'Must be a number' : undefined
+      value && isNaN(Number(value)) ? 'Debe ser un número' : undefined
 
 export const alphaNumeric = value =>
   value && /[^a-zA-Z0-9_]/i.test(value)

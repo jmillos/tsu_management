@@ -1,4 +1,5 @@
 import _ from 'lodash'
+import areIntlLocalesSupported from 'intl-locales-supported'
 
 export function strToJson(str) {
     try {
@@ -28,4 +29,17 @@ export function filterSearch(coll, substr){
     ))
 
     // return _.filter(coll, item => item.title.toLowerCase().indexOf(substr) > -1)
+}
+
+export function dateTimeFormat(){
+  let DateTimeFormat;
+
+  /**
+   * Use the native Intl.DateTimeFormat if available, or a polyfill if not.
+   */
+  if (areIntlLocalesSupported(['es-CO'])) {
+    DateTimeFormat = global.Intl.DateTimeFormat;
+  }
+
+  return DateTimeFormat
 }

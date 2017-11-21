@@ -47,11 +47,14 @@ class TSU_Property extends TSU_App {
 			'parent'	 		=> $data->data['parent'],
 			'excerpt'	 		=> strip_tags($data->data['excerpt']['rendered']),
 			'field_type' 		=> $data->data['field_type'],
-			'field_type_opts' 	=> $data->data['field_type_opts'],
 			'required'     	 	=> $data->data['required'] ? true:false,
 			'quick_create'     	=> $data->data['quick_create'] ? true:false,
 			'date'     	 		=> $data->data['date'],
 		);
+
+		if( !empty($data->data['field_type_opts']) ){
+			$ret['field_type_opts'] = $data->data['field_type_opts'];
+		}
 		
 		return $ret;
 	}

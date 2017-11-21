@@ -138,7 +138,7 @@ export function createRecord(moduleId, props, callback = null){
     const request = axios.post(`${API_URL}tsu_crm_record?parent=${moduleId}`, props)
 
     if(callback !== null){
-        request.then(PropertiesPropertiesProperties)
+        request.then(callback)
     }
 
     return {
@@ -147,8 +147,21 @@ export function createRecord(moduleId, props, callback = null){
     }
 }
 
+export function updateRecord(id, moduleId, props, callback = null){
+    const request = axios.post(`${API_URL}tsu_crm_record/${id}?parent=${moduleId}`, props)
+
+    if(callback !== null){
+        request.then(callback)
+    }
+
+    return {
+        type: UPDATE_RECORD,
+        payload: request
+    }
+}
+
 /*------------ UI ------------*/
-export function setModeEPropertiesdit(active){
+export function setModeEdit(active){
     return {
         type: SET_MODE_EDIT,
         payload: active

@@ -37,6 +37,10 @@ class TSU_Record extends TSU_App {
 		$customFields = [];
 		foreach ($this->registerFields as $key => $field) {
 			$customFields[$key] = $data->data[$key];
+
+			if( $field['type'] === 'enum' && !is_array($data->data[$key]) ){
+				$customFields[$key] = [ $data->data[$key] ];
+			}
 		}
 		
 		return $ret + $customFields;
@@ -74,12 +78,23 @@ class TSU_Record extends TSU_App {
 			      'type'        => 'string',
 			      'required' 	=> false
 			    ];
+
+			    if( $this->isFieldMultiple($field) ){
+			    	$customFields[$field->post_name]['type'] = 'enum';
+					// echo "<pre>";var_dump($customFields);
+			    }
 			}
 
 			$this->registerFields = $this->registerFields + $customFields;
 
 			// echo "<pre>"; var_dump($this->registerFields);die;
 		}
+	}
+
+	private function isFieldMultiple($field){
+		$fieldType = get_post_meta($field->ID, 'field_type', true);
+		$fieldTypeOpts = get_post_meta($field->ID, 'field_type_opts', true);
+		return $fieldType === 'selectfield' && $fieldTypeOpts['is_multiple'];
 	}
 }
 

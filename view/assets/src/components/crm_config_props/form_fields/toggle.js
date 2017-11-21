@@ -1,15 +1,23 @@
 import React, {Component} from 'react'
 import { Field } from 'redux-form'
 
-import { MUIToggle } from 'redux-form-material-ui'
+import { Toggle as MUIToggle } from 'redux-form-material-ui'
 
 export default class Toggle extends Component {
     render(){
+        const {
+            name,
+            label,
+            isRequired,
+            fieldTypeOpts
+        } = this.props
+
         return (
             <Field
-                name={this.props.name}
+                className="mt-3"
+                name={name}
                 component={MUIToggle}
-                label={this.props.label}
+                label={label}
                 labelPosition="right"
             />
         )
