@@ -40,7 +40,7 @@ export default class ModuleToolbar extends Component {
                         }}
                     />
                     <RaisedButton
-                        onClick={this.handleTouchTap}
+                        onClick={this.handleAddContact}
                         label="Personalizar"
                         // primary={true}
                         // icon={<ActionAddGroup style={{ height: 18, width: 18 }} />}

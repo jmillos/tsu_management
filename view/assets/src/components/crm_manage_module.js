@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 
 import Toolbar from './crm_manage_module/toolbar'
 import AddRecord from './crm_manage_module/add'
+import Customizer from './crm_manage_module/customizer'
 import Grid from './crm_manage_module/grid'
 
 export default class CrmManageModule extends Component {
@@ -30,6 +31,12 @@ export default class CrmManageModule extends Component {
                 <AddRecord
                     moduleId={moduleId}
                     properties={properties}
+                    modeCreate={modeCreate}
+                    handleModeCreate={setModeCreate}
+                    handleCreateRecord={createRecord} />
+
+                <Customizer
+                    moduleId={moduleId}
                     modeCreate={modeCreate}
                     handleModeCreate={setModeCreate}
                     handleCreateRecord={createRecord} />
