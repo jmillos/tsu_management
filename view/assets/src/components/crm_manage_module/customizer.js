@@ -1,14 +1,34 @@
+import _ from 'lodash'
 import React, { Component } from 'react'
 import { reduxForm } from 'redux-form'
+import {SortableContainer, SortableElement, arrayMove} from 'react-sortable-hoc'
 
 // Material UI
+import {List, ListItem} from 'material-ui/List'
 import Dialog from 'material-ui/Dialog'
 import FlatButton from 'material-ui/FlatButton'
 
 class Customizer extends Component {
     state = {
-        openDialog: false
+        items: ['Item 1', 'Item 2', 'Item 3', 'Item 4', 'Item 5', 'Item 6'],
     }
+
+    sortableList = SortableContainer(({items}) => {
+        const SortableItem = SortableElement(({value}) => (
+            // <ListItem
+            //   primaryText={value}
+            // />
+            <ListItem style={{ backgroundColor: '#fff', borderBottom: '1px solid #f0f0f0' }}>{value}</ListItem>
+        ))
+
+        return (
+            <List className="list-wrapper">
+                {items.map((value, index) => (
+                    <SortableItem key={`item-${index}`} index={index} value={value} />
+                ))}
+            </List>
+        )
+    })
 
     constructor(props){
         super(props)
@@ -16,6 +36,7 @@ class Customizer extends Component {
         this.handleCloseDialog = this.handleCloseDialog.bind(this)
         this.onSubmit = this.onSubmit.bind(this)
         // this.handleSubmit = this.props.handleSubmit(this.onSubmit)
+        this.onSortEnd = this.onSortEnd.bind(this)
         this.setActions()
     }
 
@@ -35,8 +56,14 @@ class Customizer extends Component {
         ]
     }
 
+    onSortEnd({oldIndex, newIndex}){
+        this.setState({
+            items: arrayMove(this.state.items, oldIndex, newIndex),
+        });
+    }
+
     handleCloseDialog(){
-        // this.props.handleModeCreate(false)
+        this.props.handleDialogOpen(false)
     }
 
     onSubmit(data) {
@@ -49,8 +76,11 @@ class Customizer extends Component {
 
     render(){
         const {
-
+            fields,
+            groups,
         } = this.props
+
+        const SortableList = this.sortableList
 
         return (
             <div>
@@ -60,11 +90,35 @@ class Customizer extends Component {
                       modal={false}
                       titleStyle={{ paddingBottom: 0 }}
                       contentStyle={{ width: '60%' }}
-                      open={this.props.modeCreate}
+                      open={this.props.dialogOpen}
                       autoScrollBodyContent={true}
                       onRequestClose={this.handleCloseDialog}
                     >
+                    <div className="row pt-4">
+                        <div className="col-md-7">
+                            {_.map(groups, group => {
+                                const fieldsGroup = _.filter(fields, { parent: group.id })
+                                return (
+                                    <div key={group.id}>
+                                       <h3>{group.title}</h3>
 
+                                        <div className="mt-2">
+                                            {_.map(fieldsGroup, field => {
+                                                return <div key={field.id}>{field.title}</div>
+                                            })}
+                                        </div>
+                                   </div>
+                               )
+                           })}
+                        </div>
+                        <div className="col-md-5">
+                            <SortableList
+                                items={this.state.items}
+                                onSortEnd={this.onSortEnd}
+                                helperClass="Showcase__style__stylizedHelper"
+                            />
+                        </div>
+                    </div>
                 </Dialog>
             </div>
         )

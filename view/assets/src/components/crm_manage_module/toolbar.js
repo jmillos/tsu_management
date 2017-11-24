@@ -12,6 +12,7 @@ export default class ModuleToolbar extends Component {
 
         this.handleSearch = this.handleSearch.bind(this)
         this.handleAddContact = this.handleAddContact.bind(this)
+        this.handleOpenCustomizer = this.handleOpenCustomizer.bind(this)
     }
 
     handleSearch(){
@@ -20,6 +21,10 @@ export default class ModuleToolbar extends Component {
 
     handleAddContact(){
         this.props.handleModeCreate(true)
+    }
+
+    handleOpenCustomizer(){
+        this.props.handleDialogOpen(true)
     }
 
     render(){
@@ -40,7 +45,7 @@ export default class ModuleToolbar extends Component {
                         }}
                     />
                     <RaisedButton
-                        onClick={this.handleAddContact}
+                        onClick={this.handleOpenCustomizer}
                         label="Personalizar"
                         // primary={true}
                         // icon={<ActionAddGroup style={{ height: 18, width: 18 }} />}

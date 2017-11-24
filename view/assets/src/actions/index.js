@@ -8,6 +8,8 @@ import {
     UPDATE_PTY_GROUP,
     SET_MODE_EDIT,
     SET_MODE_CREATE,
+    SET_MODE_CUSTOMIZER,
+    SET_DIALOG_OPEN,
     FETCH_PROPERTIES,
     FETCH_PROPERTY,
     CREATE_PTY,
@@ -171,6 +173,20 @@ export function setModeEdit(active){
 export function setModeCreate(active){
     return {
         type: SET_MODE_CREATE,
+        payload: active
+    }
+}
+
+export function setModeCustomizer(active){
+    return {
+        type: SET_MODE_CUSTOMIZER,
+        payload: active
+    }
+}
+
+export function setDialogOpen(active){
+    return {
+        type: SET_DIALOG_OPEN,
         payload: active
     }
 }

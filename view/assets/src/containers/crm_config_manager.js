@@ -65,7 +65,7 @@ class CrmConfigManager extends Component {
                         icon={<ActionExtension />}
                         onTouchTap={this.handleOpen} />
 
-                    {this.state.open === true && (this.props.uiModule.modeEdit === false && this.props.uiModule.modeCreate === false)  ?
+                    {this.state.open === true && (this.props.uiModule.dialogOpen === false)  ?
                         <EventListener
                             target="window"
                             onKeyUp={this.handleKeyUp}

@@ -14,10 +14,12 @@ export default class CrmManageModule extends Component {
     render(){
         const {
             moduleId,
-            uiModule: { modeCreate },
+            uiModule: { modeCreate, modeCustomizer },
             properties,
+            groups,
             records,
             setModeCreate,
+            setModeCustomizer,
             createRecord
         } = this.props
 
@@ -26,7 +28,8 @@ export default class CrmManageModule extends Component {
         return(
             <div className="crm-manage-module">
                 <Toolbar
-                    handleModeCreate={setModeCreate} />
+                    handleModeCreate={setModeCreate}
+                    handleDialogOpen={setModeCustomizer} />
 
                 <AddRecord
                     moduleId={moduleId}
@@ -37,8 +40,10 @@ export default class CrmManageModule extends Component {
 
                 <Customizer
                     moduleId={moduleId}
-                    modeCreate={modeCreate}
-                    handleModeCreate={setModeCreate}
+                    dialogOpen={modeCustomizer}
+                    groups={groups}
+                    fields={properties}
+                    handleDialogOpen={setModeCustomizer}
                     handleCreateRecord={createRecord} />
 
                 <Grid
