@@ -7,6 +7,8 @@ import {SortableContainer, SortableElement, arrayMove} from 'react-sortable-hoc'
 import {List, ListItem} from 'material-ui/List'
 import Dialog from 'material-ui/Dialog'
 import FlatButton from 'material-ui/FlatButton'
+import Checkbox from 'material-ui/Checkbox'
+import Subheader from 'material-ui/Subheader'
 
 class Customizer extends Component {
     state = {
@@ -47,7 +49,7 @@ class Customizer extends Component {
                 onClick={this.handleCloseDialog}
               />,
               <FlatButton
-                label="Crear"
+                label="Guardar"
                 primary={true}
                 // keyboardFocused={true}
                 type="submit"
@@ -100,11 +102,18 @@ class Customizer extends Component {
                                 const fieldsGroup = _.filter(fields, { parent: group.id })
                                 return (
                                     <div key={group.id}>
-                                       <h3>{group.title}</h3>
+                                       <Subheader>{group.title}</Subheader>
 
-                                        <div className="mt-2">
+                                        <div className="pl-4">
                                             {_.map(fieldsGroup, field => {
-                                                return <div key={field.id}>{field.title}</div>
+                                                return <Checkbox
+                                                            key={field.id}
+                                                            label={field.title}
+                                                            // iconStyle={{ fill: '#cbd6e2' }}
+                                                            // checked={this.state.checked}
+                                                            // onCheck={this.updateCheck.bind(this)}
+                                                            // style={styles.checkbox}
+                                                        />
                                             })}
                                         </div>
                                    </div>
