@@ -12,21 +12,18 @@ import Subheader from 'material-ui/Subheader'
 
 class Customizer extends Component {
     state = {
-        items: ['Item 1', 'Item 2', 'Item 3', 'Item 4', 'Item 5', 'Item 6'],
+        items: [],
     }
 
     sortableList = SortableContainer(({items}) => {
         const SortableItem = SortableElement(({value}) => (
-            // <ListItem
-            //   primaryText={value}
-            // />
-            <ListItem style={{ backgroundColor: '#fff', borderBottom: '1px solid #f0f0f0' }}>{value}</ListItem>
+            <ListItem style={{ backgroundColor: '#fff', borderBottom: '1px solid #f0f0f0' }}>{value.title}</ListItem>
         ))
 
         return (
             <List className="list-wrapper">
                 {items.map((value, index) => (
-                    <SortableItem key={`item-${index}`} index={index} value={value} />
+                    <SortableItem key={value.id} index={index} value={value} />
                 ))}
             </List>
         )
@@ -39,6 +36,8 @@ class Customizer extends Component {
         this.onSubmit = this.onSubmit.bind(this)
         // this.handleSubmit = this.props.handleSubmit(this.onSubmit)
         this.onSortEnd = this.onSortEnd.bind(this)
+        this.addColumn = this.addColumn.bind(this)
+        this.removeColumn = this.removeColumn.bind(this)
         this.setActions()
     }
 
@@ -66,6 +65,15 @@ class Customizer extends Component {
 
     handleCloseDialog(){
         this.props.handleDialogOpen(false)
+    }
+
+    addColumn(field){
+        this.setState({ items: [ ...this.state.items, field ] })
+    }
+
+    removeColumn(field){
+        const items = _.remove([...this.state.items], i => i.id !== field.id)
+        this.setState({ items })
     }
 
     onSubmit(data) {
@@ -111,7 +119,7 @@ class Customizer extends Component {
                                                             label={field.title}
                                                             // iconStyle={{ fill: '#cbd6e2' }}
                                                             // checked={this.state.checked}
-                                                            // onCheck={this.updateCheck.bind(this)}
+                                                            onCheck={(e, isInputChecked) => isInputChecked === true ? this.addColumn(field):this.removeColumn(field)}
                                                             // style={styles.checkbox}
                                                         />
                                             })}
