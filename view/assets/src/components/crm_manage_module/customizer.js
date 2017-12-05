@@ -7,8 +7,10 @@ import {SortableContainer, SortableElement, arrayMove} from 'react-sortable-hoc'
 import {List, ListItem} from 'material-ui/List'
 import Dialog from 'material-ui/Dialog'
 import FlatButton from 'material-ui/FlatButton'
-import Checkbox from 'material-ui/Checkbox'
 import Subheader from 'material-ui/Subheader'
+
+//Own components
+import Checkbox from './customizer_checkbox'
 
 class Customizer extends Component {
     state = {
@@ -90,6 +92,10 @@ class Customizer extends Component {
             groups,
         } = this.props
 
+        const {
+            items
+        } = this.state
+
         const SortableList = this.sortableList
 
         return (
@@ -105,7 +111,7 @@ class Customizer extends Component {
                       onRequestClose={this.handleCloseDialog}
                     >
                     <div className="row pt-4">
-                        <div className="col-md-7">
+                        <div className="col-md-7" style={{ borderRight: '1px solid #dfe3eb' }}>
                             {_.map(groups, group => {
                                 const fieldsGroup = _.filter(fields, { parent: group.id })
                                 return (
@@ -113,27 +119,44 @@ class Customizer extends Component {
                                        <Subheader>{group.title}</Subheader>
 
                                         <div className="pl-4">
-                                            {_.map(fieldsGroup, field => {
-                                                return <Checkbox
-                                                            key={field.id}
-                                                            label={field.title}
-                                                            // iconStyle={{ fill: '#cbd6e2' }}
-                                                            // checked={this.state.checked}
-                                                            onCheck={(e, isInputChecked) => isInputChecked === true ? this.addColumn(field):this.removeColumn(field)}
-                                                            // style={styles.checkbox}
-                                                        />
-                                            })}
+                                            {
+                                                (() => {
+                                                    if (fieldsGroup.length > 0) {
+                                                        return _.map(fieldsGroup, field => {
+                                                            return <Checkbox
+                                                                        key={field.id}
+                                                                        handleAddColumn={this.addColumn}
+                                                                        handleRemoveColumn={this.removeColumn}
+                                                                        field={field}
+                                                                    />
+                                                        })
+                                                    }else{
+                                                        return <small>No tiene propiedades asociadas.</small>
+                                                    }
+                                                })()
+                                            }
                                         </div>
                                    </div>
                                )
                            })}
                         </div>
                         <div className="col-md-5">
-                            <SortableList
-                                items={this.state.items}
-                                onSortEnd={this.onSortEnd}
-                                helperClass="Showcase__style__stylizedHelper"
-                            />
+                            <Subheader>COLUMNAS SELECCIONADAS {Array.isArray(items) && items.length > 0 && `(${items.length})`}</Subheader>
+                            <div className="pl-3">
+                            {
+                                (() => {
+                                    if(Array.isArray(items) && items.length > 0){
+                                        return <SortableList
+                                            items={items}
+                                            onSortEnd={this.onSortEnd}
+                                            helperClass="Showcase__style__stylizedHelper"
+                                        />
+                                    }else{
+                                        return <small>No tiene columnas seleccionadas.</small>
+                                    }
+                                })()
+                            }
+                            </div>
                         </div>
                     </div>
                 </Dialog>
