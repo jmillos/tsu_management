@@ -18,7 +18,9 @@ import {
     FETCH_RECORD,
     CREATE_RECORD,
     UPDATE_RECORD,
-    DELETE_RECORD
+    DELETE_RECORD,
+    UPDATE_USER,
+    FETCH_USER
 } from './types'
 
 axios.defaults.headers.common['X-WP-Nonce'] = API_NONCE;
@@ -159,6 +161,33 @@ export function updateRecord(id, moduleId, props, callback = null){
     return {
         type: UPDATE_RECORD,
         payload: request
+    }
+}
+
+/*------------ User ------------*/
+export function fetchUser(userId){
+    const request = axios.get(`${API_URL}users/${userId}`);
+
+    return {
+        type: FETCH_USER,
+        payload: request
+    }
+}
+
+export function updateUser(id, props, callback){
+    return (dispatch, getState) => {
+        const state = getState()
+        console.log({ ...state.users[id], ...props });
+        const request = axios.post(`${API_URL}users/${id}`, { ...state.users[id], ...props })
+
+        if(callback !== null){
+            request.then(callback)
+        }
+
+        dispatch({
+            type: UPDATE_USER,
+            payload: request
+        })
     }
 }
 

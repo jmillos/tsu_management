@@ -1,5 +1,6 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
+import { getGridColumnsCurrentUser } from '../lib/utils'
 
 import Toolbar from './crm_manage_module/toolbar'
 import AddRecord from './crm_manage_module/add'
@@ -16,6 +17,7 @@ export default class CrmManageModule extends Component {
             moduleId,
             uiModule: { modeCreate, modeCustomizer },
             properties,
+            users,
             groups,
             records,
             setModeCreate,
@@ -43,8 +45,10 @@ export default class CrmManageModule extends Component {
                     dialogOpen={modeCustomizer}
                     groups={groups}
                     fields={properties}
+                    columns={getGridColumnsCurrentUser(users)}
                     handleDialogOpen={setModeCustomizer}
-                    handleCreateRecord={createRecord} />
+                    handleCreateRecord={createRecord}
+                    handleUpdateUser={this.props.updateUser} />
 
                 <Grid
                     records={collRecords}

@@ -4,8 +4,10 @@ class TSU_App {
 	/**
 	 * Hook in methods.
 	 */
-	public function __construct() {
-		add_action( 'init', array($this, 'include_post_type' ), 5 );
+	public function __construct($createPostType = true) {
+		if($createPostType === true)
+			add_action( 'init', array($this, 'include_post_type' ), 5 );
+
 		add_action( 'rest_api_init', array($this, 'register_post_meta') );
 		add_filter( 'rest_prepare_' . $this->postType, array($this, 'rest_api_post'), 10, 3 );
 		// add_action( 'rest_insert_' . $this->$postType, array($this, 'rest_update_post'), 10, 2 );

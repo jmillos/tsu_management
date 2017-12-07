@@ -2,6 +2,7 @@ import _ from 'lodash'
 import React, { Component } from 'react'
 import { reduxForm } from 'redux-form'
 import {SortableContainer, SortableElement, arrayMove} from 'react-sortable-hoc'
+import { CURRENT_USER_ID } from '../../config'
 
 // Material UI
 import {List, ListItem} from 'material-ui/List'
@@ -54,7 +55,7 @@ class Customizer extends Component {
                 primary={true}
                 // keyboardFocused={true}
                 type="submit"
-                onClick={this.handleSubmit}
+                onClick={this.onSubmit}
               />,
         ]
     }
@@ -78,10 +79,11 @@ class Customizer extends Component {
         this.setState({ items })
     }
 
-    onSubmit(data) {
+    onSubmit() {
         // console.log('PtyItemForm', values)
-        data = { ...data, status: 'publish' }
-        this.props.handleCreateRecord(this.props.moduleId, data, () => {
+        const columnsId = _.map(this.state.items, _.iteratee('id'))
+        console.log('columnsId', columnsId);
+        this.props.handleUpdateUser(CURRENT_USER_ID, { crm_module_preferences: { [this.props.moduleId]: { gridCols: columnsId } } }, () => {
             this.handleCloseDialog()
         })
     }
@@ -97,6 +99,8 @@ class Customizer extends Component {
         } = this.state
 
         const SortableList = this.sortableList
+
+        console.log('items', items);
 
         return (
             <div>

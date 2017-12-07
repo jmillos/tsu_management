@@ -1,6 +1,8 @@
 import _ from 'lodash'
 import areIntlLocalesSupported from 'intl-locales-supported'
 
+export * from './crm'
+
 export function strToJson(str) {
     try {
       str = eval("(" + str + ")")

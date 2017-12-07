@@ -3,11 +3,13 @@ import {connect} from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Link } from 'react-router'
 
-import { fetchModules } from '../actions'
+import { CURRENT_USER_ID } from '../config'
+import { fetchUser, fetchModules } from '../actions'
 import CrmConfigModule from '../components/crm_config_module'
 
 class CrmConfig extends Component {
     componentWillMount(){
+        this.props.fetchUser(CURRENT_USER_ID)
         this.props.fetchModules()
     }
 
@@ -43,4 +45,4 @@ function mapStateToProps(state) {
     };
 }
 
-export default connect(mapStateToProps, { fetchModules })(CrmConfig)
+export default connect(mapStateToProps, { fetchUser, fetchModules })(CrmConfig)
