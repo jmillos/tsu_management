@@ -15,7 +15,7 @@ import Checkbox from './customizer_checkbox'
 
 class Customizer extends Component {
     state = {
-        items: [],
+        columns: [],
     }
 
     sortableList = SortableContainer(({items}) => {
@@ -62,7 +62,7 @@ class Customizer extends Component {
 
     onSortEnd({oldIndex, newIndex}){
         this.setState({
-            items: arrayMove(this.state.items, oldIndex, newIndex),
+            columns: arrayMove(this.state.columns, oldIndex, newIndex),
         });
     }
 
@@ -71,17 +71,17 @@ class Customizer extends Component {
     }
 
     addColumn(field){
-        this.setState({ items: [ ...this.state.items, field ] })
+        this.setState({ columns: [ ...this.state.columns, field ] })
     }
 
     removeColumn(field){
-        const items = _.remove([...this.state.items], i => i.id !== field.id)
-        this.setState({ items })
+        const columns = _.remove([...this.state.columns], i => i.id !== field.id)
+        this.setState({ columns })
     }
 
     onSubmit() {
         // console.log('PtyItemForm', values)
-        const columnsId = _.map(this.state.items, _.iteratee('id'))
+        const columnsId = _.map(this.state.columns, _.iteratee('id'))
         console.log('columnsId', columnsId);
         this.props.handleUpdateUser(CURRENT_USER_ID, { crm_module_preferences: { [this.props.moduleId]: { gridCols: columnsId } } }, () => {
             this.handleCloseDialog()
@@ -92,15 +92,14 @@ class Customizer extends Component {
         const {
             fields,
             groups,
+            columns
         } = this.props
 
-        const {
-            items
-        } = this.state
+        const stColumns = this.state.columns
 
         const SortableList = this.sortableList
 
-        console.log('items', items);
+        console.log('columns', columns);
 
         return (
             <div>
@@ -145,13 +144,13 @@ class Customizer extends Component {
                            })}
                         </div>
                         <div className="col-md-5">
-                            <Subheader>COLUMNAS SELECCIONADAS {Array.isArray(items) && items.length > 0 && `(${items.length})`}</Subheader>
+                            <Subheader>COLUMNAS SELECCIONADAS {Array.isArray(stColumns) && stColumns.length > 0 && `(${stColumns.length})`}</Subheader>
                             <div className="pl-3">
                             {
                                 (() => {
-                                    if(Array.isArray(items) && items.length > 0){
+                                    if(Array.isArray(stColumns) && stColumns.length > 0){
                                         return <SortableList
-                                            items={items}
+                                            items={stColumns}
                                             onSortEnd={this.onSortEnd}
                                             helperClass="Showcase__style__stylizedHelper"
                                         />

@@ -45,7 +45,7 @@ export default class CrmManageModule extends Component {
                     dialogOpen={modeCustomizer}
                     groups={groups}
                     fields={properties}
-                    columns={getGridColumnsCurrentUser(users)}
+                    columns={getGridColumnsCurrentUser(users, moduleId, properties)}
                     handleDialogOpen={setModeCustomizer}
                     handleCreateRecord={createRecord}
                     handleUpdateUser={this.props.updateUser} />
