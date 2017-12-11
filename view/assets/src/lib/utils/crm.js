@@ -5,7 +5,18 @@ export function getGridColumnsCurrentUser(users, moduleId, properties){
     const currentUser = users[CURRENT_USER_ID]
     const modulePreferences = currentUser && currentUser.crm_module_preferences ? currentUser.crm_module_preferences:[]
 
-    return modulePreferences[moduleId] && modulePreferences[moduleId].gridCols ? modulePreferences[moduleId].gridCols:[]
+    const gridColumns = modulePreferences[moduleId] && modulePreferences[moduleId].gridCols ? modulePreferences[moduleId].gridCols:[]
 
-    const columns = _.maps([...properties], i => i.id !== field.id)
+    let columns = []
+    if(
+        Array.isArray(gridColumns) && gridColumns.length > 0
+            && _.size(properties) > 0
+    ){
+        columns = _.map(gridColumns, id => {
+            return _.find(properties, { id })
+        })
+
+        return columns
+    }
+
 }

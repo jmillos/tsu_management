@@ -25,6 +25,8 @@ export default class CrmManageModule extends Component {
             createRecord
         } = this.props
 
+        const columns = getGridColumnsCurrentUser(users, moduleId, properties)
+        console.log('getGridColumnsCurrentUser', columns);
         const collRecords = _.map(records, i => i)
 
         return(
@@ -45,7 +47,7 @@ export default class CrmManageModule extends Component {
                     dialogOpen={modeCustomizer}
                     groups={groups}
                     fields={properties}
-                    columns={getGridColumnsCurrentUser(users, moduleId, properties)}
+                    columns={columns}
                     handleDialogOpen={setModeCustomizer}
                     handleCreateRecord={createRecord}
                     handleUpdateUser={this.props.updateUser} />
@@ -53,6 +55,7 @@ export default class CrmManageModule extends Component {
                 <Grid
                     records={collRecords}
                     size={collRecords.length}
+                    columns={columns}
                 />
             </div>
         )

@@ -18,6 +18,10 @@ class TSU_Property extends TSU_App {
 	      'description' => 'Field type options of the property',
 	      'type'        => 'object'
 	    ],
+	    'in_title'  => [
+			'description' => 'Property will included as item title',
+			'type'        => 'boolean'
+	    ],
 	    'required'  => [
 			'description' => 'Property will required in form',
 			'type'        => 'boolean'
@@ -47,6 +51,7 @@ class TSU_Property extends TSU_App {
 			'parent'	 		=> $data->data['parent'],
 			'excerpt'	 		=> strip_tags($data->data['excerpt']['rendered']),
 			'field_type' 		=> $data->data['field_type'],
+			'in_title'     	 	=> $data->data['in_title'] ? true:false,
 			'required'     	 	=> $data->data['required'] ? true:false,
 			'quick_create'     	=> $data->data['quick_create'] ? true:false,
 			'date'     	 		=> $data->data['date'],

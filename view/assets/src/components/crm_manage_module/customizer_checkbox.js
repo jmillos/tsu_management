@@ -20,14 +20,15 @@ export default class Checkbox extends Component {
 
     render(){
         const {
-            field
+            field,
+            checked
         } = this.props
 
         return <MUICheckbox
                     key={field.id}
                     label={field.title}
                     // iconStyle={{ fill: '#cbd6e2' }}
-                    // checked={this.state.checked}
+                    checked={checked}
                     onCheck={this.onCheck}
                     // style={styles.checkbox}
                 />

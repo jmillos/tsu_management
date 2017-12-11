@@ -89,6 +89,13 @@ class FormPtyItem extends Component {
                     fullWidth={true}
                 />
                 <Field
+                    name="in_title"
+                    component={Toggle}
+                    className="mt-2"
+                    label="¿Incluir como titulo para el registro?"
+                    labelPosition="right"
+                />
+                <Field
                     name="required"
                     component={Toggle}
                     className="mt-2"

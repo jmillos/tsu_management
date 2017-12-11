@@ -42,6 +42,13 @@ class Customizer extends Component {
         this.addColumn = this.addColumn.bind(this)
         this.removeColumn = this.removeColumn.bind(this)
         this.setActions()
+
+    }
+
+    componentWillUpdate(nextProps, nextState){
+        if(this.props.columns !== nextProps.columns){
+            this.setState({ columns: nextProps.columns })
+        }
     }
 
     setActions(){
@@ -99,7 +106,7 @@ class Customizer extends Component {
 
         const SortableList = this.sortableList
 
-        console.log('columns', columns);
+        console.log('stColumns', stColumns);
 
         return (
             <div>
@@ -131,6 +138,7 @@ class Customizer extends Component {
                                                                         handleAddColumn={this.addColumn}
                                                                         handleRemoveColumn={this.removeColumn}
                                                                         field={field}
+                                                                        checked={!!_.find(stColumns, { id: field.id })}
                                                                     />
                                                         })
                                                     }else{
