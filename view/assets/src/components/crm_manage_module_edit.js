@@ -66,6 +66,7 @@ export default class CrmManageModuleEdit extends Component {
 
         return (
             <Drawer
+                className="crm-manage-module-edit"
                 width={window.innerWidth - 36}
                 docked={false}
                 openSecondary={true}
@@ -88,12 +89,12 @@ export default class CrmManageModuleEdit extends Component {
                     fields={properties}
                 />
 
-                <Paper zDepth={1}>
+                <Paper className="footer-actions" zDepth={1}>
                     <BottomNavigation>
                       <BottomNavigationItem
                         label="Cancelar"
                         icon={<NavigationCancel></NavigationCancel>}
-                        onClick={() => this.select(0)}
+                        onClick={this.handleClose}
                       />
                       <BottomNavigationItem
                         label="Guardar"
