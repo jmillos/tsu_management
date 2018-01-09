@@ -43,12 +43,12 @@ class CreatePtyItem extends Component {
     }
 
     handleOpenDialog(){
-        this.props.onModeEdit(true)
+        this.props.onModeCreate(true)
         this.setState({openDialog: true});
     }
 
     handleCloseDialog(){
-        this.props.onModeEdit(false)
+        this.props.onModeCreate(false)
         this.setState({openDialog: false});
     }
 

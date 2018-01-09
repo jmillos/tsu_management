@@ -1,4 +1,5 @@
 import {
+    SET_MODE_LIST,
     SET_MODE_EDIT,
     SET_MODE_CREATE,
     SET_MODE_CUSTOMIZER,
@@ -7,6 +8,9 @@ import {
 
 export default function( state = { modeEdit: false, modeCreate: false, modeCustomizer: false, dialogOpen: false }, action ){
     switch (action.type) {
+        case SET_MODE_LIST:
+            return { ...state, modeList: action.payload, dialogOpen: action.payload }
+
         case SET_MODE_EDIT:
             return { ...state, modeEdit: action.payload, dialogOpen: action.payload }
 

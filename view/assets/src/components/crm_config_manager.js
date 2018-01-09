@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router'
 import EventListener from 'react-event-listener'
 
 // Material UI
@@ -44,7 +45,7 @@ export default class CrmConfigManager extends Component {
     }
 
     render(){
-        const { id, title, description, dialogTitle, dialogWidth, labelButton } = this.props
+        const { id, title, description, slug, dialogTitle, dialogWidth, labelButton, linkTo } = this.props
         const moduleId = id
         const ChildComponent = this.props.component
 
@@ -58,7 +59,7 @@ export default class CrmConfigManager extends Component {
                     <RaisedButton
                         primary={true}
                         label={labelButton}
-                        // containerElement={<Link to={this.props.link} />}
+                        containerElement={linkTo ? <Link to={linkTo} />:<span></span>}
                         icon={<ActionExtension />}
                         onTouchTap={this.handleOpen} />
 
@@ -84,7 +85,10 @@ export default class CrmConfigManager extends Component {
                             iconElementRight={<IconButton><NavigationClose /></IconButton>}
                             onRightIconButtonTouchTap={this.handleClose} />
 
-                        { ChildComponent ? <ChildComponent moduleId={moduleId} />:null }
+                        {
+                            ChildComponent
+                                && <ChildComponent moduleId={moduleId} withoutDrawer={true} />
+                        }
                     </Drawer>
                 </div>
             </div>

@@ -2,6 +2,7 @@ import _ from 'lodash'
 import React, { Component } from 'react'
 import { getGridColumnsCurrentUser } from '../lib/utils'
 
+import HOCDrawer from './hoc_drawer_xl'
 import Toolbar from './crm_manage_module/toolbar'
 import AddRecord from './crm_manage_module/add'
 import Customizer from './crm_manage_module/customizer'
@@ -10,7 +11,17 @@ import Grid from './crm_manage_module/grid'
 export default class CrmManageModule extends Component {
     componentWillMount(){
         this.props.fetchRecords(this.props.moduleId)
+        this.props.fetchPropertyGroups()
+        this.props.fetchProperties()
     }
+
+    handleKeyUp = event => {
+        if(event.keyCode == 27 && this.props.uiModule.dialogOpen === false){
+            this.handleClose();
+        }
+    }
+
+    handleClose = () => this.props.router.push('/config')
 
     render(){
         const {
@@ -22,15 +33,21 @@ export default class CrmManageModule extends Component {
             records,
             setModeCreate,
             setModeCustomizer,
-            createRecord
+            createRecord,
+            withoutDrawer
         } = this.props
 
         const columns = getGridColumnsCurrentUser(users, moduleId, properties)
         console.log('getGridColumnsCurrentUser', columns);
         const collRecords = _.map(records, i => i)
+        const WrapContainer = withoutDrawer === true ? 'div':HOCDrawer
 
-        return(
-            <div className="crm-manage-module">
+        return (
+            <WrapContainer
+                className="crm-manage-module"
+                title="Modulo"
+                handleClose={this.handleClose}
+                handleKeyUp={this.handleKeyUp}>
                 <Toolbar
                     handleModeCreate={setModeCreate}
                     handleDialogOpen={setModeCustomizer} />
@@ -57,7 +74,7 @@ export default class CrmManageModule extends Component {
                     size={collRecords.length}
                     columns={columns}
                 />
-            </div>
+            </WrapContainer>
         )
     }
 }

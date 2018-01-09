@@ -3,16 +3,10 @@ import {connect} from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Link } from 'react-router'
 
-import { CURRENT_USER_ID } from '../config'
 import { fetchUser, fetchModules } from '../actions'
 import CrmConfigModule from '../components/crm_config_module'
 
 class CrmConfig extends Component {
-    componentWillMount(){
-        this.props.fetchUser(CURRENT_USER_ID)
-        this.props.fetchModules()
-    }
-
     render(){
         return (
             <div className="crm-config">
@@ -25,6 +19,7 @@ class CrmConfig extends Component {
                             id={item.id}
                             name={item.title}
                             singularName={item.singular_name}
+                            slug={item.slug}
                             link="/config/property-settings"
                              />
                     )

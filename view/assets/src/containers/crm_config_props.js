@@ -71,7 +71,7 @@ class CrmConfigProps extends Component {
 
                         <CreatePtyItem
                             className="ml-2"
-                            onModeEdit={this.props.setModeEdit}
+                            onModeCreate={this.props.setModeEdit}
                             ptyGroups={this.props.groups}
                             handleCreateProperty={this.props.createProperty}
                         />

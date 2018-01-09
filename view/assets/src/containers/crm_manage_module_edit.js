@@ -7,7 +7,7 @@ import * as actions from '../actions'
 
 function mapStateToProps(state, ownProps){
     const record = state.records && state.records[ownProps.routeParams.id] ? state.records[ownProps.routeParams.id]:null
-    return { groups: state.ptyGroups, properties: state.properties, initialValues: record, record }
+    return { uiModule: state.uiModule, groups: state.ptyGroups, properties: state.properties, initialValues: record, record }
 }
 
 const component = reduxForm({ form: 'RecordForm' })(CrmManageModuleEdit)

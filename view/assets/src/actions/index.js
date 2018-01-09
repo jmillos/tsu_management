@@ -6,6 +6,7 @@ import {
     FETCH_PTY_GROUPS,
     CREATE_PTY_GROUP,
     UPDATE_PTY_GROUP,
+    SET_MODE_LIST,
     SET_MODE_EDIT,
     SET_MODE_CREATE,
     SET_MODE_CUSTOMIZER,
@@ -192,6 +193,13 @@ export function updateUser(id, props, callback){
 }
 
 /*------------ UI ------------*/
+export function setModeList(active){
+    return {
+        type: SET_MODE_LIST,
+        payload: active
+    }
+}
+
 export function setModeEdit(active){
     return {
         type: SET_MODE_EDIT,

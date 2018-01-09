@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import EventListener from 'react-event-listener'
 
 // Material UI
 import Drawer from 'material-ui/Drawer'
@@ -7,26 +8,30 @@ import AppBar from 'material-ui/AppBar'
 import IconButton from 'material-ui/IconButton'
 import NavigationClose from 'material-ui/svg-icons/navigation/close'
 
-export default function(ComposedComponent, compProps) {
-    class PopupDrawer extends Component {
-        constructor(props) {
-            super(props);
-            this.state = {open: true};
-        }
+class HOCDrawer extends Component {
+    state = {
+        open: true
+    }
 
-        handleToggle = () => this.setState({open: !this.state.open})
+    calcWidthDialogManage(){
+        const elSideMenu = document.getElementById('adminmenuback')
+        return window.innerWidth - 36 //elSideMenu.offsetWidth
+    }
 
-        handleClose = () => this.props.history.push('/config')
+    render() {
+        const {
+            title
+        } = this.props
 
-        render() {
-            const {
-                title,
-                width
-            } = compProps
+        return (
+            <div>
+                <EventListener
+                    target="window"
+                    onKeyUp={this.props.handleKeyUp}
+                />
 
-            return (
                 <Drawer
-                    width={width}
+                    width={this.calcWidthDialogManage()}
                     docked={false}
                     openSecondary={true}
                     containerClassName="muiDrawerContainer"
@@ -39,13 +44,13 @@ export default function(ComposedComponent, compProps) {
                         title={title}
                         className="muiAppBar"
                         iconElementRight={<IconButton><NavigationClose /></IconButton>}
-                        onRightIconButtonTouchTap={this.handleClose} />
+                        onRightIconButtonTouchTap={this.props.handleClose} />
 
-                    { ComposedComponent ? <ComposedComponent /*moduleId={moduleId}*/ />:null }
+                    { this.props.children }
                 </Drawer>
-            );
-        }
+            </div>
+        );
     }
-
-    return PopupDrawer
 }
+
+export default HOCDrawer

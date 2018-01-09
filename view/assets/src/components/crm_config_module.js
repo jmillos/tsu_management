@@ -12,7 +12,7 @@ class CrmConfigModule extends Component {
     }
 
     render(){
-        const { id, name, singularName } = this.props
+        const { id, name, singularName, slug } = this.props
         const moduleName = name.toLowerCase()
         const moduleSingularName = singularName.toLowerCase()
 
@@ -44,10 +44,13 @@ class CrmConfigModule extends Component {
                             id={this.props.id}
                             title={`Gestiona los registros de ${moduleName}`}
                             description={`Edita, elimina, depura y busca en todos los registros de ${moduleName}.`}
+                            slug={slug}
                             dialogTitle={`${name}`}
                             dialogWidth={this.calcWidthDialogManage()}
                             labelButton="Gestionar"
-                            component={CrmManageModule} />
+                            component={CrmManageModule}
+                            // linkTo={`/${id}-${slug}/records`}
+                        />
                     </li>
                 </ul>
             </div>
