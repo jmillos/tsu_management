@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router'
+import PropTypes from 'prop-types'
+import { Link, hashHistory } from 'react-router'
 import EventListener from 'react-event-listener'
 
 // Material UI
@@ -11,6 +12,10 @@ import RaisedButton from 'material-ui/RaisedButton';
 import ActionExtension from 'material-ui/svg-icons/action/extension'
 
 export default class CrmConfigManager extends Component {
+    static contextTypes = {
+        router: PropTypes.object
+    }
+
     constructor(props) {
         super(props);
         this.state = {open: false};
@@ -37,6 +42,11 @@ export default class CrmConfigManager extends Component {
     handleOpen(){
         document.body.classList.add('ui-full-screen-background')
         this.setState({open: true})
+
+        // console.log('this.context.router', this.context.router);
+        // this.context.router.location.pathname = this.props.linkTo
+        // document.location.hash = this.props.linkTo
+        // hashHistory.replace(this.context.router.location)
     }
 
     handleClose(){
@@ -59,7 +69,7 @@ export default class CrmConfigManager extends Component {
                     <RaisedButton
                         primary={true}
                         label={labelButton}
-                        containerElement={linkTo ? <Link to={linkTo} />:<span></span>}
+                        // containerElement={linkTo ? <Link to={linkTo} />:<span></span>}
                         icon={<ActionExtension />}
                         onTouchTap={this.handleOpen} />
 
@@ -87,7 +97,7 @@ export default class CrmConfigManager extends Component {
 
                         {
                             ChildComponent
-                                && <ChildComponent moduleId={moduleId} withoutDrawer={true} />
+                                && <ChildComponent moduleId={moduleId} moduleSlug={slug} withoutDrawer={true} />
                         }
                     </Drawer>
                 </div>

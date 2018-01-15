@@ -49,7 +49,7 @@ class CrmConfigModule extends Component {
                             dialogWidth={this.calcWidthDialogManage()}
                             labelButton="Gestionar"
                             component={CrmManageModule}
-                            // linkTo={`/${id}-${slug}/records`}
+                            linkTo={`/${id}-${slug}/records`}
                         />
                     </li>
                 </ul>

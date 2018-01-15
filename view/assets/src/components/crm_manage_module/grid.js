@@ -49,7 +49,7 @@ export default class ModuleGrid extends Component {
         const fields = this.getColumnsInTitle()
         const words = _.map(fields, f => record[f.slug])
 
-        return <Link to={`records/${record.id}`}>{_.join(words, ' ')}</Link>
+        return <Link to={`${this.props.basePathRecord}${record.id}`}>{_.join(words, ' ')}</Link>
     }
 
     getAccesor(col, i){

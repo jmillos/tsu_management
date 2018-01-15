@@ -21,7 +21,7 @@ export default (
         path=":moduleId-:moduleSlug/records"
         component={CrmManageModule} />
     <Route
-        path="records/:id"
+        path=":moduleId-:moduleSlug/records/:id"
         component={CrmManageModuleEdit} />
   </Route>
 );

@@ -26,6 +26,7 @@ export default class CrmManageModule extends Component {
     render(){
         const {
             moduleId,
+            moduleSlug,
             uiModule: { modeCreate, modeCustomizer },
             properties,
             users,
@@ -73,6 +74,7 @@ export default class CrmManageModule extends Component {
                     records={collRecords}
                     size={collRecords.length}
                     columns={columns}
+                    basePathRecord={`${moduleId}-${moduleSlug}/records/`}
                 />
             </WrapContainer>
         )
