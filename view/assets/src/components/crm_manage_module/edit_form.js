@@ -6,6 +6,10 @@ import { reduxForm, Field, FormSection, formValueSelector } from 'redux-form'
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card'
 import Avatar from 'material-ui/Avatar'
 import Folder from 'material-ui/svg-icons/file/folder'
+import {BottomNavigation, BottomNavigationItem} from 'material-ui/BottomNavigation'
+import Paper from 'material-ui/Paper'
+import NavigationCancel from 'material-ui/svg-icons/navigation/cancel'
+import ContentSave from 'material-ui/svg-icons/content/save'
 
 // Own components
 import { formFields } from '../crm_config_props/form_fields/index'
@@ -73,6 +77,20 @@ class EditForm extends Component {
                         Timeline
                     </div>
                 </div>
+                <Paper className="footer-actions" zDepth={1}>
+                    <BottomNavigation>
+                      <BottomNavigationItem
+                        label="Cancelar"
+                        icon={<NavigationCancel></NavigationCancel>}
+                        onClick={this.handleClose}
+                      />
+                      <BottomNavigationItem
+                        label="Guardar"
+                        icon={<ContentSave></ContentSave>}
+                        onClick={handleSubmit}
+                      />
+                    </BottomNavigation>
+                  </Paper>
             </form>
         )
     }

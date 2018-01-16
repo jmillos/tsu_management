@@ -41,41 +41,47 @@ export default class CrmManageModule extends Component {
         const columns = getGridColumnsCurrentUser(users, moduleId, properties)
         console.log('getGridColumnsCurrentUser', columns);
         const collRecords = _.map(records, i => i)
+
         const WrapContainer = withoutDrawer === true ? 'div':HOCDrawer
+        const propsWrapContainer = {}
+        if(withoutDrawer !== true){
+            propsWrapContainer.handleClose = this.handleClose
+            propsWrapContainer.handleKeyUp = this.handleKeyUp
+        }
 
         return (
             <WrapContainer
-                className="crm-manage-module"
                 title="Modulo"
-                handleClose={this.handleClose}
-                handleKeyUp={this.handleKeyUp}>
-                <Toolbar
-                    handleModeCreate={setModeCreate}
-                    handleDialogOpen={setModeCustomizer} />
+                {...propsWrapContainer}>
+                <div className="crm-manage-module">
+                    <Toolbar
+                        handleModeCreate={setModeCreate}
+                        handleDialogOpen={setModeCustomizer} />
 
-                <AddRecord
-                    moduleId={moduleId}
-                    properties={properties}
-                    modeCreate={modeCreate}
-                    handleModeCreate={setModeCreate}
-                    handleCreateRecord={createRecord} />
+                    <AddRecord
+                        moduleId={moduleId}
+                        properties={properties}
+                        modeCreate={modeCreate}
+                        handleModeCreate={setModeCreate}
+                        handleCreateRecord={createRecord} />
 
-                <Customizer
-                    moduleId={moduleId}
-                    dialogOpen={modeCustomizer}
-                    groups={groups}
-                    fields={properties}
-                    columns={columns}
-                    handleDialogOpen={setModeCustomizer}
-                    handleCreateRecord={createRecord}
-                    handleUpdateUser={this.props.updateUser} />
+                    <Customizer
+                        moduleId={moduleId}
+                        dialogOpen={modeCustomizer}
+                        groups={groups}
+                        fields={properties}
+                        columns={columns}
+                        handleDialogOpen={setModeCustomizer}
+                        handleCreateRecord={createRecord}
+                        handleUpdateUser={this.props.updateUser} />
 
-                <Grid
-                    records={collRecords}
-                    size={collRecords.length}
-                    columns={columns}
-                    basePathRecord={`${moduleId}-${moduleSlug}/records/`}
-                />
+                    <Grid
+                        records={collRecords}
+                        size={collRecords.length}
+                        columns={columns}
+                        basePathRecord={`${moduleId}-${moduleSlug}/records/`}
+                    />
+                </div>
             </WrapContainer>
         )
     }

@@ -97,7 +97,11 @@ export default class CrmConfigManager extends Component {
 
                         {
                             ChildComponent
-                                && <ChildComponent moduleId={moduleId} moduleSlug={slug} withoutDrawer={true} />
+                                && <ChildComponent
+                                        moduleId={moduleId}
+                                        moduleSlug={slug}
+                                        withoutDrawer={true}
+                                    />
                         }
                     </Drawer>
                 </div>

@@ -25,9 +25,9 @@ export default class CrmManageModuleEdit extends Component {
         open: true
     }
 
-    static defaultProps = {
+    /*static defaultProps = {
         moduleId: 12153
-    }
+    }*/
 
     constructor(props) {
         super(props);
@@ -38,6 +38,9 @@ export default class CrmManageModuleEdit extends Component {
     }
 
     componentWillMount(){
+        console.log('this.context.router', this.context.router);
+        console.log('this.context.router', this.context.router.getCurrentLocation());
+
         this.props.fetchRecord(this.props.routeParams.id, this.props.moduleId)
         this.props.fetchPropertyGroups()
         this.props.fetchProperties()
@@ -46,7 +49,11 @@ export default class CrmManageModuleEdit extends Component {
 
     handleClose(){
         // this.setState({ open: false })
-        this.context.router.push('/config')
+        const {
+            moduleId,
+            moduleSlug
+        } = this.props
+        this.context.router.push(`${moduleId}-${moduleSlug}/records`)
     }
 
     onSubmit(data) {
@@ -87,22 +94,10 @@ export default class CrmManageModuleEdit extends Component {
                     style={{ backgroundColor: '#eee' }}
                     groups={groups}
                     fields={properties}
+                    handleSubmit={this.handleSubmit}
                 />
 
-                <Paper className="footer-actions" zDepth={1}>
-                    <BottomNavigation>
-                      <BottomNavigationItem
-                        label="Cancelar"
-                        icon={<NavigationCancel></NavigationCancel>}
-                        onClick={this.handleClose}
-                      />
-                      <BottomNavigationItem
-                        label="Guardar"
-                        icon={<ContentSave></ContentSave>}
-                        onClick={() => this.select(1)}
-                      />
-                    </BottomNavigation>
-                  </Paper>
+                
             </Drawer>
         )
     }
