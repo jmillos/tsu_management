@@ -13,6 +13,7 @@ import ContentSave from 'material-ui/svg-icons/content/save'
 
 // Own components
 import { formFields } from '../crm_config_props/form_fields/index'
+import ProfileInteractions from '../crm_manage_module/profile_interactions'
 
 class EditForm extends Component {
     constructor(props){
@@ -74,7 +75,7 @@ class EditForm extends Component {
                        })}
                     </div>
                     <div className="right-column col-md-8">
-                        Timeline
+                        <ProfileInteractions></ProfileInteractions>
                     </div>
                 </div>
                 <Paper className="footer-actions" zDepth={1}>

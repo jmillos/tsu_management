@@ -1,3 +1,4 @@
+import 'babel-polyfill';
 import 'react-table/react-table.css'
 import '../css/bootstrap.css'
 import '../css/main.css'
@@ -13,24 +14,19 @@ import ReduxPromise from 'redux-promise'
 import ReduxThunk from 'redux-thunk'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-injectTapEventPlugin()
+import { MUITheme as MUIThemeConfig } from './config'
 
 import routes from './routes'
 import reducers from './reducers'
 import { getAttrsFromElement } from './lib/utils'
 
 import App from './components/app'
+injectTapEventPlugin()
 
 const createStoreWithMiddleware = composeWithDevTools( applyMiddleware(ReduxPromise, ReduxThunk) )(createStore)
 const store = createStoreWithMiddleware(reducers)
 
-const muiTheme = getMuiTheme({
-    zIndex: {
-        dialog: 99999,
-        layer: 99999,
-        popover: 99999
-    }
-});
+const muiTheme = getMuiTheme(MUIThemeConfig);
 
 /*** CRM ***/
 var el = document.getElementById('crm-app')
