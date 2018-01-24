@@ -45,7 +45,7 @@ class EditForm extends Component {
 
         return (
             <form onSubmit={handleSubmit}>
-                <div className="d-flex flex-row">
+                <div className="d-flex justify-content-between">
                     <div className="left-column">
                         {_.map(groups, group => {
                             const fieldsGroup = _.filter(fields, { parent: group.id })
@@ -74,7 +74,7 @@ class EditForm extends Component {
                            )
                        })}
                     </div>
-                    <div className="right-column col-md-8">
+                    <div className="right-column">
                         <ProfileInteractions></ProfileInteractions>
                     </div>
                 </div>
