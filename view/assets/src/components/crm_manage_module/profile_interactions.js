@@ -17,7 +17,7 @@ class ProfileInteractions extends Component {
         return (
             <Tabs>
                 <Tab icon={<NoteAdd />} label="Nueva nota">
-                    <Paper className="p-2" zDepth={2}>
+                    <Paper zDepth={2}>
                         <RichTextEditor />
                     </Paper>
                 </Tab>
