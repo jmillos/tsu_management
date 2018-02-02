@@ -28,8 +28,12 @@ module.exports = {
                 exclude: /node_modules/
             },
             {
+                test: /_[^_]+.+?\.css$/,
+                loader: ['style-loader', 'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]']
+            },
+            {
                 test: /\.css$/,
-                loader: 'style-loader!css-loader'
+                loader: ['style-loader', 'css-loader']
             },
             { test: /\.scss$/, loaders: ['style-loader', 'css-loader?sourceMap', 'sass-loader?sourceMap']},
             {

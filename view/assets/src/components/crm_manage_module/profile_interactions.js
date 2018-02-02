@@ -1,3 +1,5 @@
+// import styles from '../../../css/editor.css';
+
 import React, {Component} from 'react'
 
 // Material UI
@@ -17,7 +19,7 @@ class ProfileInteractions extends Component {
         return (
             <Tabs>
                 <Tab icon={<NoteAdd />} label="Nueva nota">
-                    <Paper zDepth={2}>
+                    <Paper zDepth={1}>
                         <RichTextEditor />
                     </Paper>
                 </Tab>
