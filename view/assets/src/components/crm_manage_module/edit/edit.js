@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { reduxForm, formValueSelector } from 'redux-form'
 
-import CrmManageModuleEdit from '../components/crm_manage_module_edit'
-import * as actions from '../actions'
+import CrmManageModuleEdit from './edit.component'
+import * as actions from '../../../actions'
 
 function mapStateToProps(state, ownProps){
     const record = state.records && state.records[ownProps.routeParams.id] ? state.records[ownProps.routeParams.id]:null

@@ -6,7 +6,7 @@ import CrmConfig from './containers/crm_config'
 // import requirePopup from './components/require_popup'
 import CrmConfigPropsEdit from './containers/crm_config_props_edit'
 import CrmManageModule from './containers/crm_manage_module'
-import CrmManageModuleEdit from './containers/crm_manage_module_edit'
+import CrmManageModuleEdit from './components/crm_manage_module/edit/edit.js'
 // import CrmPropertySettings from './containers/crm_property_settings'
 
 export default (

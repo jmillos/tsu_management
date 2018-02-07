@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 // const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
@@ -22,21 +23,15 @@ module.exports = {
     devtool: 'source-map', //'eval-source-map'
 
     module: {
-        loaders: [{
+        loaders: [
+            {
                 test: /\.js$/,
                 loader: 'babel-loader',
                 exclude: /node_modules/
-            },
-            {
-                test: /_[^_]+.+?\.css$/,
-                loader: ['style-loader', 'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]']
-            },
-            {
-                test: /\.css$/,
-                loader: ['style-loader', 'css-loader']
-            },
-            { test: /\.scss$/, loaders: ['style-loader', 'css-loader?sourceMap', 'sass-loader?sourceMap']},
-            {
+            }, {
+                test: /\.css$/, //^(?!__).+\.css$
+                loaders: ['style-loader', 'css-loader']
+            }, {
                 test: /\.html$/,
                 loader: 'raw-loader'
             },
@@ -44,7 +39,7 @@ module.exports = {
             {
                 test: /\.(png|jpg)$/,
                 loader: 'url-loader?limit=8192'
-            },
+            }
         ]
-    },
+    }
 };

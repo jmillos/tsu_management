@@ -14,7 +14,7 @@ import {BottomNavigation, BottomNavigationItem} from 'material-ui/BottomNavigati
 import Paper from 'material-ui/Paper'
 
 // Own components
-import EditForm from './crm_manage_module/edit_form'
+import EditForm from '../edit_form'
 
 export default class CrmManageModuleEdit extends Component {
     static contextTypes = {
@@ -96,8 +96,6 @@ export default class CrmManageModuleEdit extends Component {
                     fields={properties}
                     handleSubmit={this.handleSubmit}
                 />
-
-                
             </Drawer>
         )
     }

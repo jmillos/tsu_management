@@ -1,4 +1,4 @@
-// import styles from '../../../css/editor.css';
+import styles from '../../sass/editor.scss';
 
 import React, {Component} from 'react'
 
@@ -17,7 +17,7 @@ import RichTextEditor from '../rich_text_editor'
 class ProfileInteractions extends Component {
     render() {
         return (
-            <Tabs>
+            <Tabs className={styles.root}>
                 <Tab icon={<NoteAdd />} label="Nueva nota">
                     <Paper zDepth={1}>
                         <RichTextEditor />
