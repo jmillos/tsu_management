@@ -1,3 +1,5 @@
+import styles from './edit.scss'
+
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
@@ -14,7 +16,7 @@ import {BottomNavigation, BottomNavigationItem} from 'material-ui/BottomNavigati
 import Paper from 'material-ui/Paper'
 
 // Own components
-import EditForm from '../edit_form'
+import EditForm from './_edit_form'
 
 export default class CrmManageModuleEdit extends Component {
     static contextTypes = {
@@ -73,7 +75,7 @@ export default class CrmManageModuleEdit extends Component {
 
         return (
             <Drawer
-                className="crm-manage-module-edit"
+                className={styles.crm_manage_module_edit}
                 width={window.innerWidth - 36}
                 docked={false}
                 openSecondary={true}

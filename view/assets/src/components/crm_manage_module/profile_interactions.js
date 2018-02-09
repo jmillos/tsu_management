@@ -1,5 +1,3 @@
-import styles from '../../sass/editor.scss';
-
 import React, {Component} from 'react'
 
 // Material UI
@@ -17,7 +15,7 @@ import RichTextEditor from '../rich_text_editor'
 class ProfileInteractions extends Component {
     render() {
         return (
-            <Tabs className={styles.root}>
+            <Tabs>
                 <Tab icon={<NoteAdd />} label="Nueva nota">
                     <Paper zDepth={1}>
                         <RichTextEditor />

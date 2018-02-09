@@ -1,3 +1,5 @@
+import styles from './edit.scss'
+
 import _ from 'lodash'
 import React, { Component } from 'react'
 import { reduxForm, Field, FormSection, formValueSelector } from 'redux-form'
@@ -12,8 +14,8 @@ import NavigationCancel from 'material-ui/svg-icons/navigation/cancel'
 import ContentSave from 'material-ui/svg-icons/content/save'
 
 // Own components
-import { formFields } from '../crm_config_props/form_fields/index'
-import ProfileInteractions from '../crm_manage_module/profile_interactions'
+import { formFields } from '../../crm_config_props/form_fields/index'
+import ProfileInteractions from '../profile_interactions'
 
 class EditForm extends Component {
     constructor(props){
@@ -74,7 +76,7 @@ class EditForm extends Component {
                            )
                        })}
                     </div>
-                    <div className="right-column">
+                    <div className={styles.right_column}>
                         <ProfileInteractions></ProfileInteractions>
                     </div>
                 </div>

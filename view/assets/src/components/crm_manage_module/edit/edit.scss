@@ -1,0 +1,13 @@
+.crm_manage_module_edit {
+    .right_column {
+        flex: 0 0 70%;
+        max-width: 70%;
+    }
+
+    .footer_actions {
+        bottom: 0;
+        left: 0;
+        position: sticky;
+        right: 0;
+    }
+}
