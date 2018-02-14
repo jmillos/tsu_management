@@ -10,7 +10,7 @@ import Book from 'material-ui/svg-icons/action/book'
 import EventNote from 'material-ui/svg-icons/notification/event-note'
 
 // Own components
-import RichTextEditor from '../rich_text_editor'
+import RichTextEditor from '../common/rich_editor/rich_editor'
 
 class ProfileInteractions extends Component {
     render() {

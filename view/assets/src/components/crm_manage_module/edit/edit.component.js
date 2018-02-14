@@ -12,7 +12,7 @@ import NavigationClose from 'material-ui/svg-icons/navigation/close'
 import NavigationCancel from 'material-ui/svg-icons/navigation/cancel'
 import ContentSave from 'material-ui/svg-icons/content/save'
 import Person from 'material-ui/svg-icons/social/person'
-import {BottomNavigation, BottomNavigationItem} from 'material-ui/BottomNavigation'
+import { BottomNavigation, BottomNavigationItem } from 'material-ui/BottomNavigation'
 import Paper from 'material-ui/Paper'
 
 // Own components

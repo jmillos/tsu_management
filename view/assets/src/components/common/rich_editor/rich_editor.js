@@ -28,7 +28,7 @@ var INLINE_STYLES = [
 
 const InlineStyleControls = (props) => {
     var currentStyle = props.editorState.getCurrentInlineStyle();
-    return (<div className="RichEditor-controls">
+    return (<div className={styles.controls}>
         {INLINE_STYLES.map(type => <StyleButton key={type.label} active={currentStyle.has(type.style)} label={type.icon || type.label} onToggle={props.onToggle} style={type.style}/>)}
     </div>);
 };
@@ -76,11 +76,11 @@ export default class RichTextEditor extends Component {
 
         // If the user changes block type before entering any text, we can
         // either style the placeholder or hide it. Let's just hide it now.
-        let className = {styles.editor};
+        let className = styles.editor;
         var contentState = editorState.getCurrentContent();
         if (!contentState.hasText()) {
             if (contentState.getBlockMap().first().getType() !== 'unstyled') {
-                className += ' RichEditor-hidePlaceholder';
+                className += `${styles.hidePlaceholder}`;
             }
         }
 
@@ -123,9 +123,9 @@ class StyleButton extends React.Component {
     }
 
     render() {
-        let className = 'RichEditor-styleButton';
+        let className = styles.styleButton;
         if (this.props.active) {
-            className += ' RichEditor-activeButton';
+            className += ` ${styles.activeButton}`;
         }
 
         return (<span className={className} onMouseDown={this.onToggle}>
