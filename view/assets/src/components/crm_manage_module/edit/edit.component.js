@@ -55,6 +55,7 @@ export default class CrmManageModuleEdit extends Component {
             moduleId,
             moduleSlug
         } = this.props
+
         this.context.router.push(`${moduleId}-${moduleSlug}/records`)
     }
 
@@ -97,6 +98,7 @@ export default class CrmManageModuleEdit extends Component {
                     groups={groups}
                     fields={properties}
                     handleSubmit={this.handleSubmit}
+                    handleClose={this.handleClose}
                 />
             </Drawer>
         )

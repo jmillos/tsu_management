@@ -18,7 +18,7 @@
        url(../fonts/MaterialIcons-Regular.ttf) format('truetype');
 }
 
-.material-icons {
+:global .material-icons {
   font-family: 'Material Icons';
   font-weight: normal;
   font-style: normal;
@@ -57,11 +57,11 @@ body {
         }
     }
 
-    .jg-popover {
+    :global .jg-popover {
         padding: 0 15px 15px;
     }
 
-    &.ui-full-screen-background {
+    :global &.ui-full-screen-background {
         // #adminmenumain, #wpadminbar {
         //     ms-filter: blur(5px);
         //     -webkit-filter: blur(5px);
@@ -69,22 +69,22 @@ body {
         // }
     }
 
-    .muiDrawerContainer {
+    :global .muiDrawerContainer {
         z-index: 999999 !important;
     }
 
-    .muiDrawerOverlay {
+    :global .muiDrawerOverlay {
         background-color: rgba(45,62,80,.79) !important;
         z-index: 999999 !important;
     }
 
-    .muiAppBar {
+    :global .muiAppBar {
         background-color: #00bda5;
         @include background-image(linear-gradient(-303deg,#00a4bd,#00afb2 56%,#00bda5));
     }
 }
 
-.crm-config {
+:global .crm-config {
     padding-right: 20px;
 
     .main-title {
@@ -93,7 +93,7 @@ body {
     }
 }
 
-.crm-manage-module {
+:global .crm-manage-module {
     margin-bottom: 25px;
 
     .search-bar {
@@ -108,14 +108,14 @@ body {
     }
 }
 
-.list-wrapper {
+:global .list-wrapper {
     background-color: #e2e2e2;
     border: 1px solid #dfdfdf;
     padding: 0 !important;
 }
 
 
-.Showcase__style__stylizedHelper2{
+:global .Showcase__style__stylizedHelper2{
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -136,7 +136,7 @@ body {
     color: #333;
     font-weight: 400;
 }
-.Showcase__style__stylizedHelper{
+:global .Showcase__style__stylizedHelper{
     box-shadow:0 5px 5px -5px rgba(0,0,0,.2),0 -5px 5px -5px rgba(0,0,0,.2);
     cursor:row-resize;
     z-index: 99999;

@@ -1,4 +1,4 @@
-.mui-text-input  {
+:global .mui-text-input  {
     input,
     select,
     textarea {
@@ -10,10 +10,10 @@
     }
 }
 
-.mui-input-wrap {
+:global .mui-input-wrap {
     width: 100% !important;
 }
 
-.mui-toolbar {
+:global .mui-toolbar {
     background-color: rgba($primary-color, .05) !important;
 }

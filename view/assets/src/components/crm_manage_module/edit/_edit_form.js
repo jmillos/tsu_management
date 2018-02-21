@@ -42,6 +42,7 @@ class EditForm extends Component {
         const {
             fields,
             groups,
+            handleClose,
             handleSubmit
         } = this.props
 
@@ -85,7 +86,7 @@ class EditForm extends Component {
                       <BottomNavigationItem
                         label="Cancelar"
                         icon={<NavigationCancel></NavigationCancel>}
-                        onClick={this.handleClose}
+                        onClick={handleClose}
                       />
                       <BottomNavigationItem
                         label="Guardar"

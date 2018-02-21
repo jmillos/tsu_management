@@ -18,6 +18,7 @@ class ProfileInteractions extends Component {
             <Tabs>
                 <Tab icon={<NoteAdd />} label="Nueva nota">
                     <Paper zDepth={1}>
+                        <i class="material-icons">format_bold</i>
                         <RichTextEditor />
                     </Paper>
                 </Tab>

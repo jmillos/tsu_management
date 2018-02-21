@@ -14,7 +14,7 @@ var INLINE_STYLES = [
     {
         label: 'Bold',
         style: 'BOLD',
-        icon:  <FormatBold />
+        icon:  <i class="material-icons">format_bold</i>
     }, {
         label: 'Italic',
         style: 'ITALIC',
