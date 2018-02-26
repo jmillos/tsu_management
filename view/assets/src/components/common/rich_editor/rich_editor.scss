@@ -1,3 +1,6 @@
+@import '../../../../node_modules/compass-mixins/lib/compass/css3';
+@import '../../../sass/variables';
+
 .root {
     padding: 16px 15px 8px;
 
@@ -7,20 +10,34 @@
 
     .controls {
         font-family: 'Helvetica', sans-serif;
-        font-size: 14px;
+        font-size: 1em;
         margin-bottom: 5px;
         user-select: none;
 
         .styleButton {
-          color: #999;
-          cursor: pointer;
-          margin-right: 16px;
-          padding: 2px 0;
-          display: inline-block;
+            @include border-radius(3px);
+            color: $text-color;
+            cursor: pointer;
+            display: inline-block;
+            line-height: 28px;
+            height: 28px;
+            margin-right: 16px;
+            padding: 2px 0;
+
+            &:hover {
+                background-color: $gray1;
+                // color: $white;
+            }
         }
 
         .activeButton {
-          color: #5890ff;
+            background-color: $primary-color;
+            color: $white;
+
+            &:hover {
+                background-color: $primary-color;
+                color: $white;
+            }
         }
     }
 

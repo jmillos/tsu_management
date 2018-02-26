@@ -100,7 +100,7 @@ final class TSU_Management {
 	}
 
 	public function admin_script(){
-		wp_register_script( 'tsu_management_bundle', plugins_url('/view/assets/js/bundle.js', __FILE__), array('wp-api'), self::$version, true );
+		wp_register_script( 'tsu_management_bundle', plugins_url('/view/assets/build/bundle.js', __FILE__), array('wp-api'), self::$version, true );
 		wp_enqueue_script( 'tsu_management_bundle' );
 
 		wp_localize_script(

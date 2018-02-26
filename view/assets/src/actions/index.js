@@ -21,7 +21,8 @@ import {
     UPDATE_RECORD,
     DELETE_RECORD,
     UPDATE_USER,
-    FETCH_USER
+    FETCH_USER,
+    CREATE_NOTE
 } from './types'
 
 axios.defaults.headers.common['X-WP-Nonce'] = API_NONCE;
@@ -189,6 +190,20 @@ export function updateUser(id, props, callback){
             type: UPDATE_USER,
             payload: request
         })
+    }
+}
+
+/*------------ Notes ------------*/
+export function createNote(props, callback = null){
+    const request = axios.post(`${API_URL}tsu_crm_note`, props)
+
+    if(callback !== null){
+        request.then(callback)
+    }
+
+    return {
+        type: CREATE_NOTE,
+        payload: request
     }
 }
 

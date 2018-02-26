@@ -15,7 +15,7 @@ import ContentSave from 'material-ui/svg-icons/content/save'
 
 // Own components
 import { formFields } from '../../crm_config_props/form_fields/index'
-import ProfileInteractions from '../profile_interactions'
+import ProfileInteractions from './_profile_interactions'
 
 class EditForm extends Component {
     constructor(props){
@@ -43,7 +43,8 @@ class EditForm extends Component {
             fields,
             groups,
             handleClose,
-            handleSubmit
+            handleSubmit,
+            handleCreateNote
         } = this.props
 
         return (
@@ -78,10 +79,13 @@ class EditForm extends Component {
                        })}
                     </div>
                     <div className={styles.right_column}>
-                        <ProfileInteractions></ProfileInteractions>
+                        <ProfileInteractions
+                            handleCreateNote={handleCreateNote}
+                        />
                     </div>
                 </div>
-                <Paper className="footer-actions" zDepth={1}>
+
+                <Paper className={styles.footer_actions} zDepth={1}>
                     <BottomNavigation>
                       <BottomNavigationItem
                         label="Cancelar"

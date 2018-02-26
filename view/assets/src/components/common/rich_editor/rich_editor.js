@@ -14,15 +14,15 @@ var INLINE_STYLES = [
     {
         label: 'Bold',
         style: 'BOLD',
-        icon:  <i class="material-icons">format_bold</i>
+        icon:  <i className="material-icons">format_bold</i>
     }, {
         label: 'Italic',
         style: 'ITALIC',
-        icon:  <FormatItalic />
+        icon:  <i className="material-icons">format_italic</i>
     }, {
         label: 'Underline',
         style: 'UNDERLINE',
-        icon: <FormatUnderline />
+        icon: <i className="material-icons">format_underline</i>
     }
 ];
 
@@ -41,7 +41,12 @@ export default class RichTextEditor extends Component {
         };
 
         this.focus = () => this.refs.editor.focus();
-        this.onChange = (editorState) => this.setState({editorState});
+        this.onChange = editorState => {
+            if(props.callbackOnChange)
+                props.callbackOnChange(editorState)
+
+            this.setState({ editorState })
+        }
 
         this.handleKeyCommand = this._handleKeyCommand.bind(this);
         this.onTab = this._onTab.bind(this);

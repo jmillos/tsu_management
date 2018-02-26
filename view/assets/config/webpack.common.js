@@ -6,8 +6,8 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 module.exports = {
     entry: './src/index.js',
     output: {
-        path: path.join(__dirname, '..', './js'),
-        publicPath: '/',
+        path: path.join(__dirname, '..', './build'),
+        publicPath: '/wp-content/plugins/tsu-management/view/assets/build/',
         filename: 'bundle.js'
     },
 
@@ -37,12 +37,12 @@ module.exports = {
             },
             // inline base64 URLs for <=8k images, direct URLs for the rest
             {
-                test: /\.(svg|eot|woff|woff2|ttf|png|jpg)$/,
-                loader: 'url-loader?limit=1024000'
-            }/*, {
+                test: /\.(png|jpg)$/,
+                loader: 'url-loader?limit=8192'
+            }, {
                 test: /\.(svg|eot|woff|woff2|ttf)$/,
                 loader: 'file-loader?limit=8192'
-            }*/
+            }
         ]
     }
 };

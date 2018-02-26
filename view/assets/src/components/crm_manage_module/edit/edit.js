@@ -23,3 +23,5 @@ function mapStateToProps(state, ownProps){
 const component = reduxForm({ form: 'RecordForm' })(CrmManageModuleEdit)
 
 export default connect(mapStateToProps, actions)(component)
+
+export { default as RichTextEditor } from '../../common/rich_editor/rich_editor'

@@ -71,7 +71,8 @@ export default class CrmManageModuleEdit extends Component {
         const {
             groups,
             properties,
-            record
+            record,
+            createNote
         } = this.props
 
         return (
@@ -99,6 +100,7 @@ export default class CrmManageModuleEdit extends Component {
                     fields={properties}
                     handleSubmit={this.handleSubmit}
                     handleClose={this.handleClose}
+                    handleNoteAdd={createNote}
                 />
             </Drawer>
         )
