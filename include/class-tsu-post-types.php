@@ -49,13 +49,13 @@ class TSU_Post_types {
 			'has_archive' => true,
 			'capability_type' => 'post',
 			'hierarchical' => true,
-			'show_ui' => false,
-			'show_in_nav_menus' => false,
+			'show_ui' => true,
+			'show_in_nav_menus' => true,
 			'show_in_menu' => 'tsu-config',
 			// 'menu_position' => 57,
 			'menu_icon' => 'dashicons-clipboard',
 			'rewrite' => array('slug' => __( $postType )),
-			'supports' => array('title', 'excerpt', 'page-attributes', 'custom-fields'), //,'editor'
+			'supports' => array('title', 'excerpt', 'editor', 'page-attributes', 'custom-fields'), //,'editor'
             'show_in_rest'       => true,
       		'rest_base'          => $postType,
       		'rest_controller_class' => 'WP_REST_Posts_Controller',

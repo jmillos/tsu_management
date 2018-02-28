@@ -18,6 +18,19 @@ class TSU_Note extends TSU_App {
 		TSU_Post_types::register_post_type($this->postType, 'Nota', 'Notas');
 	}
 
+	public function rest_api_post( $data, $post, $context ) {
+		$ret = array(
+			'id'		 => $data->data['id'],
+			'title'    	 => $data->data['title']['rendered'],
+			'content'    	 => $data->data['content']['rendered'],
+			'slug'	 	 => $data->data['slug'],
+			'status'	 => $data->data['status'],
+			'author' 	 => $post->post_author,
+			'date'     	 => $data->data['date'],
+		);
+
+		return $ret;
+	}
 }
 
 $GLOBALS['TSU_Note'] = new TSU_Note();

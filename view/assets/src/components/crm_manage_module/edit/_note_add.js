@@ -31,8 +31,9 @@ class NoteAdd extends Component {
 
         console.log('html', html);
         handleNoteAdd({
-            content: 'html',
-            parent: record.id
+            content: html,
+            parent: record.id,
+            status: 'publish'
         })
     }
 
