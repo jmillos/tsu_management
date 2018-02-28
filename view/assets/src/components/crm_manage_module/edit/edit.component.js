@@ -101,6 +101,7 @@ export default class CrmManageModuleEdit extends Component {
                     handleSubmit={this.handleSubmit}
                     handleClose={this.handleClose}
                     handleNoteAdd={createNote}
+                    record={record}
                 />
             </Drawer>
         )

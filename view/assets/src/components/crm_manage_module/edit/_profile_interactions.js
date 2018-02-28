@@ -15,14 +15,18 @@ import NoteAdd from './_note_add'
 class ProfileInteractions extends Component {
     render() {
         const {
-            handleCreateNote
+            handleNoteAdd,
+            record
         } = this.props
-        
+
         return (
             <Tabs>
                 <Tab icon={<NoteAddIcon />} label="Nueva nota">
                     <Paper zDepth={1}>
-                        <NoteAdd handleCreateNote={handleCreateNote} />
+                        <NoteAdd
+                            handleNoteAdd={handleNoteAdd}
+                            record={record}
+                        />
                     </Paper>
                 </Tab>
                 <Tab icon={<Email />} label="E-mail"/>

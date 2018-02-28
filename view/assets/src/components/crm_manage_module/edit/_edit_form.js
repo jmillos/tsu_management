@@ -44,7 +44,8 @@ class EditForm extends Component {
             groups,
             handleClose,
             handleSubmit,
-            handleCreateNote
+            handleNoteAdd,
+            record
         } = this.props
 
         return (
@@ -80,7 +81,8 @@ class EditForm extends Component {
                     </div>
                     <div className={styles.right_column}>
                         <ProfileInteractions
-                            handleCreateNote={handleCreateNote}
+                            handleNoteAdd={handleNoteAdd}
+                            record={record}
                         />
                     </div>
                 </div>
