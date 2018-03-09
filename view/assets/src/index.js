@@ -15,6 +15,7 @@ import ReduxThunk from 'redux-thunk'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import { MUITheme as MUIThemeConfig } from './config'
+import ld from 'lodash'
 
 import routes from './routes'
 import reducers from './reducers'
@@ -59,3 +60,7 @@ if(el){
   }
 });
 document.registerElement('crm-configuration', {prototype: proto});*/
+
+
+// Used for prevent conflict with '_.pluck is not a function wordpress' 
+const _ = ld.noConflict();

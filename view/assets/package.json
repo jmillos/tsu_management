@@ -64,6 +64,7 @@
     "react-sortable-hoc": "^0.6.8",
     "react-table": "^6.5.3",
     "react-tap-event-plugin": "^2.0.1",
+    "react-vertical-timeline-component": "^2.0.5",
     "redux": "^3.7.2",
     "redux-devtools-extension": "^2.13.0",
     "redux-form": "^7.0.3",

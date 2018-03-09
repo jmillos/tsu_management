@@ -16,6 +16,7 @@ import ContentSave from 'material-ui/svg-icons/content/save'
 // Own components
 import { formFields } from '../../crm_config_props/form_fields/index'
 import ProfileInteractions from './_profile_interactions'
+import Timeline from './_timeline'
 
 class EditForm extends Component {
     constructor(props){
@@ -84,6 +85,8 @@ class EditForm extends Component {
                             handleNoteAdd={handleNoteAdd}
                             record={record}
                         />
+
+                        <Timeline />
                     </div>
                 </div>
 

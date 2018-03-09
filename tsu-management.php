@@ -47,7 +47,10 @@ final class TSU_Management {
 			add_action( 'admin_menu', array( $this, 'admin_menu' ) );
 		}
 
-		add_action( 'admin_enqueue_scripts', array( $this, 'admin_script' ) );
+		if($_GET['page'] === 'tsu-config'){
+			add_action( 'admin_enqueue_scripts', array( $this, 'admin_script' ) );
+		}
+		
 		// add_action( 'wp_enqueue_scripts', array($this, 'front_script') );
 	}
 

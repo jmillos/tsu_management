@@ -1,3 +1,5 @@
+import _ from 'lodash'
+
 import {
     FETCH_PROPERTIES,
     FETCH_PROPERTY,

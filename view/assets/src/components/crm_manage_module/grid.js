@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router'
 import ReactTable from 'react-table'
 import moment from 'moment'
+import _ from 'lodash'
 
 // Material UI
 

@@ -1,3 +1,5 @@
+import _ from 'lodash'
+
 import {
     FETCH_RECORDS,
     FETCH_RECORD,
