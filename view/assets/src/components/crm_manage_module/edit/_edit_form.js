@@ -5,7 +5,7 @@ import React, { Component } from 'react'
 import { reduxForm, Field, FormSection, formValueSelector } from 'redux-form'
 
 // Material UI
-import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card'
+import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card'
 import Avatar from 'material-ui/Avatar'
 import Folder from 'material-ui/svg-icons/file/folder'
 import {BottomNavigation, BottomNavigationItem} from 'material-ui/BottomNavigation'
@@ -16,7 +16,7 @@ import ContentSave from 'material-ui/svg-icons/content/save'
 // Own components
 import { formFields } from '../../crm_config_props/form_fields/index'
 import ProfileInteractions from './_profile_interactions'
-import Timeline from './_timeline'
+import Timeline from '../../common/timeline/timeline'
 
 class EditForm extends Component {
     constructor(props){

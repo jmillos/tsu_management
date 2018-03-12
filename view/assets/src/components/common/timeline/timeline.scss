@@ -1,0 +1,37 @@
+@import '../../../../node_modules/breakpoint-sass/stylesheets/breakpoint';
+
+$dk: min-width 1170px;
+
+:global .vertical-timeline--animate {
+    .vertical-timeline-element {
+        .vertical-timeline-element-content {
+            &.bounce-in {
+                @include breakpoint($dk) {
+                    width: 43%;
+                }
+            }
+
+            &:nth-child(even):not(.vertical-timeline-element--left) {
+                .vertical-timeline-element-date {
+                    right: 132%;
+                }
+            }
+
+            .vertical-timeline-element-date {
+                left: 132%;
+                font-size: 14px;
+            }
+
+            p {
+                font-size: 14px;
+                font-weight: normal;
+            }
+        }
+
+        &.vertical-timeline-element--work {
+            .vertical-timeline-element-content {
+                border-top: 3px solid #2196f3;
+            }
+        }
+    }
+}
