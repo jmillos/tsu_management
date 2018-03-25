@@ -22,6 +22,7 @@ import {
     DELETE_RECORD,
     UPDATE_USER,
     FETCH_USER,
+    FETCH_NOTES,
     CREATE_NOTE
 } from './types'
 
@@ -194,6 +195,15 @@ export function updateUser(id, props, callback){
 }
 
 /*------------ Notes ------------*/
+export function fetchNotes(recordId){
+    const request = axios.get(`${API_URL}tsu_crm_note?parent=${recordId}`);
+
+    return {
+        type: FETCH_NOTES,
+        payload: request
+    }
+}
+
 export function createNote(props, callback = null){
     const request = axios.post(`${API_URL}tsu_crm_note`, props)
 

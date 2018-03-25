@@ -3,6 +3,8 @@ import areIntlLocalesSupported from 'intl-locales-supported'
 
 export * from './crm'
 
+export * as timeline from './timeline'
+
 export function strToJson(str) {
     try {
       str = eval("(" + str + ")")

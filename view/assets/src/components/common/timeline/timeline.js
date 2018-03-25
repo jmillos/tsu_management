@@ -1,17 +1,42 @@
 import React, { Component } from 'react'
+import _ from 'lodash'
 import {VerticalTimeline, VerticalTimelineElement} from 'react-vertical-timeline-component';
 
 import SchoolIcon from 'material-ui/svg-icons/social/school';
 import WorkIcon from 'material-ui/svg-icons/action/work';
 
+import { timeline } from '../../../lib/utils'
+import Item from './_item_ctrl'
+
 import 'react-vertical-timeline-component/style.min.css';
 import './timeline.scss'
 
 export default class Timeline extends Component {
+    items = []
+
+    componentWillReceiveProps(nextProps){
+        if(
+            !_.isEqual(this.props.notes, nextProps.notes)
+        ){
+            console.log('nextProps', this.props.notes, nextProps.notes);
+            this.items = timeline.orderItems(nextProps)
+        }
+    }
+
     render() {
+        console.log('items', this.items);
+        const {
+            record
+        } = this.props
+
         return (
             <VerticalTimeline>
-                <VerticalTimelineElement className="vertical-timeline-element--work" date="2011 - present" iconStyle={{
+                {
+                    _.map(this.items, (item) => {
+                        return <Item key={item.id} item={item} record={record} />
+                    })
+                }
+                {/* <VerticalTimelineElement className="vertical-timeline-element--work" date="2011 - present" iconStyle={{
                   background: 'rgb(33, 150, 243)',
                   color: '#fff'
               }} icon={<WorkIcon color='#FFF' />}>
@@ -80,7 +105,7 @@ export default class Timeline extends Component {
                     <p>
                       Creative Direction, Visual Design
                     </p>
-                </VerticalTimelineElement>
+                </VerticalTimelineElement> */}
             </VerticalTimeline>
         )
     }

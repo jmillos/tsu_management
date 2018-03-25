@@ -5,6 +5,8 @@ class TSU_Note extends TSU_App {
 
 	protected $registerFields = [];
 
+	private $itemType = 'note';
+
 	/**
 	 * Hook in methods.
 	 */
@@ -26,6 +28,7 @@ class TSU_Note extends TSU_App {
 			'slug'	 	 => $data->data['slug'],
 			'status'	 => $data->data['status'],
 			'author' 	 => $post->post_author,
+			'type'		 => $this->itemType,
 			'date'     	 => $data->data['date'],
 		);
 

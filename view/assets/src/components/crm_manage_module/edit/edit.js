@@ -7,7 +7,14 @@ import * as actions from '../../../actions'
 
 function mapStateToProps(state, ownProps){
     const record = state.records && state.records[ownProps.routeParams.id] ? state.records[ownProps.routeParams.id]:null
-    const stateProps = { uiModule: state.uiModule, groups: state.ptyGroups, properties: state.properties, initialValues: record, record }
+    const stateProps = {
+      uiModule: state.uiModule,
+      groups: state.ptyGroups,
+      properties: state.properties,
+      initialValues: record,
+      record,
+      notes: state.notes
+    }
 
     if(ownProps && ownProps.routeParams){
         if(ownProps.routeParams.moduleId)

@@ -46,7 +46,8 @@ class EditForm extends Component {
             handleClose,
             handleSubmit,
             handleNoteAdd,
-            record
+            record,
+            notes
         } = this.props
 
         return (
@@ -86,7 +87,10 @@ class EditForm extends Component {
                             record={record}
                         />
 
-                        <Timeline />
+                        <Timeline
+                          record={record}
+                          notes={notes}
+                        />
                     </div>
                 </div>
 

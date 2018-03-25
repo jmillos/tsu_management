@@ -6,6 +6,7 @@ import ModulesReducer from './reducer_modules'
 import PtyGroupsReducer from './reducer_pty_groups'
 import PropertiesReducer from './reducer_properties'
 import RecordsReducer from './reducer_records'
+import NotesReducer from './reducer_notes'
 import UIModuleReducer from './reducer_ui_module'
 
 const rootReducer = combineReducers({
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
     ptyGroups: PtyGroupsReducer,
     properties: PropertiesReducer,
     records: RecordsReducer,
+    notes: NotesReducer,
     uiModule: UIModuleReducer
 })
 

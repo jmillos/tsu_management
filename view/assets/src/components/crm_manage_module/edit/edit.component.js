@@ -46,6 +46,7 @@ export default class CrmManageModuleEdit extends Component {
         this.props.fetchRecord(this.props.routeParams.id, this.props.moduleId)
         this.props.fetchPropertyGroups()
         this.props.fetchProperties()
+        this.props.fetchNotes(this.props.routeParams.id)
         console.log('this.props', this.props.routeParams.id);
     }
 
@@ -72,7 +73,8 @@ export default class CrmManageModuleEdit extends Component {
             groups,
             properties,
             record,
-            createNote
+            createNote,
+            notes
         } = this.props
 
         return (
@@ -102,6 +104,7 @@ export default class CrmManageModuleEdit extends Component {
                     handleClose={this.handleClose}
                     handleNoteAdd={createNote}
                     record={record}
+                    notes={notes}
                 />
             </Drawer>
         )
