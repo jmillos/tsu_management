@@ -14,6 +14,10 @@ import './timeline.scss'
 export default class Timeline extends Component {
     items = []
 
+    componentWillMount(){
+        this.items = timeline.orderItems(this.props)
+    }
+
     componentWillReceiveProps(nextProps){
         if(
             !_.isEqual(this.props.notes, nextProps.notes)
@@ -24,12 +28,12 @@ export default class Timeline extends Component {
     }
 
     render() {
-        console.log('items', this.items);
+        console.log('items', this.items, this.props.notes);
         const {
             record
         } = this.props
 
-        return (
+        return _.size(this.items) > 0 && (
             <VerticalTimeline>
                 {
                     _.map(this.items, (item) => {

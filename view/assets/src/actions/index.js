@@ -23,7 +23,8 @@ import {
     UPDATE_USER,
     FETCH_USER,
     FETCH_NOTES,
-    CREATE_NOTE
+    CREATE_NOTE,
+    CLEAR_NOTES
 } from './types'
 
 axios.defaults.headers.common['X-WP-Nonce'] = API_NONCE;
@@ -214,6 +215,12 @@ export function createNote(props, callback = null){
     return {
         type: CREATE_NOTE,
         payload: request
+    }
+}
+
+export function clearNotes(){
+    return {
+        type: CLEAR_NOTES,
     }
 }
 

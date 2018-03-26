@@ -5,7 +5,8 @@ import {
     FETCH_NOTE,
     CREATE_NOTE,
     UPDATE_NOTE,
-    DELETE_NOTE
+    DELETE_NOTE,
+    CLEAR_NOTES
 } from '../actions/types'
 
 export default function( state = {}, action ){
@@ -20,6 +21,9 @@ export default function( state = {}, action ){
 
         case DELETE_NOTE:
             return { ...state }
+
+        case CLEAR_NOTES:
+            return {}
 
         default:
             return { ...state }

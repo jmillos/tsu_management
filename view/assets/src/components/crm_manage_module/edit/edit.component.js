@@ -50,6 +50,10 @@ export default class CrmManageModuleEdit extends Component {
         console.log('this.props', this.props.routeParams.id);
     }
 
+    componentWillUnmount(){
+        this.props.clearNotes()
+    }
+
     handleClose(){
         // this.setState({ open: false })
         const {

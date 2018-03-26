@@ -22,7 +22,7 @@ export default class Note extends Item {
               color: '#fff'
           }} icon={<NoteIcon color='#FFF' />}>
                 <div className="vertical-timeline-element-title">
-                    <b>{ this.formatAuthor() }</b> { this.partTitle } <b>{ this.recordName() }</b>
+                    <i><b>{ this.formatAuthor() }</b> { this.partTitle } <b>{ this.recordName() }</b></i>
                 </div>
                 <div className="vertical-timeline-element-subtitle"></div>
                 <div dangerouslySetInnerHTML={{__html: content}}></div>
