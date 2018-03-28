@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { EditorState, ContentState } from 'draft-js'
 import { stateToHTML } from 'draft-js-export-html'
 import RaisedButton from 'material-ui/RaisedButton'
 import { RichTextEditor } from './edit'
@@ -14,11 +15,17 @@ class NoteAdd extends Component {
 
         this.onChangeEditor = this.onChangeEditor.bind(this)
         this.send = this.send.bind(this)
+        this.cancel = this.cancel.bind(this)
     }
 
     onChangeEditor(editorState){
         console.log('editorState.getCurrentContent', editorState.getCurrentContent());
-        this.setState({ editorHasText: editorState.getCurrentContent().hasText(), contentState: editorState.getCurrentContent() })
+        this.setState({ editorState, editorHasText: editorState.getCurrentContent().hasText(), contentState: editorState.getCurrentContent() })
+    }
+
+    cancel(){
+      const editorState = EditorState.push(this.state.editorState, ContentState.createFromText(''));
+      this.setState({ editorState });
     }
 
     send(){
@@ -56,7 +63,10 @@ class NoteAdd extends Component {
                                         className="ml-3 mr-3"
                                         onClick={this.send}
                                     />
-                                    <RaisedButton label="Descartar" />
+                                    <RaisedButton
+                                      label="Descartar"
+                                      onClick={this.cancel}
+                                    />
                                 </div>
                             )
                         }
