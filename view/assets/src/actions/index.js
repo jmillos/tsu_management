@@ -24,7 +24,10 @@ import {
     FETCH_USER,
     FETCH_NOTES,
     CREATE_NOTE,
-    CLEAR_NOTES
+    CLEAR_NOTES,
+    FETCH_ACTIVITIES,
+    CREATE_ACTIVITY,
+    CLEAR_ACTIVITIES,
 } from './types'
 
 axios.defaults.headers.common['X-WP-Nonce'] = API_NONCE;
@@ -221,6 +224,29 @@ export function createNote(props, callback = null){
 export function clearNotes(){
     return {
         type: CLEAR_NOTES,
+    }
+}
+
+/*------------ Activities ------------*/
+export function fetchActivities(recordId){
+    const request = axios.get(`${API_URL}tsu_crm_activity?parent=${recordId}`);
+
+    return {
+        type: FETCH_ACTIVITIES,
+        payload: request
+    }
+}
+
+export function createActivity(props, callback = null){
+    const request = axios.post(`${API_URL}tsu_crm_activity`, props)
+
+    if(callback !== null){
+        request.then(callback)
+    }
+
+    return {
+        type: CREATE_ACTIVITY,
+        payload: request
     }
 }
 

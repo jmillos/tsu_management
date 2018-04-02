@@ -24,3 +24,11 @@ export const FETCH_NOTE           = 'FETCH_NOTE'
 export const UPDATE_NOTE          = 'UPDATE_NOTE'
 export const DELETE_NOTE          = 'DELETE_NOTE'
 export const CLEAR_NOTES          = 'CLEAR_NOTES'
+
+/*------------ Activities ------------*/
+export const FETCH_ACTIVITIES     = 'FETCH_ACTIVITIES'
+export const CREATE_ACTIVITY      = 'CREATE_ACTIVITY'
+export const FETCH_ACTIVITY       = 'FETCH_ACTIVITY'
+export const UPDATE_ACTIVITY      = 'UPDATE_ACTIVITY'
+export const DELETE_ACTIVITY      = 'DELETE_ACTIVITY'
+export const CLEAR_ACTIVITIES     = 'CLEAR_ACTIVITIES'

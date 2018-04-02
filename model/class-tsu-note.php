@@ -24,7 +24,7 @@ class TSU_Note extends TSU_App {
 		$ret = array(
 			'id'		 => $data->data['id'],
 			'title'    	 => $data->data['title']['rendered'],
-			'content'    	 => $data->data['content']['rendered'],
+			'content'    => $data->data['content']['rendered'],
 			'slug'	 	 => $data->data['slug'],
 			'status'	 => $data->data['status'],
 			'author' 	 => $post->post_author,

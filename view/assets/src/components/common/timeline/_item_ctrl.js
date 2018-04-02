@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Note from './_note'
+import Activity from './_activity'
 
 export default class Item extends Component {
     render(){
@@ -13,10 +14,12 @@ export default class Item extends Component {
             switch (type) {
                 case 'note':
                     return <Note item={item} record={record} />
-                    break;
+
+                case 'activity':
+                    return <Activity item={item} record={record} />
 
                 default:
-
+                    return <Note item={item} record={record} />
             }
         })()
     }

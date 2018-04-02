@@ -1,32 +1,12 @@
 import React, { Component } from 'react'
-import { EditorState, ContentState } from 'draft-js'
 import { stateToHTML } from 'draft-js-export-html'
-import RaisedButton from 'material-ui/RaisedButton'
 import { RichTextEditor } from './edit'
 
-class NoteAdd extends Component {
-    state = {
-        editorHasText: false,
-        contentState: null
-    }
+import Tab from './_tab'
 
-    constructor(props){
-        super(props)
-
-        this.onChangeEditor = this.onChangeEditor.bind(this)
-        this.send = this.send.bind(this)
-        this.cancel = this.cancel.bind(this)
-    }
-
-    onChangeEditor(editorState){
-        console.log('editorState.getCurrentContent', editorState.getCurrentContent());
-        this.setState({ editorState, editorHasText: editorState.getCurrentContent().hasText(), contentState: editorState.getCurrentContent() })
-    }
-
-    cancel(){
-      const editorState = EditorState.push(this.state.editorState, ContentState.createFromText(''));
-      this.setState({ editorState });
-    }
+class NoteAdd extends Tab {
+    labelSaveBtn = 'Guardar nota'
+    placeholder = 'Escribe algo brillante...'
 
     send(){
         const {
@@ -36,42 +16,25 @@ class NoteAdd extends Component {
 
         const html = stateToHTML(this.state.contentState)
 
-        console.log('html', html);
         handleNoteAdd({
             content: html,
             parent: record.id,
             status: 'publish'
+        }, () => {
+            this.clearEditor()
         })
     }
 
     render(){
-
         return (
             <div className="pb-2">
                 <RichTextEditor
                     callbackOnChange={this.onChangeEditor}
+                    editorState={this.state.editorState}
+                    placeholder={this.placeholder}
                 />
 
-                {
-                    (() => {
-                        if(this.state.editorHasText === true){
-                            return (
-                                <div>
-                                    <RaisedButton
-                                        label="Guardar nota"
-                                        primary={true}
-                                        className="ml-3 mr-3"
-                                        onClick={this.send}
-                                    />
-                                    <RaisedButton
-                                      label="Descartar"
-                                      onClick={this.cancel}
-                                    />
-                                </div>
-                            )
-                        }
-                    })()
-                }
+                { this.renderButtons() }
             </div>
         )
     }

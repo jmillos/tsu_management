@@ -1,8 +1,13 @@
 @import '../../../../node_modules/breakpoint-sass/stylesheets/breakpoint';
+@import '../../../../node_modules/compass-mixins/lib/compass/css3';
 
 $dk: min-width 1170px;
 
 :global .vertical-timeline--animate {
+    &::before {
+        background-color: #516f90;
+    }
+
     .vertical-timeline-element {
         .vertical-timeline-element-content {
             &.bounce-in {
@@ -32,6 +37,16 @@ $dk: min-width 1170px;
             .vertical-timeline-element-content {
                 border-top: 3px solid #2196f3;
             }
+        }
+
+        &.vertical-timeline-element--activity {
+            .vertical-timeline-element-content {
+                border-top: 3px solid rgb(233, 30, 99);
+            }
+        }
+
+        .vertical-timeline-element-icon {
+            @include box-shadow(0 0 0 4px #516f90, inset 0 2px 0 rgba(0,0,0,.08), 0 3px 0 4px rgba(0,0,0,.05));
         }
     }
 }

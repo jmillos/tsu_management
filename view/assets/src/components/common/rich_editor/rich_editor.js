@@ -36,8 +36,9 @@ const InlineStyleControls = (props) => {
 export default class RichTextEditor extends Component {
     constructor(props) {
         super(props);
+
         this.state = {
-            editorState: EditorState.createEmpty()
+            editorState: props.editorState
         };
 
         this.focus = () => this.refs.editor.focus();
@@ -52,6 +53,13 @@ export default class RichTextEditor extends Component {
         this.onTab = this._onTab.bind(this);
         this.toggleBlockType = this._toggleBlockType.bind(this);
         this.toggleInlineStyle = this._toggleInlineStyle.bind(this);
+    }
+
+    componentWillReceiveProps(nextProps){
+      if( !_.isEqual(this.props.editorState, nextProps.editorState) ){
+          this.setState({ editorState: nextProps.editorState })
+          this.onChange(nextProps.editorState)
+      }
     }
 
     _handleKeyCommand(command, editorState) {
@@ -91,7 +99,7 @@ export default class RichTextEditor extends Component {
 
         return (<div className={styles.root}>
             <div className={className} onClick={this.focus}>
-                <Editor blockStyleFn={getBlockStyle} customStyleMap={styleMap} editorState={editorState} handleKeyCommand={this.handleKeyCommand} onChange={this.onChange} onTab={this.onTab} placeholder="Escribe algo brillante..." ref="editor" spellCheck={true}/>
+                <Editor blockStyleFn={getBlockStyle} customStyleMap={styleMap} editorState={editorState} handleKeyCommand={this.handleKeyCommand} onChange={this.onChange} onTab={this.onTab} placeholder={this.props.placeholder} ref="editor" spellCheck={true}/>
             </div>
             {/* <BlockStyleControls editorState={editorState} onToggle={this.toggleBlockType}/> */}
             <InlineStyleControls editorState={editorState} onToggle={this.toggleInlineStyle}/>

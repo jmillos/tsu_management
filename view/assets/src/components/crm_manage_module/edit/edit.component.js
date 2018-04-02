@@ -40,14 +40,16 @@ export default class CrmManageModuleEdit extends Component {
     }
 
     componentWillMount(){
-        console.log('this.context.router', this.context.router);
-        console.log('this.context.router', this.context.router.getCurrentLocation());
+        const {
+            routeParams: { id }
+        } = this.props
 
-        this.props.fetchRecord(this.props.routeParams.id, this.props.moduleId)
+        this.props.fetchRecord(id, this.props.moduleId)
         this.props.fetchPropertyGroups()
         this.props.fetchProperties()
-        this.props.fetchNotes(this.props.routeParams.id)
-        console.log('this.props', this.props.routeParams.id);
+        this.props.fetchNotes(id)
+        this.props.fetchActivities(id)
+        console.log('this.props', id);
     }
 
     componentWillUnmount(){
@@ -78,7 +80,9 @@ export default class CrmManageModuleEdit extends Component {
             properties,
             record,
             createNote,
-            notes
+            createActivity,
+            notes,
+            activities
         } = this.props
 
         return (
@@ -107,8 +111,10 @@ export default class CrmManageModuleEdit extends Component {
                     handleSubmit={this.handleSubmit}
                     handleClose={this.handleClose}
                     handleNoteAdd={createNote}
+                    handleActivityAdd={createActivity}
                     record={record}
                     notes={notes}
+                    activities={activities}
                 />
             </Drawer>
         )

@@ -18,6 +18,17 @@ export const MUITheme = {
     }
 }
 
+/*--------------------- Activity -------------*/
+export const resultsCall = [
+    { key: 'No answer', label: 'Sin respuesta' },
+    { key: 'Busy', label: 'Ocupado' },
+    { key: 'Wrong number', label: 'Número equivocado' },
+    { key: 'Left live message', label: 'Dejar mensaje en vivo' },
+    { key: 'Left voicemail', label: 'Dejar correo de voz' },
+    { key: 'Connected', label: 'Conectado' },
+]
+/*------------------------------------------------------*/
+
 /*--------------------- Labels React Table -------------*/
 export const defaultsReactTable = {
     rowsText: 'filas',

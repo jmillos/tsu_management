@@ -21,8 +21,9 @@ export default class Timeline extends Component {
     componentWillReceiveProps(nextProps){
         if(
             !_.isEqual(this.props.notes, nextProps.notes)
+                || !_.isEqual(this.props.activities, nextProps.activities)
         ){
-            console.log('nextProps', this.props.notes, nextProps.notes);
+            console.log('nextProps', this.props.activities, nextProps.activities);
             this.items = timeline.orderItems(nextProps)
         }
     }

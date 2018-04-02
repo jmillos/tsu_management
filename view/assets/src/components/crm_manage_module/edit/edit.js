@@ -13,7 +13,8 @@ function mapStateToProps(state, ownProps){
       properties: state.properties,
       initialValues: record,
       record,
-      notes: state.notes
+      notes: state.notes,
+      activities: state.activities,
     }
 
     if(ownProps && ownProps.routeParams){
