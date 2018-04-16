@@ -20,3 +20,14 @@ export function getGridColumnsCurrentUser(users, moduleId, properties){
     }
 
 }
+
+export function buildTitle(record, columns){
+    const fields = getColumnsInTitle(columns)
+    const words = _.map(fields, f => record[f.slug])
+
+    return _.join(words, ' ')
+}
+
+export function getColumnsInTitle(columns){
+    return _.filter(columns, { in_title: true })
+}
