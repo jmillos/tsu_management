@@ -7,6 +7,7 @@ import _ from 'lodash'
 // Material UI
 
 import { defaultsReactTable } from '../../config'
+import { buildTitle, getColumnsInTitle } from '../../lib/utils'
 
 moment.locale('es')
 
@@ -25,11 +26,11 @@ export default class ModuleGrid extends Component {
     }
 
     buildColumns(){
-        const columnsInTitle = this.getColumnsInTitle()
+        const columnsInTitle = getColumnsInTitle()
         const titleCol = {
             Header: _.join( _.map(columnsInTitle, _.iteratee('title')), '/' ),
             id: 'titleColumn',
-            accessor: record => this.buildTitle(record)
+            accessor: record => <Link to={`${this.props.basePathRecord}${record.id}`}>{buildTitle(record, this.props.columns)}</Link>
         }
 
         const columns = _.map(_.filter(this.props.columns, { in_title: false }), (col, i) => {
@@ -46,19 +47,8 @@ export default class ModuleGrid extends Component {
         ]
     }
 
-    buildTitle(record){
-        const fields = this.getColumnsInTitle()
-        const words = _.map(fields, f => record[f.slug])
-
-        return <Link to={`${this.props.basePathRecord}${record.id}`}>{_.join(words, ' ')}</Link>
-    }
-
     getAccesor(col, i){
         return col.slug
-    }
-
-    getColumnsInTitle(){
-        return _.filter(this.props.columns, { in_title: true })
     }
 
     render(){

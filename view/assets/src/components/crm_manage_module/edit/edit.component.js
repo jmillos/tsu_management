@@ -15,6 +15,8 @@ import Person from 'material-ui/svg-icons/social/person'
 import { BottomNavigation, BottomNavigationItem } from 'material-ui/BottomNavigation'
 import Paper from 'material-ui/Paper'
 
+import { buildTitle, getGridColumnsCurrentUser } from '../../../lib/utils'
+
 // Own components
 import EditForm from './_edit_form'
 
@@ -67,6 +69,19 @@ export default class CrmManageModuleEdit extends Component {
     }
 
     onSubmit(data) {
+        const {
+            users,
+            moduleId,
+            properties
+        } = this.props
+
+        const columns = getGridColumnsCurrentUser(users, moduleId, properties)
+        const title = buildTitle(data, columns)
+
+        if(title){
+            data.title = title
+        }
+
         // console.log('PtyItemForm', values)
         data = { ...data, status: 'publish' }
         this.props.updateRecord(this.props.record.id, this.props.moduleId, data, () => {

@@ -15,6 +15,7 @@ function mapStateToProps(state, ownProps){
       record,
       notes: state.notes,
       activities: state.activities,
+      users: state.users
     }
 
     if(ownProps && ownProps.routeParams){
