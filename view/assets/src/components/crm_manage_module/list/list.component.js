@@ -1,12 +1,12 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
-import { getGridColumnsCurrentUser } from '../lib/utils'
+import { getGridColumnsCurrentUser } from '../../../lib/utils'
 
-import HOCDrawer from './hoc_drawer_xl'
-import Toolbar from './crm_manage_module/toolbar'
-import AddRecord from './crm_manage_module/add'
-import Customizer from './crm_manage_module/customizer'
-import Grid from './crm_manage_module/grid'
+import HOCDrawer from '../../hoc_drawer_xl'
+import Toolbar from './_toolbar'
+import AddRecord from './_add'
+import Customizer from './_customizer'
+import Grid from './_grid'
 
 export default class CrmManageModule extends Component {
     componentWillMount(){

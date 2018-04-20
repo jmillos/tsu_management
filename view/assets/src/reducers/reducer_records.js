@@ -5,8 +5,11 @@ import {
     FETCH_RECORD,
     CREATE_RECORD,
     UPDATE_RECORD,
-    DELETE_RECORD
+    DELETE_RECORD,
+    SEARCH_RECORD
 } from '../actions/types'
+
+import { filterSearch } from '../lib/utils'
 
 export default function( state = {}, action ){
     switch (action.type) {
@@ -20,6 +23,10 @@ export default function( state = {}, action ){
 
         case DELETE_RECORD:
             return { ...state }
+
+        case SEARCH_RECORD:
+            const recordsFiltered = filterSearch(state, action.payload)
+            return { ...recordsFiltered  }
 
         default:
             return { ...state }

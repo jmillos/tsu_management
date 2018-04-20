@@ -3,7 +3,7 @@ import { Link } from 'react-router'
 
 import CrmConfigManager from '../containers/crm_config_manager'
 import CrmConfigProps from '../containers/crm_config_props'
-import CrmManageModule from '../containers/crm_manage_module'
+import CrmManageModule from './crm_manage_module/list/list'
 
 class CrmConfigModule extends Component {
     calcWidthDialogManage(){

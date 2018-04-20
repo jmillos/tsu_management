@@ -11,7 +11,7 @@ class TSU_Record extends TSU_App {
 	public function __construct() {
 		parent::__construct();
 
-		// add_filter( "rest_{$this->postType}_query", array($this, 'rest_query') );		
+		add_filter( "rest_{$this->postType}_query", array($this, 'rest_query') );		
 	}
 
 	public function include_post_type(){
@@ -20,7 +20,7 @@ class TSU_Record extends TSU_App {
 
 	public function rest_query($args, $request){
 		$args['post_parent__in'] = array(12157, 12159);
-		// echo "<pre>"; var_dump($args, $request);die;
+		echo "<pre>"; var_dump($args, $request);die;
 
 		return $args;
 	}

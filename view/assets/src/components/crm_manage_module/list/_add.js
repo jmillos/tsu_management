@@ -6,7 +6,7 @@ import Dialog from 'material-ui/Dialog'
 import FlatButton from 'material-ui/FlatButton'
 
 // Own Components
-import QuickForm from './quick_form'
+import QuickForm from './_quick_form'
 
 class ModuleAdd extends Component {
     state = {

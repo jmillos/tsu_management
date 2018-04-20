@@ -4,7 +4,7 @@ import React, { Component } from 'react'
 import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
 import RaisedButton from 'material-ui/RaisedButton'
 
-import SearchBar from '../../lib/vendors/search_bar'
+import SearchBar from '../../../lib/vendors/search_bar'
 
 export default class ModuleToolbar extends Component {
     constructor(props){
@@ -15,8 +15,8 @@ export default class ModuleToolbar extends Component {
         this.handleOpenCustomizer = this.handleOpenCustomizer.bind(this)
     }
 
-    handleSearch(){
-
+    handleSearch(...i){
+        console.log('onRequestSearch', i)
     }
 
     handleAddContact(){
@@ -39,7 +39,7 @@ export default class ModuleToolbar extends Component {
                         className="search-bar"
                         hintText="Buscar un contacto"
                         onChange={this.handleSearch}
-                        onRequestSearch={() => console.log('onRequestSearch')}
+                        onRequestSearch={(i) => console.log('onRequestSearch', i)}
                         style={{
                             height: 36,
                         }}

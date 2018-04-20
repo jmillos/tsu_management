@@ -11,7 +11,7 @@ class TSU_App {
 		add_action( 'rest_api_init', array($this, 'register_post_meta') );
 		add_filter( 'rest_prepare_' . $this->postType, array($this, 'rest_api_post'), 10, 3 );
 		// add_action( 'rest_insert_' . $this->$postType, array($this, 'rest_update_post'), 10, 2 );
-		// add_filter( 'rest_'.$this->$postType.'_query', array($this, 'rest_list_') );
+		// add_filter( 'rest_'.$this->$postType.'_query', array($this, 'rest_query') );
 	}
 	
 	/*public function rest_api_meta(){

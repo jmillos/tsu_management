@@ -20,6 +20,7 @@ import {
     CREATE_RECORD,
     UPDATE_RECORD,
     DELETE_RECORD,
+    SEARCH_RECORD,
     UPDATE_USER,
     FETCH_USER,
     FETCH_NOTES,
@@ -168,6 +169,13 @@ export function updateRecord(id, moduleId, props, callback = null){
     return {
         type: UPDATE_RECORD,
         payload: request
+    }
+}
+
+export function searchRecord(term){
+    return {
+        type: SEARCH_RECORD,
+        payload: term
     }
 }
 

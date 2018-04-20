@@ -6,8 +6,8 @@ import _ from 'lodash'
 
 // Material UI
 
-import { defaultsReactTable } from '../../config'
-import { buildTitle, getColumnsInTitle } from '../../lib/utils'
+import { defaultsReactTable } from '../../../config'
+import { buildTitle, getColumnsInTitle } from '../../../lib/utils'
 
 moment.locale('es')
 

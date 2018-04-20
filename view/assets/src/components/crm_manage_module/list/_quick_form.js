@@ -4,7 +4,7 @@ import { reduxForm, Field, FormSection, formValueSelector } from 'redux-form'
 // Material UI
 
 // Own components
-import { formFields } from '../crm_config_props/form_fields/index'
+import { formFields } from '../../crm_config_props/form_fields/index'
 
 class QuickForm extends Component {
     constructor(props){

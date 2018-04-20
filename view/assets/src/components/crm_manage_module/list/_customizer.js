@@ -2,7 +2,7 @@ import _ from 'lodash'
 import React, { Component } from 'react'
 import { reduxForm } from 'redux-form'
 import {SortableContainer, SortableElement, arrayMove} from 'react-sortable-hoc'
-import { CURRENT_USER_ID } from '../../config'
+import { CURRENT_USER_ID } from '../../../config'
 
 // Material UI
 import {List, ListItem} from 'material-ui/List'
@@ -11,7 +11,7 @@ import FlatButton from 'material-ui/FlatButton'
 import Subheader from 'material-ui/Subheader'
 
 //Own components
-import Checkbox from './customizer_checkbox'
+import Checkbox from './_customizer_checkbox'
 
 class Customizer extends Component {
     state = {
