@@ -10,7 +10,7 @@ import Grid from './_grid'
 
 export default class CrmManageModule extends Component {
     componentWillMount(){
-        this.props.fetchRecords(this.props.moduleId)
+        // this.props.fetchRecords(this.props.moduleId)
         this.props.fetchPropertyGroups()
         this.props.fetchProperties()
     }
@@ -35,7 +35,9 @@ export default class CrmManageModule extends Component {
             setModeCreate,
             setModeCustomizer,
             createRecord,
-            withoutDrawer
+            fetchRecords,
+            withoutDrawer,
+            searchRecord
         } = this.props
 
         const columns = getGridColumnsCurrentUser(users, moduleId, properties)
@@ -55,8 +57,10 @@ export default class CrmManageModule extends Component {
                 {...propsWrapContainer}>
                 <div className="crm-manage-module">
                     <Toolbar
+                        moduleId={moduleId}
                         handleModeCreate={setModeCreate}
-                        handleDialogOpen={setModeCustomizer} />
+                        handleDialogOpen={setModeCustomizer}
+                        handleSearch={searchRecord} />
 
                     <AddRecord
                         moduleId={moduleId}
@@ -77,8 +81,11 @@ export default class CrmManageModule extends Component {
 
                     <Grid
                         records={collRecords}
+                        properties={properties}
                         size={collRecords.length}
                         columns={columns}
+                        handleFetchRecords={fetchRecords}
+                        moduleId={moduleId}
                         basePathRecord={`${moduleId}-${moduleSlug}/records/`}
                     />
                 </div>

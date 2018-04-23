@@ -1,12 +1,18 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
 // Material UI
 import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
 import RaisedButton from 'material-ui/RaisedButton'
 
 import SearchBar from '../../../lib/vendors/search_bar'
+import { router } from '../../../lib/utils'
 
 export default class ModuleToolbar extends Component {
+    static contextTypes = {
+        router: PropTypes.object
+    }
+
     constructor(props){
         super(props)
 
@@ -15,8 +21,9 @@ export default class ModuleToolbar extends Component {
         this.handleOpenCustomizer = this.handleOpenCustomizer.bind(this)
     }
 
-    handleSearch(...i){
-        console.log('onRequestSearch', i)
+    handleSearch(term){
+        router.addQuery({ query: term })
+        this.props.handleSearch(term, this.props.moduleId)
     }
 
     handleAddContact(){

@@ -40,6 +40,23 @@ class TSU_App {
 		}
 	}
 
+	public function support_meta_orderby($routes) {
+        if ( $route =& $routes['/wp/v2/' . $this->postType] ) {
+            // Allow ordering by my meta value
+            $route[0]['args']['orderby']['enum'][] = 'meta_value';
+
+            // Allow only the meta keys that I want
+            $route[0]['args']['meta_key'] = array(
+                'description'       => 'The meta key to query.',
+                'type'              => 'string',
+                'enum'              => array_keys($this->registerFields),
+                'validate_callback' => 'rest_validate_request_arg',
+            );
+        }
+
+        return $routes;
+    }
+
 
 	public function get_meta($post, $field_name, $request) {
 		// echo "<pre>"; var_dump($post, $field_name);die;

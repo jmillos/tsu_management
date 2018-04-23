@@ -11,7 +11,9 @@ class TSU_Record extends TSU_App {
 	public function __construct() {
 		parent::__construct();
 
-		add_filter( "rest_{$this->postType}_query", array($this, 'rest_query') );		
+		add_filter( "rest_{$this->postType}_query", array($this, 'rest_query'), 10, 2 );
+
+		add_filter('rest_endpoints', array($this, 'support_meta_orderby'), 10, 1);	
 	}
 
 	public function include_post_type(){
@@ -19,8 +21,12 @@ class TSU_Record extends TSU_App {
 	}
 
 	public function rest_query($args, $request){
-		$args['post_parent__in'] = array(12157, 12159);
-		echo "<pre>"; var_dump($args, $request);die;
+		// $args['post_parent__in'] = array(12157, 12159);
+		// echo "<pre>"; var_dump($args, $request);die;
+
+		if ($key = $request->get_param('meta_key')) {
+	        $args['meta_key'] = $key;
+	    }
 
 		return $args;
 	}

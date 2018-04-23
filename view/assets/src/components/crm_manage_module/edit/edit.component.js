@@ -119,7 +119,7 @@ export default class CrmManageModuleEdit extends Component {
                     iconElementRight={<IconButton><NavigationClose /></IconButton>}
                     onRightIconButtonTouchTap={this.handleClose} />
 
-                <EditForm
+                { record && <EditForm
                     style={{ backgroundColor: '#eee' }}
                     groups={groups}
                     fields={properties}
@@ -130,7 +130,7 @@ export default class CrmManageModuleEdit extends Component {
                     record={record}
                     notes={notes}
                     activities={activities}
-                />
+                />}
             </Drawer>
         )
     }

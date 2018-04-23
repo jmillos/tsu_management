@@ -128,8 +128,12 @@ export function updateProperty(id, props, callback = null){
 }
 
 /*------------ Record ------------*/
-export function fetchRecords(moduleId){
-    const request = axios.get(`${API_URL}tsu_crm_record?parent=${moduleId}`);
+export function fetchRecords(moduleId, params = null, callback = null){
+    const request = axios.get(`${API_URL}tsu_crm_record?parent=${moduleId}`, { params });
+
+    if(callback !== null){
+        request.then(callback)
+    }
 
     return {
         type: FETCH_RECORDS,
@@ -172,10 +176,17 @@ export function updateRecord(id, moduleId, props, callback = null){
     }
 }
 
-export function searchRecord(term){
+export function searchRecord(term, moduleId, callback = null){
+    const querySearch = term && term != '' ? `&search=${term}`:''
+    const request = axios.get(`${API_URL}tsu_crm_record?parent=${moduleId}${querySearch}`)
+
+    if(callback !== null){
+        request.then(callback)
+    }
+
     return {
         type: SEARCH_RECORD,
-        payload: term
+        payload: request
     }
 }
 

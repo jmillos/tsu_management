@@ -14,7 +14,11 @@ import { filterSearch } from '../lib/utils'
 export default function( state = {}, action ){
     switch (action.type) {
         case FETCH_RECORDS:
-            return _.mapKeys(action.payload.data, 'id')
+        case SEARCH_RECORD:
+            return action.payload.data
+            /*return _.mapKeys(action.payload.data, (value, key) => {
+              return `${value.slug}`;
+            })*/
 
         case FETCH_RECORD:
         case CREATE_RECORD:
@@ -24,9 +28,9 @@ export default function( state = {}, action ){
         case DELETE_RECORD:
             return { ...state }
 
-        case SEARCH_RECORD:
-            const recordsFiltered = filterSearch(state, action.payload)
-            return { ...recordsFiltered  }
+        // case SEARCH_RECORD:
+            // const recordsFiltered = filterSearch(state, action.payload)
+            // return { ...recordsFiltered  }
 
         default:
             return { ...state }

@@ -37,6 +37,6 @@ export default class Item extends Component {
             record
         } = this.props
 
-        return `${record.nombre} ${record.apellidos}`
+        return `${record.title}`
     }
 }

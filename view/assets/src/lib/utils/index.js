@@ -4,6 +4,7 @@ import areIntlLocalesSupported from 'intl-locales-supported'
 export * from './crm'
 
 export * as timeline from './timeline'
+export * as router from './router'
 
 export function strToJson(str) {
     try {
