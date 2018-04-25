@@ -89,6 +89,7 @@ class CrmConfigProps extends Component {
                                 size={propsFiltered.length}
                                 onModeEdit={this.props.setModeEdit}
                                 updatePropertyGroup={this.props.updatePropertyGroup}
+                                searchText={this.state.searchText}
                             />
                         )
                     })}

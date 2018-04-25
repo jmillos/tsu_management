@@ -62,7 +62,7 @@ class EditForm extends Component {
                                 <Card key={group.id}>
                                    <CardHeader
                                      title={group.title}
-                                     subtitle="Subtitle"
+                                     subtitle={record.title}
                                      avatar={<Avatar icon={<Folder />} />}
                                    />
 

@@ -5,8 +5,8 @@ import EventListener from 'react-event-listener'
 import CrmManageModule from './list.component'
 import * as actions from '../../../actions'
 
-function mapStateToProps({ uiModule, properties, users, ptyGroups, records }, ownProps){
-    const state = { uiModule, properties, users, groups: ptyGroups, records }
+function mapStateToProps({ uiModule, properties, users, ptyGroups, records, listView }, ownProps){
+    const state = { uiModule, properties, users, groups: ptyGroups, records, listView }
 
     if(ownProps && ownProps.routeParams){
         if(ownProps.routeParams.moduleId)

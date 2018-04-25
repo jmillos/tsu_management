@@ -21,6 +21,7 @@ import {
     UPDATE_RECORD,
     DELETE_RECORD,
     SEARCH_RECORD,
+    SET_PARAMS_LIST_VIEW,
     UPDATE_USER,
     FETCH_USER,
     FETCH_NOTES,
@@ -187,6 +188,14 @@ export function searchRecord(term, moduleId, callback = null){
     return {
         type: SEARCH_RECORD,
         payload: request
+    }
+}
+
+/*------------ List View ------------*/
+export function setParamsListView(params){
+    return {
+        type: SET_PARAMS_LIST_VIEW,
+        payload: params
     }
 }
 

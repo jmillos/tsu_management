@@ -14,7 +14,8 @@ moment.locale('es')
 export default class ModuleGrid extends Component {
     columns = []
     state = {
-        loading: true
+        loading: true,
+        pages: null
     }
 
     constructor(props){
@@ -59,10 +60,16 @@ export default class ModuleGrid extends Component {
             group,
             records,
             properties,
+            listView,
             size,
             handleFetchRecords,
+            handleSetParamsListView,
             moduleId
         } = this.props
+
+        const {
+            pages
+        } = this.state
 
         const columns = this.buildColumns()
 
@@ -72,12 +79,15 @@ export default class ModuleGrid extends Component {
             <ReactTable
                 {...defaultsReactTable}
                 showPagination={true}
-                defaultPageSize={size}
+                defaultSorted={listView.sorted}
+                defaultPageSize={listView.pageSize}
                 data={records}
+                pages={pages}
                 manual
                 loading={this.state.loading}
                 columns={columns}
                 onFetchData={(state, instance) => {
+                    console.log('instance', instance);
                     // show the loading overlay
                     this.setState({loading: true})
 
@@ -86,6 +96,8 @@ export default class ModuleGrid extends Component {
                         pageSize,
                         sorted
                     } = state
+
+                    handleSetParamsListView({ page, sorted, pageSize })
 
                     let meta_key, orderby, order
                     if( Array.isArray(sorted) && sorted.length > 0 ){
@@ -101,8 +113,8 @@ export default class ModuleGrid extends Component {
                     }
 
                     const params = {
-                        // page,
-                        // per_page: pageSize,
+                        page: pages !== null ? page + 1:listView.page+1,
+                        per_page: pageSize,
                         meta_key,
                         orderby,
                         order,
@@ -110,8 +122,13 @@ export default class ModuleGrid extends Component {
 
                     console.log('onFetchData', params);
 
-                    handleFetchRecords(moduleId, params, () => {
-                        this.setState({loading: false})
+                    handleFetchRecords(moduleId, params, (res) => {
+                        this.setState({
+                            loading: false,
+                            pages: res.headers['x-wp-totalpages'],
+
+                        })
+                        console.log('response', res);
                     })
 
                     // fetch your data

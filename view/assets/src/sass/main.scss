@@ -97,17 +97,21 @@ body {
     }
 }
 
-:global .crm-manage-module {
-    margin-bottom: 25px;
+:global .search-bar {
+    display: block !important;
+    font-size: 12px !important;
+    height: 36px !important;
 
-    .search-bar {
-        display: block !important;
-        font-size: 12px !important;
-        height: 36px !important;
+    > div:first-child {
+        bottom: inherit !important;
+        line-height: 36px !important;
+    }
 
-        > div:first-child {
-            bottom: inherit !important;
-            line-height: 36px !important;
+    input {
+        @include box-shadow(none);
+
+        &:focus {
+            @include box-shadow(none);
         }
     }
 }
@@ -140,6 +144,7 @@ body {
     color: #333;
     font-weight: 400;
 }
+
 :global .Showcase__style__stylizedHelper{
     box-shadow:0 5px 5px -5px rgba(0,0,0,.2),0 -5px 5px -5px rgba(0,0,0,.2);
     cursor:row-resize;

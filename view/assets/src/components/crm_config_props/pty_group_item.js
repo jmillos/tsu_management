@@ -19,6 +19,8 @@ import ActionDelete from 'material-ui/svg-icons/action/delete-forever'
 import ImageEdit from 'material-ui/svg-icons/image/edit'
 import {grey400, darkBlack, lightBlack} from 'material-ui/styles/colors'
 
+import { defaultsReactTable } from '../../config'
+
 export default class PtyGroupItem extends Component {
     state = {
         openDialog: false,
@@ -108,6 +110,10 @@ export default class PtyGroupItem extends Component {
     }
 
     render(){
+        if( this.props.searchText && !(Array.isArray(this.props.properties) && this.props.properties.length > 0) ){
+          return null
+        }
+
         const {
             group,
             properties,
@@ -141,6 +147,7 @@ export default class PtyGroupItem extends Component {
                     rightIconButton={this.rightIconMenu}
                     nestedItems={[
                         <ReactTable
+                            {...defaultsReactTable}
                             key={1}
                             showPagination={false}
                             defaultPageSize={size}

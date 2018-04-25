@@ -31,6 +31,8 @@ export const resultsCall = [
 
 /*--------------------- Labels React Table -------------*/
 export const defaultsReactTable = {
+    defaultPageSize: 10,
+    minRows: 0,
     rowsText: 'filas',
     ofText: 'de',
     pageText: 'Página',

@@ -22,6 +22,9 @@ export const UPDATE_RECORD        = 'UPDATE_RECORD'
 export const DELETE_RECORD        = 'DELETE_RECORD'
 export const SEARCH_RECORD        = 'SEARCH_RECORD'
 
+/*------------ List View ------------*/
+export const SET_PARAMS_LIST_VIEW = 'SET_PARAMS_LIST_VIEW'
+
 /*------------ Users ------------*/
 export const UPDATE_USER          = 'UPDATE_USER'
 export const FETCH_USER           = 'FETCH_USER'

@@ -32,12 +32,14 @@ export default class CrmManageModule extends Component {
             users,
             groups,
             records,
+            listView,
             setModeCreate,
             setModeCustomizer,
             createRecord,
             fetchRecords,
             withoutDrawer,
-            searchRecord
+            searchRecord,
+            setParamsListView
         } = this.props
 
         const columns = getGridColumnsCurrentUser(users, moduleId, properties)
@@ -82,9 +84,11 @@ export default class CrmManageModule extends Component {
                     <Grid
                         records={collRecords}
                         properties={properties}
-                        size={collRecords.length}
+                        listView={listView}
+                        // size={collRecords.length}
                         columns={columns}
                         handleFetchRecords={fetchRecords}
+                        handleSetParamsListView={setParamsListView}
                         moduleId={moduleId}
                         basePathRecord={`${moduleId}-${moduleSlug}/records/`}
                     />

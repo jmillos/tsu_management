@@ -30,7 +30,7 @@ class CrmConfigModule extends Component {
                             labelButton="Administrar"
                             component={CrmConfigProps} />
                     </li>
-                    <li className="list-group-item list-group-item-action flex-column align-items-center">
+                    {/* <li className="list-group-item list-group-item-action flex-column align-items-center">
                         <CrmConfigManager
                             id={this.props.id}
                             title={`Configura las propiedades que tu equipo verá en los registros de ${moduleName}`}
@@ -38,7 +38,7 @@ class CrmConfigModule extends Component {
                             labelButton="Administrar"
                             dialogTitle={`Propiedades de registro de ${moduleSingularName}`}
                             dialogWidth={720} />
-                    </li>
+                    </li> */}
                     <li className="list-group-item list-group-item-action flex-column align-items-center">
                         <CrmConfigManager
                             id={this.props.id}

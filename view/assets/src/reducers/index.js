@@ -6,6 +6,7 @@ import ModulesReducer from './reducer_modules'
 import PtyGroupsReducer from './reducer_pty_groups'
 import PropertiesReducer from './reducer_properties'
 import RecordsReducer from './reducer_records'
+import ListViewReducer from './reducer_list_view'
 import NotesReducer from './reducer_notes'
 import ActivitiesReducer from './reducer_activities'
 import UIModuleReducer from './reducer_ui_module'
@@ -19,7 +20,8 @@ const rootReducer = combineReducers({
     records: RecordsReducer,
     notes: NotesReducer,
     activities: ActivitiesReducer,
-    uiModule: UIModuleReducer
+    uiModule: UIModuleReducer,
+    listView: ListViewReducer,
 })
 
 export default rootReducer
