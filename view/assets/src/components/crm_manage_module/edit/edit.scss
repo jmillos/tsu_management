@@ -29,4 +29,18 @@
             }
         }
     }
+
+    .task {
+        .mui_field {
+            width: 100% !important;
+
+            > div {
+                width: 100% !important;
+            }
+        }
+
+        .footer {
+            border-top: 1px solid #dfe3eb;
+        }
+    }
 }

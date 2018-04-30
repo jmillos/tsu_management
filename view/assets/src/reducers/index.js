@@ -9,6 +9,7 @@ import RecordsReducer from './reducer_records'
 import ListViewReducer from './reducer_list_view'
 import NotesReducer from './reducer_notes'
 import ActivitiesReducer from './reducer_activities'
+import TasksReducer from './reducer_tasks'
 import UIModuleReducer from './reducer_ui_module'
 
 const rootReducer = combineReducers({

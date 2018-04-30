@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import moment from 'moment'
 import { EditorState, ContentState } from 'draft-js'
 import RaisedButton from 'material-ui/RaisedButton'
 import { RichTextEditor } from './edit'
@@ -33,6 +34,13 @@ class Tab extends Component {
     clearEditor(){
         const editorState = EditorState.push(this.state.editorState, ContentState.createFromText(''))
         this.setState({ editorState })
+    }
+
+    formatDateTime(){
+        const date = moment(this.state.date).format('YYYY-MM-DD')
+        const time = moment(this.state.time).format('HH:mm:00')
+
+        return `${date} ${time}`
     }
 
     renderButtons(){

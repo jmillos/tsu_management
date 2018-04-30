@@ -41,6 +41,7 @@ class EditForm extends Component {
 
     render(){
         const {
+            users,
             fields,
             groups,
             handleClose,
@@ -87,6 +88,7 @@ class EditForm extends Component {
                         <ProfileInteractions
                             handleNoteAdd={handleNoteAdd}
                             handleActivityAdd={handleActivityAdd}
+                            users={users}
                             record={record}
                         />
 

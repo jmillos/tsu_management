@@ -23,6 +23,7 @@ import {
     SEARCH_RECORD,
     SET_PARAMS_LIST_VIEW,
     UPDATE_USER,
+    FETCH_USERS,
     FETCH_USER,
     FETCH_NOTES,
     CREATE_NOTE,
@@ -30,6 +31,8 @@ import {
     FETCH_ACTIVITIES,
     CREATE_ACTIVITY,
     CLEAR_ACTIVITIES,
+    FETCH_TASKS,
+    CREATE_TASK,
 } from './types'
 
 axios.defaults.headers.common['X-WP-Nonce'] = API_NONCE;
@@ -200,6 +203,15 @@ export function setParamsListView(params){
 }
 
 /*------------ User ------------*/
+export function fetchUsers(){
+    const request = axios.get(`${API_URL}users?roles=administrator,crm_manager`);
+
+    return {
+        type: FETCH_USERS,
+        payload: request
+    }
+}
+
 export function fetchUser(userId){
     const request = axios.get(`${API_URL}users/${userId}`);
 
@@ -274,6 +286,29 @@ export function createActivity(props, callback = null){
 
     return {
         type: CREATE_ACTIVITY,
+        payload: request
+    }
+}
+
+/*------------ Tasks ------------*/
+export function fetchTasks(recordId){
+    const request = axios.get(`${API_URL}tsu_crm_task?parent=${recordId}`);
+
+    return {
+        type: FETCH_TASKS,
+        payload: request
+    }
+}
+
+export function createTask(props, callback = null){
+    const request = axios.post(`${API_URL}tsu_crm_task`, props)
+
+    if(callback !== null){
+        request.then(callback)
+    }
+
+    return {
+        type: CREATE_TASK,
         payload: request
     }
 }

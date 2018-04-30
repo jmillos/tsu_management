@@ -26,6 +26,7 @@ export const SEARCH_RECORD        = 'SEARCH_RECORD'
 export const SET_PARAMS_LIST_VIEW = 'SET_PARAMS_LIST_VIEW'
 
 /*------------ Users ------------*/
+export const FETCH_USERS          = 'FETCH_USERS'
 export const UPDATE_USER          = 'UPDATE_USER'
 export const FETCH_USER           = 'FETCH_USER'
 
@@ -44,3 +45,11 @@ export const FETCH_ACTIVITY       = 'FETCH_ACTIVITY'
 export const UPDATE_ACTIVITY      = 'UPDATE_ACTIVITY'
 export const DELETE_ACTIVITY      = 'DELETE_ACTIVITY'
 export const CLEAR_ACTIVITIES     = 'CLEAR_ACTIVITIES'
+
+/*------------ Tasks ------------*/
+export const FETCH_TASKS          = 'FETCH_TASKS'
+export const CREATE_TASK          = 'CREATE_TASK'
+export const FETCH_TASK           = 'FETCH_TASK'
+export const UPDATE_TASK          = 'UPDATE_TASK'
+export const DELETE_TASK          = 'DELETE_TASK'
+export const CLEAR_TASKS          = 'CLEAR_TASKS'

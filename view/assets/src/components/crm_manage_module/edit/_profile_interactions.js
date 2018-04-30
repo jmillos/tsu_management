@@ -12,12 +12,15 @@ import EventNote from 'material-ui/svg-icons/notification/event-note'
 // Own components
 import NoteAdd from './_note_add'
 import ActivityAdd from './_activity_add'
+import TaskAdd from './_task_add'
 
 class ProfileInteractions extends Component {
     render() {
         const {
             handleNoteAdd,
             handleActivityAdd,
+            handleTaskAdd,
+            users,
             record
         } = this.props
 
@@ -43,7 +46,15 @@ class ProfileInteractions extends Component {
                     </Paper>
                 </Tab>
 
-                <Tab icon={<Book />} label="Crear tarea"/>
+                <Tab icon={<Book />} label="Crear tarea">
+                    <Paper zDepth={1}>
+                        <TaskAdd
+                            handleActivityAdd={handleTaskAdd}
+                            users={users}
+                            record={record}
+                        />
+                    </Paper>
+                </Tab>
 
                 <Tab icon={<EventNote />} label="Programar"/>
             </Tabs>

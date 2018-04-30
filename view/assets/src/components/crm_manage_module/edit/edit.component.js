@@ -46,6 +46,7 @@ export default class CrmManageModuleEdit extends Component {
             routeParams: { id }
         } = this.props
 
+        this.props.fetchUsers()
         this.props.fetchRecord(id, this.props.moduleId)
         this.props.fetchPropertyGroups()
         this.props.fetchProperties()
@@ -91,6 +92,7 @@ export default class CrmManageModuleEdit extends Component {
 
     render(){
         const {
+            users,
             groups,
             properties,
             record,
@@ -121,6 +123,7 @@ export default class CrmManageModuleEdit extends Component {
 
                 { record && <EditForm
                     style={{ backgroundColor: '#eee' }}
+                    users={users}
                     groups={groups}
                     fields={properties}
                     handleSubmit={this.handleSubmit}

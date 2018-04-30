@@ -2,7 +2,6 @@ import styles from './edit.scss'
 
 import _ from 'lodash'
 import React, { Component } from 'react'
-import moment from 'moment'
 import { stateToHTML } from 'draft-js-export-html'
 import { RichTextEditor } from './edit'
 import SelectField from 'material-ui/SelectField'
@@ -57,17 +56,13 @@ class ActivityAdd extends Tab {
         } = this.props
 
         const html = stateToHTML(this.state.contentState)
-        const date = moment(this.state.date).format('YYYY-MM-DD')
-        const time = moment(this.state.time).format('HH:mm:00')
-
-        console.log('time', time);
 
         const data = {
             content: html,
             parent: record.id,
             field_type: this.state.typeActivity,
             status: 'publish',
-            date: `${date} ${time}`
+            date: this.formatDateTime()
         }
 
         if(this.state.resultActivity)
