@@ -98,6 +98,7 @@ export default class CrmManageModuleEdit extends Component {
             record,
             createNote,
             createActivity,
+            createTask,
             notes,
             activities
         } = this.props
@@ -130,6 +131,7 @@ export default class CrmManageModuleEdit extends Component {
                     handleClose={this.handleClose}
                     handleNoteAdd={createNote}
                     handleActivityAdd={createActivity}
+                    handleTaskAdd={createTask}
                     record={record}
                     notes={notes}
                     activities={activities}

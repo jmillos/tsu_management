@@ -15,3 +15,4 @@ require_once(dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'model' . DIRECTORY_SEP
 require_once(dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'model' . DIRECTORY_SEPARATOR . 'class-tsu-user.php');
 require_once(dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'model' . DIRECTORY_SEPARATOR . 'class-tsu-note.php');
 require_once(dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'model' . DIRECTORY_SEPARATOR . 'class-tsu-activity.php');
+require_once(dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'model' . DIRECTORY_SEPARATOR . 'class-tsu-task.php');

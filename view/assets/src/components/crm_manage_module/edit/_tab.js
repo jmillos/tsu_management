@@ -9,6 +9,7 @@ class Tab extends Component {
     labelCancelBtn = 'Descartar'
 
     state = {
+        disabledBtnSubmit: false,
         editorHasText: false,
         contentState: null,
         editorState: EditorState.createEmpty()
@@ -52,6 +53,7 @@ class Tab extends Component {
                         primary={true}
                         className="ml-3 mr-3"
                         onClick={this.send}
+                        disabled={this.state.disabledBtnSubmit}
                     />
                     <RaisedButton
                       label={this.labelCancelBtn}

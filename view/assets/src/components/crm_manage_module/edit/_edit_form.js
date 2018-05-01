@@ -46,6 +46,7 @@ class EditForm extends Component {
             groups,
             handleClose,
             handleSubmit,
+            handleTaskAdd,
             handleNoteAdd,
             handleActivityAdd,
             record,
@@ -88,6 +89,7 @@ class EditForm extends Component {
                         <ProfileInteractions
                             handleNoteAdd={handleNoteAdd}
                             handleActivityAdd={handleActivityAdd}
+                            handleTaskAdd={handleTaskAdd}
                             users={users}
                             record={record}
                         />

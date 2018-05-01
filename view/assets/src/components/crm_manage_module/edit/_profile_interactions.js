@@ -49,14 +49,14 @@ class ProfileInteractions extends Component {
                 <Tab icon={<Book />} label="Crear tarea">
                     <Paper zDepth={1}>
                         <TaskAdd
-                            handleActivityAdd={handleTaskAdd}
+                            handleTaskAdd={handleTaskAdd}
                             users={users}
                             record={record}
                         />
                     </Paper>
                 </Tab>
 
-                <Tab icon={<EventNote />} label="Programar"/>
+                {/* <Tab icon={<EventNote />} label="Programar"/> */}
             </Tabs>
         )
     }

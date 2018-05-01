@@ -6,6 +6,13 @@ import {
 export const API_URL = `${wpApiSettings.root}wp/v2/`
 export const API_NONCE = wpApiSettings.nonce
 export const CURRENT_USER_ID = wpUserSettings.current_user
+export const alertOptions = {
+    offset: 14,
+    position: 'top right',
+    theme: 'dark',
+    time: 2000,
+    transition: 'scale'
+}
 
 export const MUITheme = {
     palette: {

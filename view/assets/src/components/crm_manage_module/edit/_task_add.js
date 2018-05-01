@@ -12,7 +12,7 @@ import TextField from 'material-ui/TextField'
 import DatePicker from 'material-ui/DatePicker'
 import TimePicker from 'material-ui/TimePicker'
 
-import { CURRENT_USER_ID } from '../../../config'
+import { CURRENT_USER_ID, alertOptions } from '../../../config'
 import Tab from './_tab'
 
 class TaskAdd extends Tab {
@@ -35,7 +35,7 @@ class TaskAdd extends Tab {
             assignedTo
         } = this.state
 
-        if(title == ''){
+        if( this.hasTitle() === false ){
             this.msg.error('Las tareas deben tener un asunto!')
             return false
         }
@@ -46,6 +46,31 @@ class TaskAdd extends Tab {
         }
 
         return true
+    }
+
+    hasTitle(){
+        const {
+            title
+        } = this.state
+
+        return typeof title === 'string' && title.length > 0
+    }
+
+    onChangeEditor(editorState){
+        // console.log('editorState.getCurrentContent', editorState.getCurrentContent());
+        this.setState({
+            editorHasText: this.hasTitle() || editorState.getCurrentContent().hasText(),
+            contentState: editorState.getCurrentContent(),
+        })
+    }
+
+    cancel(){
+        this.clear()
+    }
+
+    clear(){
+        this.setState({ title: '' })
+        this.clearEditor()
     }
 
     send(){
@@ -70,11 +95,9 @@ class TaskAdd extends Tab {
             date: this.formatDateTime()
         }
 
-        console.log('data', data);
-
-        // handleTaskAdd(data, () => {
-        //     this.clearEditor()
-        // })
+        handleTaskAdd(data, () => {
+            this.clear()
+        })
     }
 
     render(){
@@ -84,13 +107,7 @@ class TaskAdd extends Tab {
 
         return (
             <div className={`${styles.task} pl-2 pr-2 pb-2`}>
-                <AlertContainer ref={a => this.msg = a} {...{
-    offset: 14,
-    position: 'top right',
-    theme: 'dark',
-    time: 3000,
-    transition: 'scale'
-}} />
+                <AlertContainer ref={a => this.msg = a} {...alertOptions} />
 
                 <div className="row">
                     <div className="col-8">
@@ -100,11 +117,9 @@ class TaskAdd extends Tab {
                             floatingLabelText="Asunto tarea"
                             value={this.state.title}
                             onChange={(event, title) => {
-                                this.setState({ title })
-
-                                if(typeof title === 'string' && title.length > 0){
-                                    this.setState({ editorHasText: true })
-                                }
+                                this.setState({ title }, () => {
+                                    this.setState({ editorHasText: this.hasTitle() })
+                                })
                             }}
                         />
                     </div>
