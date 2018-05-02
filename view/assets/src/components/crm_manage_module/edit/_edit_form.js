@@ -51,7 +51,8 @@ class EditForm extends Component {
             handleActivityAdd,
             record,
             notes,
-            activities
+            activities,
+            tasks
         } = this.props
 
         return (
@@ -96,8 +97,10 @@ class EditForm extends Component {
 
                         <Timeline
                           record={record}
+                          users={users}
                           notes={notes}
                           activities={activities}
+                          tasks={tasks}
                         />
                     </div>
                 </div>

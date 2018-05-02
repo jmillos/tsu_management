@@ -21,6 +21,7 @@ const rootReducer = combineReducers({
     records: RecordsReducer,
     notes: NotesReducer,
     activities: ActivitiesReducer,
+    tasks: TasksReducer,
     uiModule: UIModuleReducer,
     listView: ListViewReducer,
 })

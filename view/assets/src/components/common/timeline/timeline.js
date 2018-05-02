@@ -22,8 +22,9 @@ export default class Timeline extends Component {
         if(
             !_.isEqual(this.props.notes, nextProps.notes)
                 || !_.isEqual(this.props.activities, nextProps.activities)
+                || !_.isEqual(this.props.tasks, nextProps.tasks)
         ){
-            console.log('nextProps', this.props.activities, nextProps.activities);
+            console.log('nextProps', this.props.tasks, nextProps.tasks);
             this.items = timeline.orderItems(nextProps)
         }
     }
@@ -31,14 +32,15 @@ export default class Timeline extends Component {
     render() {
         console.log('items', this.items, this.props.notes);
         const {
-            record
+            record,
+            users
         } = this.props
 
         return _.size(this.items) > 0 && (
             <VerticalTimeline>
                 {
                     _.map(this.items, (item) => {
-                        return <Item key={item.id} item={item} record={record} />
+                        return <Item key={item.id} item={item} record={record} users={users} />
                     })
                 }
                 {/* <VerticalTimelineElement className="vertical-timeline-element--work" date="2011 - present" iconStyle={{

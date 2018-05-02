@@ -41,6 +41,7 @@ class TSU_Task extends TSU_App {
 			'author' 	 		=> $post->post_author,
 			'type'		 		=> $this->itemType,
 			'field_type'		=> $data->data['field_type'],
+			'assigned_to'		=> $data->data['assigned_to'],
 			'date'     	 		=> $data->data['date'],
 		);
 

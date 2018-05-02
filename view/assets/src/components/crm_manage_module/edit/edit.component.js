@@ -52,6 +52,7 @@ export default class CrmManageModuleEdit extends Component {
         this.props.fetchProperties()
         this.props.fetchNotes(id)
         this.props.fetchActivities(id)
+        this.props.fetchTasks(id)
         console.log('this.props', id);
     }
 
@@ -100,7 +101,8 @@ export default class CrmManageModuleEdit extends Component {
             createActivity,
             createTask,
             notes,
-            activities
+            activities,
+            tasks
         } = this.props
 
         return (
@@ -134,6 +136,7 @@ export default class CrmManageModuleEdit extends Component {
                     handleTaskAdd={createTask}
                     record={record}
                     notes={notes}
+                    tasks={tasks}
                     activities={activities}
                 />}
             </Drawer>

@@ -15,6 +15,7 @@ function mapStateToProps(state, ownProps){
       record,
       notes: state.notes,
       activities: state.activities,
+      tasks: state.tasks,
       users: state.users
     }
 
