@@ -64,21 +64,20 @@ export default class Task extends Item {
         if(CURRENT_USER_ID == assigned_to){
             return 'ti mismo'
         }else{
-            const user = this.parseUserName()
+            const user = this.parseUserName(assigned_to)
             return user.name || ''
         }
     }
 
     render(){
         const {
+            title,
             content,
             author,
             field_type,
             field_result,
             date
         } = this.props.item
-
-        const title = this.formatTitle()
 
         return (
             <VerticalTimelineElement
@@ -94,7 +93,7 @@ export default class Task extends Item {
                     <i><b>{ this.formatAuthor() }</b> { this.partTitle } <b>{ this.formatAssigned() }</b></i>
                 </div>
                 <small className="vertical-timeline-element-subtitle">
-                    <b>Resultado de la llamada:</b> { this.result }
+                    <b>Asunto:</b> { title }
                 </small>
                 <div dangerouslySetInnerHTML={{__html: content}}></div>
             </VerticalTimelineElement>

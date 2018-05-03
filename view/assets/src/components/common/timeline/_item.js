@@ -16,12 +16,12 @@ export default class Item extends Component {
         if(CURRENT_USER_ID == author){
             return 'Tú'
         }else{
-            return this.parseUserName()
+            return this.parseUserName(CURRENT_USER_ID)
         }
     }
 
-    parseUserName(){
-        return this.props.users[parseInt(CURRENT_USER_ID)] || ''
+    parseUserName(userId){
+        return this.props.users[parseInt(userId)] || ''
     }
 
     formatDate(){
