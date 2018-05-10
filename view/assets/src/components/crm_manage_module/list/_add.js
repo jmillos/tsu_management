@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { reduxForm } from 'redux-form'
 
+import { buildTitle } from '../../../lib/utils'
+
 // Material UI
 import Dialog from 'material-ui/Dialog'
 import FlatButton from 'material-ui/FlatButton'
@@ -43,18 +45,28 @@ class ModuleAdd extends Component {
     }
 
     onSubmit(data) {
+        const title = buildTitle(data, this.getFieldQuickCreate())
+
+        if(title){
+            data.title = title
+        }
         // console.log('PtyItemForm', values)
+        
         data = { ...data, status: 'publish' }
         this.props.handleCreateRecord(this.props.moduleId, data, () => {
             this.handleCloseDialog()
         })
     }
 
-    render(){
+    getFieldQuickCreate(){
         const {
             properties
         } = this.props
 
+        return _.filter(properties, { quick_create: true })
+    }
+
+    render(){
         return (
             <Dialog
                   title="Crear un nuevo registro"
@@ -67,7 +79,7 @@ class ModuleAdd extends Component {
                   onRequestClose={this.handleCloseDialog}
                 >
                 <QuickForm
-                    fields={_.filter(properties, { quick_create: true })}
+                    fields={this.getFieldQuickCreate()}
                     handleSubmit={this.handleSubmit} />
             </Dialog>
         )

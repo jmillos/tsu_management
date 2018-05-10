@@ -25,7 +25,7 @@ export function buildTitle(record, columns){
     const fields = getColumnsInTitle(columns)
     const words = _.map(fields, f => record[f.slug])
 
-    return _.join(words, ' ')
+    return words ? _.join(words, ' '):null
 }
 
 export function getColumnsInTitle(columns){
