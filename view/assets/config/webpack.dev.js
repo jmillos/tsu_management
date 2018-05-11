@@ -22,34 +22,6 @@ module.exports = webpackMerge(commonConfig, {
         https: false
     },
 
-    module: {
-        loaders: [
-            {
-                test: /\.scss$/,
-                loaders: [
-                    {
-                        loader: 'style-loader',
-                    },
-                    {
-                        loader: 'css-loader',
-                        options: {
-                            modules: true,
-                            sourceMap: true,
-                            importLoaders: 2,
-                            localIdentName: '[name]__[local]___[hash:base64:5]'
-                        }
-                    },
-                    {
-                        loader: 'sass-loader',
-                        options: {
-                            sourceMap: true,
-                        }
-                    }
-                ]
-            }
-        ]
-    },
-
     plugins: [
         new ExtractTextPlugin("main.css")
     ]

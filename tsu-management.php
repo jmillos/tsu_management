@@ -36,7 +36,7 @@ final class TSU_Management {
 	 */
 	protected static $_instance = null;
 
-	public static $version = "0.0.0";
+	public static $version = "0.0.1";
 
 	public function __construct(){
 		$this->includes();
@@ -103,6 +103,9 @@ final class TSU_Management {
 	}
 
 	public function admin_script(){
+		wp_register_style( 'tsu_management_stylesheet', plugins_url('/view/assets/build/main.css', __FILE__), array(), self::$version );
+		wp_enqueue_style( 'tsu_management_stylesheet' );
+
 		wp_register_script( 'tsu_management_bundle', plugins_url('/view/assets/build/bundle.js', __FILE__), array('wp-api'), self::$version, true );
 		wp_enqueue_script( 'tsu_management_bundle' );
 

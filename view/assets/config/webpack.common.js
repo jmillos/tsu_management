@@ -11,17 +11,6 @@ module.exports = {
         filename: 'bundle.js'
     },
 
-    /**
-     * Developer tool to enhance debugging.
-     *
-     * The 'source-map' settings is meant to be used in production only. It
-     * splits the source map in a separate file and it is slow to compute.
-     *
-     * See: http://webpack.github.io/docs/configuration.html#devtool
-     * See: https://github.com/webpack/docs/wiki/build-performance#sourcemaps
-     */
-    devtool: 'source-map', //'eval-source-map'
-
     module: {
         loaders: [
             {
@@ -31,6 +20,54 @@ module.exports = {
             }, {
                 test: /\.css$/, //^(?!__).+\.css$
                 loaders: ['style-loader', 'css-loader']
+            }, {
+                test: /^(?!.*bootstrap\.scss$).*\.scss$/,
+                use: ExtractTextPlugin.extract({
+                  fallback: 'style-loader',
+                  //resolve-url-loader may be chained before sass-loader if necessary
+                  use: [{
+                        loader: 'css-loader',
+                        options: {
+                            modules: true,
+                            sourceMap: true,
+                            importLoaders: 2,
+                            localIdentName: '[name]__[local]___[hash:base64:5]'
+                        }
+                    },
+                    {
+                        loader: 'sass-loader',
+                        options: {
+                            sourceMap: true,
+                        }
+                    }]
+                }),
+                /*loaders: [
+                    {
+                        loader: 'style-loader',
+                    },
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            modules: true,
+                            sourceMap: true,
+                            importLoaders: 2,
+                            localIdentName: '[name]__[local]___[hash:base64:5]'
+                        }
+                    },
+                    {
+                        loader: 'sass-loader',
+                        options: {
+                            sourceMap: true,
+                        }
+                    }
+                ]*/
+            }, {
+                test: /bootstrap.scss$/,
+                use: ExtractTextPlugin.extract({
+                  fallback: 'style-loader',
+                  //resolve-url-loader may be chained before sass-loader if necessary
+                  use: ['css-loader?sourceMap', 'sass-loader?sourceMap']
+                }),
             }, {
                 test: /\.html$/,
                 loader: 'raw-loader'

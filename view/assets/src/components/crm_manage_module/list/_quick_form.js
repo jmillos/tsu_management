@@ -51,4 +51,6 @@ class QuickForm extends Component {
     }
 }
 
+QuickForm = reduxForm({form: 'RecordForm'})(QuickForm);
+
 export default QuickForm

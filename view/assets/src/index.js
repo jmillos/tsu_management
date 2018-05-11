@@ -1,6 +1,6 @@
 import 'babel-polyfill';
 import 'react-table/react-table.css'
-import '../css/bootstrap.css'
+import './sass/bootstrap.scss'
 import './sass/main.scss'
 
 import React, { Component } from 'react'

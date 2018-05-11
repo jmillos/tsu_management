@@ -1,43 +1,12 @@
 const webpack = require('webpack');
+const webpackMerge = require('webpack-merge');
 const path = require('path');
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const commonConfig = require('./webpack.common.js');
 
-module.exports = {
-    output: {
-        path: path.join(__dirname, '/build'),
-        filename: '[name].[chunkhash].bundle.js',
-        // publicPath: publicPath,
-        sourceMapFilename: '[name].[chunkhash].map'
-    },
-
-    modules: {
-        loaders: [
-            {
-               test: /\.scss$/,
-               use: ExtractTextPlugin.extract({
-                   fallback: 'style-loader',
-                   use: [
-                       {
-                           loader: 'css-loader',
-                           options: {
-                               modules: true,
-                               sourceMap: true,
-                               importLoaders: 2,
-                               localIdentName: '[name]__[local]___[hash:base64:5]'
-                           }
-                       },
-                       {
-                           loader: 'sass-loader',
-                           options: {
-                               sourceMap: true,
-                           }
-                       }
-                   ]
-               })
-           }
-        ]
-    }
-
+module.exports = webpackMerge(commonConfig, {
     plugins: [
+        new ExtractTextPlugin("main.css"),
         new webpack.optimize.UglifyJsPlugin({
             beautify: false,
             mangle: {
@@ -50,4 +19,4 @@ module.exports = {
             comments: false
         })
     ]
-}
+});
