@@ -7,7 +7,7 @@ module.exports = {
     entry: './src/index.js',
     output: {
         path: path.join(__dirname, '..', './build'),
-        publicPath: '/wp-content/plugins/tsu-management/view/assets/build/',
+        publicPath: './',
         filename: 'bundle.js'
     },
 
