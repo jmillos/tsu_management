@@ -1,6 +1,7 @@
 import _ from 'lodash'
 import React, {Component} from 'react'
 import { reduxForm, Field, FormSection, formValueSelector } from 'redux-form'
+import slug from 'slug'
 
 import * as validators from './../../validators'
 import { formFields } from './form_fields'
@@ -28,6 +29,7 @@ class FormPtyItem extends Component {
         super(props)
 
         this.onChangeFieldType = this.onChangeFieldType.bind(this)
+        this.autocompleteSlug = this.autocompleteSlug.bind(this)
     }
 
     componentWillMount(){
@@ -56,6 +58,26 @@ class FormPtyItem extends Component {
         this.setState({ formFieldSelected: this.getFormFieldType(key) })
     }
 
+    autocompleteSlug(...params){
+        const {
+            change,
+            titleField,
+            slugField
+        } = this.props
+
+        if( (typeof titleField === 'string' && titleField.length > 0) && !(typeof slugField === 'string' && slugField.length > 0) ){
+            setTimeout(() => {
+                change(
+                    'slug', 
+                    slug(titleField, {
+                        replacement: '_',
+                        lower: true
+                    })
+                )
+            })
+        }
+    }
+
     render() {
         let { formFieldSelected } = this.state
         if(!formFieldSelected){
@@ -77,6 +99,7 @@ class FormPtyItem extends Component {
                     floatingLabelText="Etiqueta"
                     validate={validators.required}
                     fullWidth={true}
+                    onBlur={this.autocompleteSlug}
                     // onChange={(e, newValue) => this.props.fields.slug.onChange(newValue)}
                 />
                 <Field
@@ -87,6 +110,7 @@ class FormPtyItem extends Component {
                     floatingLabelText="Nombre interno"
                     validate={[validators.required, validators.alphaNumeric]}
                     fullWidth={true}
+                    onBlur={this.autocompleteSlug}
                 />
                 <Field
                     name="in_title"

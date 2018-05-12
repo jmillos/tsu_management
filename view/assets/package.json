@@ -72,6 +72,8 @@
     "redux-form-material-ui": "^4.2.0",
     "redux-form-validators": "^2.1.0",
     "redux-promise": "^0.5.3",
-    "redux-thunk": "^2.2.0"
+    "redux-thunk": "^2.2.0",
+    "slug": "^0.9.1",
+    "slugify": "^1.2.9"
   }
 }

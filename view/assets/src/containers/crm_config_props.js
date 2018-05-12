@@ -1,5 +1,6 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
+import { reduxForm, formValueSelector } from 'redux-form'
 import { connect } from 'react-redux'
 import { Link } from 'react-router'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
@@ -74,6 +75,8 @@ class CrmConfigProps extends Component {
                             onModeCreate={this.props.setModeEdit}
                             ptyGroups={this.props.groups}
                             handleCreateProperty={this.props.createProperty}
+                            titleField={this.props.titleField}
+                            slugField={this.props.slugField}
                         />
                     </div>
 
@@ -99,8 +102,14 @@ class CrmConfigProps extends Component {
     }
 }
 
-function mapStateToProps({ ptyGroups, properties }){
-    return { groups: ptyGroups, properties }
+const selector = formValueSelector('PtyItemForm')
+function mapStateToProps(state){
+    const {
+        ptyGroups, 
+        properties
+    } = state
+
+    return { groups: ptyGroups, properties, titleField: selector(state, 'title'), slugField: selector(state, 'slug') }
 }
 
 export default connect(mapStateToProps, actions)(CrmConfigProps)

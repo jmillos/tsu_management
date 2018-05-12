@@ -89,6 +89,8 @@ class CreatePtyItem extends Component {
                     >
                     <FormPtyItem
                         ptyGroups={this.props.ptyGroups}
+                        titleField={this.props.titleField}
+                        slugField={this.props.slugField}
                         handleSubmit={this.handleSubmit} />
                 </Dialog>
             </div>
